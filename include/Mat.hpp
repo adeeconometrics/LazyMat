@@ -18,18 +18,17 @@ struct OpNode {
 };
 
 auto operator+(const Mat &A, const Mat &B) -> OpNode {
-  return {OpType::Addition, [](float a, float b) { return a + b; }, {A, B}};
+  return {OpType::Addition, std::plus<float>(), {A, B}};
 }
 
 auto operator*(const Mat &A, const Mat &B) -> OpNode {
-  return {
-      OpType::Multiplication, [](float a, float b) { return a * b; }, {A, B}};
+  return {OpType::Multiplication, std::multiplies<float>(), {A, B}};
 }
 
 auto operator+(const OpNode &lhs, const OpNode &rhs) -> OpNode {
   OpNode result;
   result.type = OpType::Addition;
-  result.op = [](float a, float b) { return a + b; };
+  result.op = std::plus<float>();
   result.children = {rhs, lhs};
   return result;
 }
