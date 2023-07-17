@@ -26,6 +26,14 @@ auto operator*(const Mat &A, const Mat &B) -> OpNode {
       OpType::Multiplication, [](float a, float b) { return a * b; }, {A, B}};
 }
 
+auto operator+(const OpNode &lhs, const OpNode &rhs) -> OpNode {
+  OpNode result;
+  result.type = OpType::Addition;
+  result.op = [](float a, float b) { return a + b; };
+  result.children = {rhs, lhs};
+  return result;
+}
+
 auto apply(const OpNode &opnode) -> Mat {
   if (opnode.matrices.empty()) {
     // Evaluate the children recursively

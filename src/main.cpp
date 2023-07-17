@@ -12,11 +12,7 @@ auto main() -> int {
   // Build the computational graph
   OpNode addNode = A + B;
   OpNode mulNode = C * D;
-  OpNode rootNode;
-  rootNode.type = OpType::Addition;
-  rootNode.op = [](float a, float b) { return a + b; };
-  rootNode.children = {addNode, mulNode};
-
+  OpNode rootNode = A * B + C * D;
   // Apply the operation
   Mat result = apply(rootNode);
 
