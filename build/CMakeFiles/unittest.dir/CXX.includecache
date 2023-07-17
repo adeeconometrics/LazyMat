@@ -1,0 +1,10 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/test/unittest.cpp
+

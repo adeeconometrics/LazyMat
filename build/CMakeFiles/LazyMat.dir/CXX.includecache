@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Mat.hpp
+functional
+-
+vector
+-
+
+/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/src/main.cpp
+../include/Mat.hpp
+/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Mat.hpp
+iostream
+-
+
