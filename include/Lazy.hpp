@@ -1,9 +1,16 @@
-#ifndef __MAT_H__
-#define __MAT_H__
+#ifndef __LAZY_H__
+#define __LAZY_H__
 
 #include <functional>
 #include <vector>
 
+// todo
+// remove OpType
+// add unary ops
+// add mat size checking -- runtime
+// specialized type impl
+
+// revise opnode as class that maintains a reference of a matrix type
 namespace lm {
 
 using Mat = std::vector<std::vector<float>>;
@@ -29,6 +36,14 @@ auto operator+(const OpNode &lhs, const OpNode &rhs) -> OpNode {
   OpNode result;
   result.type = OpType::Addition;
   result.op = std::plus<float>();
+  result.children = {rhs, lhs};
+  return result;
+}
+
+auto operator*(const OpNode &lhs, const OpNode &rhs) -> OpNode {
+  OpNode result;
+  result.type = OpType::Addition;
+  result.op = std::multiplies<float>();
   result.children = {rhs, lhs};
   return result;
 }
@@ -68,4 +83,4 @@ auto apply(const OpNode &opnode) -> Mat {
 }
 } // namespace lm
 
-#endif // __MAT_H__
+#endif // __LAZY_H__
