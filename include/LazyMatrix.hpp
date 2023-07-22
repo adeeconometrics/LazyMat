@@ -1,6 +1,7 @@
 #ifndef __LAZYMATRIX_H__
 #define __LAZYMATRIX_H__
 
+#include <cassert>
 #include <vector>
 
 namespace lm {
@@ -17,12 +18,14 @@ public:
          std::size_t cols)
       : data(t_data), row(rows), col(cols) {}
 
-  constexpr auto operator[](std::size_t row) noexcept -> std::vector<T> & {
-    return data[row];
+  constexpr auto operator[](std::size_t index) -> std::vector<T> & {
+    assert(row > index);
+    return data[index];
   }
 
-  constexpr auto operator[](std::size_t row) const -> const std::vector<T> & {
-    return data[row];
+  constexpr auto operator[](std::size_t index) const -> const std::vector<T> & {
+    assert(row > index);
+    return data[index];
   }
 
   constexpr auto operator()(std::size_t i, std::size_t j) const noexcept -> T {
