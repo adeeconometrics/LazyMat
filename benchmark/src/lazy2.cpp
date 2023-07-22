@@ -81,19 +81,19 @@ private:
 };
 
 template <typename Lhs, typename Rhs>
-auto operator+(const Lhs &lhs, const Rhs &rhs)
+constexpr auto operator+(const Lhs &lhs, const Rhs &rhs)
     -> BinaryExpr<std::plus<>, Lhs, Rhs> {
   return BinaryExpr<std::plus<>, Lhs, Rhs>(lhs, rhs);
 }
 
 template <typename Lhs, typename Rhs>
-auto operator-(const Lhs &lhs, const Rhs &rhs)
+constexpr auto operator-(const Lhs &lhs, const Rhs &rhs)
     -> BinaryExpr<std::minus<>, Lhs, Rhs> {
   return BinaryExpr<std::minus<>, Lhs, Rhs>(lhs, rhs);
 }
 
 template <typename Lhs, typename Rhs>
-auto operator*(const Lhs &lhs, const Rhs &rhs)
+constexpr auto operator*(const Lhs &lhs, const Rhs &rhs)
     -> BinaryExpr<std::multiplies<>, Lhs, Rhs> {
   return BinaryExpr<std::multiplies<>, Lhs, Rhs>(lhs, rhs);
 }
@@ -136,7 +136,7 @@ auto main() -> int {
 
   {
     Timer timer;
-    C = A * B * B + A;
+    C = A * B * B + A * B + A * A * B;
   }
 
   std::cout << "A: " << A.rows() << "x" << A.cols() << " dims\n";
