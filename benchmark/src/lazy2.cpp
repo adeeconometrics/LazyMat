@@ -1,6 +1,8 @@
 #include <algorithm>
+#include <iostream>
 #include <random>
 #include <vector>
+// Write a matrix class to store size in std::pair
 
 using std::vector;
 
@@ -22,7 +24,9 @@ auto make_matrix(std::size_t row, std::size_t col,
 }
 
 template <typename T> struct add {
-  add(const Mat<T> &lhs, const Mat<T> &rhs) : m_lhs(lhs), m_rhs(rhs) {}
+  add(const Mat<T> &lhs, const Mat<T> &rhs) : m_lhs(lhs), m_rhs(rhs) {
+    // perform assersions on Mat size rhs.size() == lhs.size()
+  }
 
   auto operator()(std::size_t row, std::size_t col) const noexcept -> T {
     return m_lhs[row][col] + m_rhs[col][col];
@@ -50,6 +54,21 @@ auto operator+(const Mat<T> &lhs, const Mat<T> &rhs) -> add<T> {
   return add(lhs, rhs);
 }
 
-template <typename T> auto eval() -> Mat<T>;
+template <typename T> auto eval(const add<T> &expr) -> Mat<T> {
+  Mat<T> result;
 
-auto main() -> int {}
+  return result;
+}
+
+auto main() -> int {
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  const auto A = make_matrix<float>(2048, 2048, rng_a);
+  const auto B = make_matrix<float>(2048, 2048, rng_b);
+
+  auto C = A + A + B + A + B + B;
+
+  std::cout << "A: " << A.size() << "x" << A[0].size() << " dims\n";
+  std::cout << "B: " << B.size() << "x" << B[0].size() << " dims\n";
+}
