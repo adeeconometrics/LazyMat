@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/LazyMat.dir/src/main.cpp.o  -o bin/LazyMat 

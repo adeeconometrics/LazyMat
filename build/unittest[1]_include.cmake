@@ -1,5 +1,0 @@
-if(EXISTS "/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/build/unittest[1]_tests.cmake")
-  include("/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/build/unittest[1]_tests.cmake")
-else()
-  add_test(unittest_NOT_BUILT unittest_NOT_BUILT)
-endif()
