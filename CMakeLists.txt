@@ -48,7 +48,7 @@ include(GoogleTest)
 gtest_discover_tests(unittest)
 
 # Specify the packaging information
-set(CPACK_PACKAGE_NAME "my_project")
+set(CPACK_PACKAGE_NAME "lazymat")
 set(CPACK_PACKAGE_VERSION "1.0.0")
 set(CPACK_GENERATOR "ZIP")
 include(CPack)

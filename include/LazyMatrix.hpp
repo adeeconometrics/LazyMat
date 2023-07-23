@@ -2,6 +2,7 @@
 #define __LAZYMATRIX_H__
 
 #include <cassert>
+#include <initializer_list>
 #include <vector>
 
 namespace lm {
@@ -13,6 +14,10 @@ public:
 public:
   Matrix(std::size_t rows, std::size_t cols)
       : data(rows, std::vector<T>(cols)), row(rows), col(cols) {}
+
+  Matrix(std::initializer_list<std::initializer_list<T>> t_list)
+      : data(std::vector<std::vector<T>>(t_list.begin(), t_list.end())),
+        row(t_list.size()), col(t_list.begin()->size()) {}
 
   Matrix(const std::vector<std::vector<T>> &t_data, std::size_t rows,
          std::size_t cols)
@@ -61,6 +66,16 @@ private:
   std::size_t row;
   std::size_t col;
 };
+
+template <typename T>
+constexpr auto operator==(const Matrix<T> &lhs, const Matrix<T> &rhs) -> bool {
+  return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin());
+}
+
+template <typename T>
+constexpr auto operator!=(const Matrix<T> &lhs, const Matrix<T> &rhs) -> bool {
+  return !(lhs == rhs);
+}
 
 } // namespace lm
 
