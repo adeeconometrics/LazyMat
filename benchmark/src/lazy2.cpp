@@ -1,32 +1,13 @@
-#include <algorithm>
-#include <chrono>
-#include <functional>
+#include "../include/utils.hpp"
+#include <cmath>
 #include <iostream>
-#include <random>
 #include <vector>
 
 using std::vector;
 
-class Timer {
-public:
-  Timer() : start_time(std::chrono::high_resolution_clock::now()) {}
-
-  ~Timer() {
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
-                        end_time - start_time)
-                        .count();
-    std::cout << "Elapsed time: " << duration << " microseconds" << std::endl;
-  }
-
-private:
-  std::chrono::high_resolution_clock::time_point start_time;
-};
-
 template <typename T> class Matrix {
 public:
-  Matrix(std::size_t rows, std::size_t cols)
-      : data(rows, vector<T>(cols)), row(rows), col(cols) {}
+  Matrix(std::size_t rows, std::size_t cols) : row(rows), col(cols) {}
 
   Matrix(const std::vector<vector<T>> &t_data, std::size_t rows,
          std::size_t cols)
@@ -38,24 +19,29 @@ public:
     return data[row];
   }
 
-  auto operator()(const std::size_t i, const std::size_t j) const noexcept
-      -> T {
+  auto operator()(std::size_t i, std::size_t j) const noexcept -> T {
     return data[i][j];
   }
 
-  auto operator()(const std::size_t i, const std::size_t j) noexcept -> T & {
+  auto operator()(std::size_t i, std::size_t j) noexcept -> T & {
     return data[i][j];
   }
   auto rows() const noexcept -> std::size_t { return row; }
   auto cols() const noexcept -> std::size_t { return col; }
 
   template <typename Expr> auto operator=(const Expr &expr) -> Matrix<T> & {
+    vector<vector<T>> M;
+    M.reserve(row);
+
     for (std::size_t i = 0; i < row; ++i) {
+      std::vector<T> m_row;
+      m_row.reserve(col);
       for (std::size_t j = 0; j < col; ++j) {
-        // Evaluate the expression and assign to the matrix
-        data[i][j] = expr(i, j);
+        m_row.emplace_back(expr(i, j));
       }
+      M.emplace_back(std::move(m_row));
     }
+    data = M;
     return *this;
   }
 
@@ -80,6 +66,17 @@ private:
   Op op;
 };
 
+template <typename Op, typename Expr> class UnaryExpr {
+public:
+  UnaryExpr(const Expr &expr) : expr(expr) {}
+
+  auto operator()(std::size_t i, std::size_t j) const { return op(expr(i, j)); }
+
+private:
+  Expr expr;
+  Op op;
+};
+
 template <typename Lhs, typename Rhs>
 constexpr auto operator+(const Lhs &lhs, const Rhs &rhs)
     -> BinaryExpr<std::plus<>, Lhs, Rhs> {
@@ -98,6 +95,22 @@ constexpr auto operator*(const Lhs &lhs, const Rhs &rhs)
   return BinaryExpr<std::multiplies<>, Lhs, Rhs>(lhs, rhs);
 }
 
+template <typename Expr>
+auto operator-(const Expr &expr) -> UnaryExpr<std::negate<>, Expr> {
+  return UnaryExpr<std::negate<>, Expr>(expr);
+}
+
+struct LogOp {
+  template <typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+  auto operator()(T t) const {
+    return std::log(t);
+  }
+};
+
+template <typename Expr> auto log(const Expr &expr) -> UnaryExpr<LogOp, Expr> {
+  return UnaryExpr<LogOp, Expr>(expr);
+}
+
 // Print the matrix
 template <typename T> void printMatrix(const Matrix<T> &matrix) {
   for (std::size_t i = 0; i < matrix.rows(); ++i) {
@@ -108,39 +121,18 @@ template <typename T> void printMatrix(const Matrix<T> &matrix) {
   }
 }
 
-template <typename T>
-auto make_matrix(const std::size_t row, const std::size_t col,
-                 std::reference_wrapper<std::mt19937> prng) -> Matrix<T> {
-
-  vector<vector<T>> result;
-  result.reserve(row);
-
-  for (std::size_t i = 0; i < row; i++) {
-    std::vector<T> row;
-    row.reserve(col);
-    std::generate_n(std::back_inserter(row), col, prng);
-    result.emplace_back(row);
-  }
-
-  return {result, row, col};
-}
-
 auto main() -> int {
   std::mt19937 rng_a(64);
   std::mt19937 rng_b(65);
 
-  Matrix<int> A = make_matrix<int>(2048, 2048, std::ref(rng_a));
-  Matrix<int> B = make_matrix<int>(2048, 2048, std::ref(rng_b));
+  Matrix<int> A =
+      Matrix<int>{make_matrix<int>(2048, 2048, std::ref(rng_a)), 2048, 2048};
+  Matrix<int> B =
+      Matrix<int>{make_matrix<int>(2048, 2048, std::ref(rng_b)), 2048, 2048};
 
   Matrix<int> C(2048, 2048);
 
-  {
-    Timer timer;
-    C = A * B * B + A * B + A * A * B;
-  }
-
-  std::cout << "A: " << A.rows() << "x" << A.cols() << " dims\n";
-  std::cout << "B: " << B.rows() << "x" << B.cols() << " dims\n";
+  C = A * B * B + A * B + A * A * B;
 
   return 0;
 }
