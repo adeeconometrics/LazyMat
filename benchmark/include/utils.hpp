@@ -2,6 +2,7 @@
 #define __UTILS_H__
 
 #include <algorithm>
+#include <array>
 #include <chrono>
 #include <functional>
 #include <iostream>
@@ -40,6 +41,44 @@ auto make_matrix(const std::size_t row, const std::size_t col,
   }
 
   return result;
+}
+
+// template <typename T, std::size_t N, std::size_t M>
+// auto make_matrix(std::reference_wrapper<std::mt19937> prng)
+//     -> std::array<std::array<T, N>, M> {
+
+//   std::array<std::array<T, N>, M> result;
+//   std::generate_n(result.data(), N * M, prng);
+
+//   return result;
+// }
+
+template <typename T, std::size_t N, std::size_t M>
+auto make_matrix(std::reference_wrapper<std::mt19937> prng)
+    -> std::array<std::array<T, N>, M> {
+
+  std::array<std::array<T, N>, M> result;
+  for (size_t i = 0; i < M; i++) {
+    std::array<T, N> _temp;
+    std::generate_n(_temp.begin(), N, prng);
+    result[i] = _temp;
+  }
+
+  return result;
+}
+
+template <typename T>
+auto operator<<(std::ostream &os, const std::vector<T> &v) -> std::ostream & {
+  for (auto i : v)
+    os << i << " ";
+  return os << '\n';
+}
+
+template <typename T, std::size_t N>
+auto operator<<(std::ostream &os, const std::array<T, N> &v) -> std::ostream & {
+  for (auto i : v)
+    os << i << " ";
+  return os << '\n';
 }
 
 #endif // __UTILS_H__

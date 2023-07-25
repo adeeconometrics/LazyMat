@@ -131,8 +131,9 @@ auto main() -> int {
       Matrix<int>{make_matrix<int>(2048, 2048, std::ref(rng_b)), 2048, 2048};
 
   Matrix<int> C(2048, 2048);
-
-  C = A * B * B + A * B + A * A * B;
-
+  {
+    Timer t;
+    C = A * B * B + A * B + A * A * B;
+  }
   return 0;
 }
