@@ -9,7 +9,7 @@ Experimenting with Generic Lazy Matrix implementation in Cpp
 </p>
 
 
-Combilation:
+Compilation:
 ```bash
 $ mkdir build && cd build && cmake ../ && make
 ```
