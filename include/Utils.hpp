@@ -4,6 +4,7 @@
 #include "../include/LazyMatrix.hpp"
 
 #include <algorithm>
+#include <array>
 #include <chrono>
 #include <functional>
 #include <iomanip>
@@ -11,7 +12,6 @@
 #include <random>
 #include <string>
 #include <type_traits>
-#include <vector>
 
 namespace lm {
 
@@ -30,25 +30,24 @@ private:
   std::chrono::high_resolution_clock::time_point start_time;
 };
 
-template <typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
-auto make_matrix(std::size_t row, std::size_t col,
-                 std::reference_wrapper<std::mt19937> prng) -> Matrix<T> {
+template <typename T, std::size_t Row, std::size_t Col,
+          typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+auto make_matrix(std::reference_wrapper<std::mt19937> prng)
+    -> Matrix<T, Row, Col> {
 
-  std::vector<std::vector<T>> result;
-  result.reserve(row);
+  std::array<std::array<T, Row>, Col> result;
 
-  for (std::size_t i = 0; i < row; i++) {
-    std::vector<T> row;
-    row.reserve(col);
-    std::generate_n(std::back_inserter(row), col, prng);
-    result.emplace_back(row);
+  for (std::size_t i = 0; i < Col; i++) {
+    std::array<T, Row> row;
+    std::generate_n(std::back_inserter(row), Row, prng);
+    result.at(i) = row;
   }
 
-  return {result, row, col};
+  return result;
 }
 
-template <typename T>
-auto operator<<(std::ostream &os, const lm::Matrix<T> &matrix)
+template <typename T, std::size_t Row, std::size_t Col>
+auto operator<<(std::ostream &os, const lm::Matrix<T, Row, Col> &matrix)
     -> std::ostream & {
   static_assert(std::is_arithmetic_v<T>,
                 "template parameter must be of type arithmetic");
@@ -88,8 +87,9 @@ auto operator<<(std::ostream &os, const lm::Matrix<T> &matrix)
   return os << "]\n";
 }
 
-template <typename T>
-auto operator<<(std::ostream &os, const std::vector<T> &v) -> std::ostream & {
+template <typename T, std::size_t Row>
+auto operator<<(std::ostream &os, const std::array<T, Row> &v)
+    -> std::ostream & {
   os << "[";
   for (const auto i : v) {
     os << i << " ";
