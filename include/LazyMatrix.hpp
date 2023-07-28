@@ -46,7 +46,7 @@ public:
   auto operator=(Matrix<T, Row, Col> &&lhs) -> Matrix<T, Row, Col> & = default;
 
   constexpr auto operator[](std::size_t index) -> std::array<T, Row> & {
-    return m_data[index];
+    return m_data.at(index);
   }
 
   constexpr auto operator[](std::size_t index) const
