@@ -37,13 +37,13 @@ auto make_matrix(std::reference_wrapper<std::mt19937> prng)
 
   std::array<std::array<T, Row>, Col> result;
 
-  for (std::size_t i = 0; i < Col; i++) {
-    std::array<T, Row> row;
-    std::generate_n(std::back_inserter(row), Row, prng);
-    result.at(i) = row;
+  for (auto &row : result) {
+    for (auto &element : row) {
+      element = prng();
+    }
   }
-
-  return result;
+  // std::generate_n(result.data(), Row * Col, prng);
+  return Matrix(result);
 }
 
 template <typename T, std::size_t Row, std::size_t Col>
@@ -52,14 +52,14 @@ auto operator<<(std::ostream &os, const lm::Matrix<T, Row, Col> &matrix)
   static_assert(std::is_arithmetic_v<T>,
                 "template parameter must be of type arithmetic");
 
-  if (matrix.empty()) {
-    os << "[]" << std::endl;
-    return os;
-  }
+  // if (matrix.empty()) {
+  //   os << "[]" << std::endl;
+  //   return os;
+  // }
 
   std::size_t max_width = 0;
-  for (std::size_t i = 0; i < matrix.rows(); i++) {
-    for (std::size_t j = 0; j < matrix.cols(); j++) {
+  for (std::size_t i = 0; i < Row; i++) {
+    for (std::size_t j = 0; j < Col; j++) {
       std::size_t width = std::to_string(matrix(i, j)).size();
       if (width > max_width) {
         max_width = width;
@@ -68,19 +68,19 @@ auto operator<<(std::ostream &os, const lm::Matrix<T, Row, Col> &matrix)
   }
 
   os << "[";
-  for (std::size_t i = 0; i < matrix.size(); ++i) {
+  for (std::size_t i = 0; i < Row; ++i) {
     if (i != 0) {
       os << " ";
     }
     os << "[";
-    for (std::size_t j = 0; j < matrix[i].size(); ++j) {
+    for (std::size_t j = 0; j < Col; ++j) {
       os << std::setw(max_width) << matrix[i][j];
-      if (j != matrix[i].size() - 1) {
+      if (j != Col - 1) {
         os << ", ";
       }
     }
     os << "]";
-    if (i != matrix.size() - 1) {
+    if (i != Row - 1) {
       os << '\n';
     }
   }
