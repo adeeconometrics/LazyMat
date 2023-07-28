@@ -6,6 +6,7 @@
 #include <cassert>
 #include <initializer_list>
 #include <stdexcept>
+#include <utility>
 
 namespace lm {
 
@@ -21,6 +22,7 @@ public:
   Matrix(Matrix<T, Row, Col> &&) = default;
 
   Matrix(std::initializer_list<std::initializer_list<T>> t_list) {
+    // rewrite implementation
     auto row_iter = t_list.begin();
     for (std::size_t i = 0; i < Row; ++i) {
       if (row_iter == t_list.end()) {
@@ -62,7 +64,12 @@ public:
     return m_data[i][j];
   }
 
-  constexpr auto size() -> std::size_t { return Row; }
+  constexpr auto dims() const noexcept -> std::pair<std::size_t, std::size_t> {
+    return std::make_pair(Row, Col);
+  }
+  constexpr auto row() const noexcept -> std::size_t { return Row; }
+  constexpr auto col() const noexcept -> std::size_t { return Col; }
+
   auto begin() noexcept -> iterator { return m_data.begin(); }
   auto end() noexcept -> iterator { return m_data.end(); }
   auto cbegin() const noexcept -> const_iterator { return m_data.cbegin(); }
@@ -94,6 +101,8 @@ constexpr auto operator!=(const Matrix<T, Row, Col> &lhs,
                           const Matrix<T, Row, Col> &rhs) -> bool {
   return !(lhs == rhs);
 }
+
+// add different mat types
 
 } // namespace lm
 
