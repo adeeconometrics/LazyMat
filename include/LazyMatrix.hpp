@@ -87,7 +87,7 @@ public:
   }
 
 private:
-  std::array<std::array<T, Row>, Col> m_data;
+  std::array<std::array<T, Row>, Col> m_data{};
 };
 
 template <typename T, std::size_t Row, std::size_t Col>
