@@ -33,9 +33,9 @@ public:
 
   template <typename Expr>
   auto operator=(const Expr &expr) -> Matrix<T, N, M> & {
-    for (std::size_t i = 0; i < M; i++) {
-      for (std::size_t j = 0; j < N; j++) {
-        m_data.at(i).at(j) = expr(i, j);
+    for (std::size_t i = 0; i < M; ++i) {
+      for (std::size_t j = 0; j < N; ++j) {
+        m_data[i][j] = expr(i, j);
       }
     }
     return *this;
@@ -57,54 +57,29 @@ constexpr auto operator!=(const Matrix<T, N, M> &lhs,
   return !(lhs == rhs);
 }
 
-template <typename Op, typename Lhs, typename Rhs> class BinaryExpr {
-public:
-  BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
+template <typename T, std::size_t Row, std::size_t Col>
+auto eval(const Matrix<T, Row, Col> &A, const Matrix<T, Row, Col> &B)
+    -> Matrix<T, Row, Col> {
 
-  auto operator()(std::size_t i, std::size_t j) const noexcept {
-    return op(lhs(i, j), rhs(i, j));
+  Matrix<T, Row, Col> result{};
+  for (size_t i = 0; i < Row; i++) {
+    for (size_t j = 0; j < Col; j++) {
+      result(i, j) = A(i, j) * B(i, j) * B(i, j) + A(i, j) * B(i, j) +
+                     A(i, j) * A(i, j) * B(i, j);
+    }
   }
-
-private:
-  Lhs lhs;
-  Rhs rhs;
-  Op op;
-};
-
-template <typename Lhs, typename Rhs>
-constexpr auto operator+(const Lhs &lhs, const Rhs &rhs)
-    -> BinaryExpr<std::plus<>, Lhs, Rhs> {
-  return BinaryExpr<std::plus<>, Lhs, Rhs>(lhs, rhs);
-}
-
-template <typename Lhs, typename Rhs>
-constexpr auto operator-(const Lhs &lhs, const Rhs &rhs)
-    -> BinaryExpr<std::minus<>, Lhs, Rhs> {
-  return BinaryExpr<std::minus<>, Lhs, Rhs>(lhs, rhs);
-}
-
-template <typename Lhs, typename Rhs>
-constexpr auto operator*(const Lhs &lhs, const Rhs &rhs)
-    -> BinaryExpr<std::multiplies<>, Lhs, Rhs> {
-  return BinaryExpr<std::multiplies<>, Lhs, Rhs>(lhs, rhs);
-}
-
-template <typename Lhs, typename Rhs>
-constexpr auto operator/(const Lhs &lhs, const Rhs &rhs)
-    -> BinaryExpr<std::divides<>, Lhs, Rhs> {
-  return BinaryExpr<std::divides<>, Lhs, Rhs>(lhs, rhs);
+  return result;
 }
 
 auto main() -> int {
   mt19937 rng_a(64);
   mt19937 rng_b(65);
 
-  Matrix<int, 2048, 2048> A(make_matrix<int, 2048, 2048>(std::ref(rng_a)));
-  Matrix<int, 2048, 2048> B(make_matrix<int, 2048, 2048>(std::ref(rng_b)));
-
-  Matrix<int, 2048, 2048> C;
+  Matrix<int, 256, 256> A(make_matrix<int, 256, 256>(std::ref(rng_a)));
+  Matrix<int, 256, 256> B(make_matrix<int, 256, 256>(std::ref(rng_b)));
+  Matrix<int, 256, 256> C;
   {
     Timer t;
-    C = A * B * B + A * B + A * A * B;
+    C = eval(A, B);
   }
 }

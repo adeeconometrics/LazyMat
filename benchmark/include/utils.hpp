@@ -15,10 +15,10 @@ public:
 
   ~Timer() {
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
                         end_time - start_time)
                         .count();
-    std::cout << "Elapsed time: " << duration << " microseconds" << std::endl;
+    std::cout << "Elapsed time: " << duration << " nanoseconds" << std::endl;
   }
 
 private:
