@@ -67,6 +67,14 @@ auto make_matrix(std::reference_wrapper<std::mt19937> prng)
   return result;
 }
 
+template <typename T, std::size_t N>
+auto make_vector(std::reference_wrapper<std::mt19937> prng)
+    -> std::array<T, N> {
+  std::array<T, N> result;
+  std::generate_n(std::begin(result), N, prng);
+  return result;
+}
+
 template <typename T>
 auto operator<<(std::ostream &os, const std::vector<T> &v) -> std::ostream & {
   for (auto i : v)
