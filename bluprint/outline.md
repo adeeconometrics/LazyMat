@@ -13,8 +13,8 @@ Trigonometric
 - [x] acos
 - [x] atan
 - [ ] hypot
-- [ ] to_deg
-- [ ] to_rad
+- [x] to_deg
+- [x] to_rad
 
 Hyperbolic
 
@@ -28,8 +28,8 @@ Hyperbolic
 Rounding
 
 - [ ] round
-- [ ] floor
-- [ ] ceil
+- [x] floor
+- [x] ceil
 - [ ] trunc
 
 Sum, and Prod
@@ -41,17 +41,17 @@ Sum, and Prod
 
 Num Theory
 
-- [ ] mod
+- [x] mod
 - [ ] lcm
 - [ ] gcd
 
 Exponents
 
-- [ ] exp
-- [ ] exp2
-- [ ] log
-- [ ] log2
-- [ ] log10
+- [x] exp
+- [x] exp2
+- [x] log
+- [x] log2
+- [x] log10
 
 ### Binary
 
@@ -61,3 +61,5 @@ Features to work on:
 
 - [ ] support vectorized operations
 - [ ] matrix types and template specialization
+- [ ] support for large array objects (beyond 256x256)
+  - [ ] resolve stack and heap overflow
