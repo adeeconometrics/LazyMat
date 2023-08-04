@@ -11,9 +11,8 @@ using std::mt19937;
 
 template <typename T, std::size_t Row, std::size_t Col> class Matrix {
 public:
-  using iterator = typename std::array<std::array<T, Row>, Col>::iterator;
-  using const_iterator =
-      typename std::array<std::array<T, Row>, Col>::const_iterator;
+  using iterator = typename std::array<T, Row * Col>::iterator;
+  using const_iterator = typename std::array<T, Row * Col>::const_iterator;
 
 public:
   Matrix() = default;
@@ -39,7 +38,7 @@ public:
     }
   }
 
-  Matrix(const std::array<std::array<T, Row>, Col> &t_data) : m_data(t_data) {}
+  Matrix(const std::array<T, Row * Col> &t_data) : m_data(t_data) {}
 
   auto operator=(const Matrix<T, Row, Col> &lhs)
       -> Matrix<T, Row, Col> & = default;
@@ -56,11 +55,11 @@ public:
   }
 
   constexpr auto operator()(std::size_t i, std::size_t j) const noexcept -> T {
-    return m_data[i][j];
+    return m_data[i * j];
   }
 
   constexpr auto operator()(std::size_t i, std::size_t j) noexcept -> T & {
-    return m_data[i][j];
+    return m_data[i * j];
   }
 
   constexpr auto dims() const noexcept -> std::pair<std::size_t, std::size_t> {
@@ -79,14 +78,14 @@ public:
     for (std::size_t i = 0; i < Row; ++i) {
       for (std::size_t j = 0; j < Col; ++j) {
         // Evaluate the expression and assign to the matrix
-        m_data[i][j] = expr(i, j);
+        m_data[i * j] = expr(i, j);
       }
     }
     return *this;
   }
 
 private:
-  std::array<std::array<T, Row>, Col> m_data;
+  std::array<T, Row * Col> m_data;
 };
 
 template <typename T, std::size_t N, std::size_t M>
@@ -106,7 +105,7 @@ public:
   BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
 
   auto operator()(std::size_t i, std::size_t j) const noexcept {
-    return op(lhs(i, j), rhs(i, j));
+    return op(lhs(i, j), rhs(i, j)); // will this make temporaries?
   }
 
 private:
@@ -143,8 +142,8 @@ auto main() -> int {
   mt19937 rng_a(64);
   mt19937 rng_b(65);
 
-  Matrix<int, 256, 256> A(make_matrix<int, 256, 256>(std::ref(rng_a)));
-  Matrix<int, 256, 256> B(make_matrix<int, 256, 256>(std::ref(rng_b)));
+  Matrix<int, 256, 256> A(make_flat<int, 256, 256>(std::ref(rng_a)));
+  Matrix<int, 256, 256> B(make_flat<int, 256, 256>(std::ref(rng_b)));
 
   Matrix<int, 256, 256> C;
   {
