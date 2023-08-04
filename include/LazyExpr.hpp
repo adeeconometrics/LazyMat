@@ -52,6 +52,18 @@ constexpr auto operator/(const Lhs &lhs, const Rhs &rhs)
   return BinaryExpr<std::divides<>, Lhs, Rhs>(lhs, rhs);
 }
 
+struct Mod {
+  template <typename Lhs, typename Rhs> auto operator()(Lhs l, Rhs r) const {
+    return l % r;
+  }
+};
+
+template <typename Lhs, typename Rhs>
+constexpr auto operator%(const Lhs &lhs, const Rhs &rhs)
+    -> BinaryExpr<Mod, Lhs, Rhs> {
+  return BinaryExpr<Mod, Lhs, Rhs>(lhs, rhs);
+}
+
 template <typename Op, typename Expr> class UnaryExpr {
 public:
   UnaryExpr(const Expr &expr) : expr(expr) {}
@@ -277,6 +289,30 @@ struct ATanhOp {
 template <typename Expr>
 auto atanh(const Expr &expr) -> UnaryExpr<ATanhOp, Expr> {
   return UnaryExpr<ATanhOp, Expr>(expr);
+}
+
+struct ToDeg {
+  template <typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+  auto operator()(T t) const {
+    return t * 180. / M_PI;
+  }
+};
+
+template <typename Expr>
+auto to_deg(const Expr &expr) -> UnaryExpr<ToDeg, Expr> {
+  return UnaryExpr<ToDeg, Expr>(expr);
+}
+
+struct ToRad {
+  template <typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+  auto operator()(T t) const {
+    return t * M_PI / 180.;
+  }
+};
+
+template <typename Expr>
+auto to_rad(const Expr &expr) -> UnaryExpr<ToRad, Expr> {
+  return UnaryExpr<ToRad, Expr>(expr);
 }
 
 struct ErfOp {

@@ -20,9 +20,13 @@ TEST(BinaryExpr, BinaryOps) {
   const Matrix<float, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
   const Matrix<float, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
 
+  const Matrix<int, 3, 3> Mod0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  const Matrix<int, 3, 3> Mod1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+
   const Matrix<float, 3, 3> EAdd{{10, 10, 10}, {10, 10, 10}, {10, 10, 10}};
   const Matrix<float, 3, 3> ESub{{-8, -6, -4}, {-2, 0, 2}, {4, 6, 8}};
   const Matrix<float, 3, 3> EMul{{9, 16, 21}, {24, 25, 24}, {21, 16, 9}};
+  const Matrix<int, 3, 3> EMod{{1, 2, 3}, {4, 0, 2}, {1, 0, 0}};
 
   Matrix<float, 3, 3> Add{};
   Add = M0 + M1;
@@ -36,10 +40,14 @@ TEST(BinaryExpr, BinaryOps) {
   Matrix<float, 3, 3> Div{};
   Div = (M0 * M1) / M1;
 
+  Matrix<int, 3, 3> Mod{};
+  Mod = Mod0 % Mod1;
+
   EXPECT_EQ(Add, EAdd);
   EXPECT_EQ(Sub, ESub);
   EXPECT_EQ(Mul, EMul);
   EXPECT_EQ(Div, M0);
+  EXPECT_EQ(Mod, EMod);
 }
 
 TEST(UnaryExpr, UnaryOps) {
@@ -85,6 +93,14 @@ TEST(UnaryExpr, UnaryOps) {
                                  {1.1578213, -3.380515, -0.29100618},
                                  {0.871448, -6.799711, -0.45231566}};
 
+  const Matrix<float, 3, 3> EToDeg{{57.29577951, 114.59155903, 171.88733854},
+                                   {229.18311805, 286.47889757, 343.77467708},
+                                   {401.07045659, 458.3662361, 515.66201562}};
+
+  const Matrix<float, 3, 3> EToRad{{0.01745329, 0.03490659, 0.05235988},
+                                   {0.06981317, 0.08726646, 0.10471976},
+                                   {0.12217305, 0.13962634, 0.15707963}};
+
   Matrix<float, 3, 3> Neg{};
   Neg = -M0;
 
@@ -118,6 +134,12 @@ TEST(UnaryExpr, UnaryOps) {
   Matrix<float, 3, 3> Tan{};
   Tan = tan(M0);
 
+  Matrix<float, 3, 3> Deg{};
+  Deg = to_deg(M0);
+
+  Matrix<float, 3, 3> Rad{};
+  Rad = to_rad(M0);
+
   EXPECT_EQ(Neg, ENeg);
 
   for (std::size_t i = 0; i < 3; i++) {
@@ -132,6 +154,8 @@ TEST(UnaryExpr, UnaryOps) {
       EXPECT_NEAR(Sin(i, j), ESin(i, j), 1e-6);
       EXPECT_NEAR(Cos(i, j), ECos(i, j), 1e-6);
       EXPECT_NEAR(Tan(i, j), ETan(i, j), 1e-6);
+      EXPECT_NEAR(Deg(i, j), EToDeg(i, j), 1e-6);
+      EXPECT_NEAR(Rad(i, j), EToRad(i, j), 1e-6);
     }
   }
 }
