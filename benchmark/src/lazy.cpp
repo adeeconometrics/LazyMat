@@ -20,21 +20,18 @@ public:
   Matrix(Matrix<T, Row, Col> &&) = default;
 
   Matrix(std::initializer_list<std::initializer_list<T>> t_list) {
-    // rewrite implementation
-    auto row_iter = t_list.begin();
-    for (std::size_t i = 0; i < Row; ++i) {
-      if (row_iter == t_list.end()) {
-        throw std::invalid_argument("Insufficient rows in initializer list");
-      }
-      if (row_iter->size() != Col) {
+    if (t_list.size() != Row) {
+      throw std::invalid_argument("Invalid number of rows in initializer list");
+    }
+
+    auto data_iter = m_data.begin();
+    for (const auto &row_list : t_list) {
+      if (row_list.size() != Col) {
         throw std::invalid_argument("Invalid row size in initializer list");
       }
 
-      std::copy(row_iter->begin(), row_iter->end(), m_data[i].begin());
-      ++row_iter;
-    }
-    if (row_iter != t_list.end()) {
-      throw std::invalid_argument("Excess rows in initializer list");
+      std::copy(row_list.begin(), row_list.end(), data_iter);
+      data_iter += Col;
     }
   }
 
@@ -45,21 +42,12 @@ public:
 
   auto operator=(Matrix<T, Row, Col> &&lhs) -> Matrix<T, Row, Col> & = default;
 
-  constexpr auto operator[](std::size_t index) -> std::array<T, Row> & {
-    return m_data.at(index);
-  }
-
-  constexpr auto operator[](std::size_t index) const
-      -> const std::array<T, Row> & {
-    return m_data[index];
-  }
-
   constexpr auto operator()(std::size_t i, std::size_t j) const noexcept -> T {
-    return m_data[i * j];
+    return m_data[i * Col + j];
   }
 
   constexpr auto operator()(std::size_t i, std::size_t j) noexcept -> T & {
-    return m_data[i * j];
+    return m_data[i * Col + j];
   }
 
   constexpr auto dims() const noexcept -> std::pair<std::size_t, std::size_t> {
@@ -78,7 +66,7 @@ public:
     for (std::size_t i = 0; i < Row; ++i) {
       for (std::size_t j = 0; j < Col; ++j) {
         // Evaluate the expression and assign to the matrix
-        m_data[i * j] = expr(i, j);
+        m_data[i * Col + j] = expr(i, j);
       }
     }
     return *this;
@@ -105,7 +93,7 @@ public:
   BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
 
   auto operator()(std::size_t i, std::size_t j) const noexcept {
-    return op(lhs(i, j), rhs(i, j)); // will this make temporaries?
+    return op(lhs(i, j), rhs(i, j));
   }
 
 private:
@@ -136,6 +124,18 @@ template <typename Lhs, typename Rhs>
 constexpr auto operator/(const Lhs &lhs, const Rhs &rhs)
     -> BinaryExpr<std::divides<>, Lhs, Rhs> {
   return BinaryExpr<std::divides<>, Lhs, Rhs>(lhs, rhs);
+}
+
+template <typename T, std::size_t Row, std::size_t Col>
+auto operator<<(std::ostream &os, const Matrix<T, Row, Col> &Mat)
+    -> std::ostream & {
+  for (size_t i = 0; i < Row; i++) {
+    for (size_t j = 0; j < Col; j++) {
+      os << Mat(i, j) << " ";
+    }
+    os << '\n';
+  }
+  return os << '\n';
 }
 
 auto main() -> int {
