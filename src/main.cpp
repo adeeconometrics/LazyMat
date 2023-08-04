@@ -19,6 +19,7 @@ auto main() -> int {
     Timer t;
     C = A * B * B + A * B + A * A * B;
   }
+  std::cout << C;
   // B = log(A);
 
   return 0;

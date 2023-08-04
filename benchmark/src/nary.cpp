@@ -21,47 +21,21 @@ auto subscript(const operand &v, const std::size_t index) {
   return v;
 }
 
-// template <typename Fn, typename RType, typename ... Args>
-// struct Callable {
-
-//   auto operator()(const Args &... args) -> RType {
-
-//   }
-// };
-
-template <typename RType, typename... Args> class expr {
-  std::tuple<Args const &...> m_args;
-  std::function<RType(Args...)> m_fn;
-
+template <typename Callable, typename... Operands> struct Expr {
 public:
-  expr(std::function<RType(Args...)> t_fn, const Args &... t_args)
-      : m_args(t_args...), m_fn(t_fn) {}
-
-  auto operator()(std::size_t i) const noexcept -> RType {
-    const auto call_at_index = [this, i](const Args &... a) {
-      return m_fn(subscript(a, i)...);
-    };
-    return std::apply(call_at_index, m_args);
+  Expr(Callable t_fn, Operands &... t_ops) : m_fn(t_fn), m_ops(t_ops...) {}
+  auto operator[](std::size_t index) const noexcept {
+    return std::apply(
+        [index, this](auto &... args) {
+          return std::invoke(m_fn, args.get()[index]...);
+        },
+        m_ops);
   }
-  // template <typename T> auto operator[](std::size_t i) const noexcept ->
-  // RType {
-  //   const auto call_at_index = [this, i](const Args &... a) {
-  //     return m_fn(subscript(a, i)...);
-  //   };
-  //   return expr{call_at_index, std::get<const Args &>(m_args)...};
-  // }
 
-  // template <typename T> operator T() const {
-  //   return m_fn(std::get<const Args &>(m_args)...);
-  // }
+private:
+  Callable m_fn;
+  std::tuple<std::reference_wrapper<Operands>...> m_ops;
 };
-
-template <typename Lhs, typename Rhs>
-constexpr auto operator*(Lhs const &lhs, Rhs const &rhs) {
-  return expr{
-      [](const auto &l, const auto &r) -> decltype(l * r) { return l * r; },
-      lhs, rhs};
-}
 
 template <typename T, std::size_t N> struct lazy_vector {
 
