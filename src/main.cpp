@@ -7,18 +7,20 @@
 using namespace lm;
 
 auto main() -> int {
-  const Matrix<float> A{{1., 2., 3.}, {4., 5., 6.}, {7., 8., 9.}};
 
-  Matrix<float> B(3, 3);
-  B = log(A);
+  std::mt19937 rng_a(67);
+  std::mt19937 rng_b(65);
 
-  std::cout << A << "----------------\n\n";
+  Matrix<int, 256, 256> A{make_matrix<int, 256, 256>(std::ref(rng_a))};
+  Matrix<int, 256, 256> B{make_matrix<int, 256, 256>(std::ref(rng_b))};
 
-  std::cout << B << "\n\n";
-  B = log10(A);
-  std::cout << B << "\n\n";
-  B = log2(A);
-  std::cout << B << "\n\n";
+  Matrix<int, 256, 256> C;
+  {
+    Timer t;
+    C = A * B * B + A * B + A * A * B;
+  }
+  std::cout << C;
+  // B = log(A);
 
   return 0;
 }

@@ -15,10 +15,10 @@ public:
 
   ~Timer() {
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
                         end_time - start_time)
                         .count();
-    std::cout << "Elapsed time: " << duration << " microseconds" << std::endl;
+    std::cout << "Elapsed time: " << duration << " nanoseconds" << std::endl;
   }
 
 private:
@@ -64,6 +64,23 @@ auto make_matrix(std::reference_wrapper<std::mt19937> prng)
     result[i] = _temp;
   }
 
+  return result;
+}
+
+template <typename T, std::size_t N, std::size_t M>
+auto make_flat(std::reference_wrapper<std::mt19937> prng)
+    -> std::array<T, N * M> {
+
+  std::array<T, N * M> result;
+  std::generate_n(result.begin(), N * M, prng);
+  return result;
+}
+
+template <typename T, std::size_t N>
+auto make_vector(std::reference_wrapper<std::mt19937> prng)
+    -> std::array<T, N> {
+  std::array<T, N> result;
+  std::generate_n(std::begin(result), N, prng);
   return result;
 }
 

@@ -1,117 +1,153 @@
-// contains impl of lazy matrix
-
-#include <algorithm>
-#include <functional>
+#include "../include/utils.hpp"
+#include <array>
+#include <initializer_list>
 #include <iostream>
 #include <random>
-#include <vector>
 
-using Mat = std::vector<std::vector<float>>;
+using std::array;
+using std::cout;
+using std::initializer_list;
+using std::mt19937;
 
-struct OpNode {
-  explicit OpNode(
-      const std::function<float(float, float)> &t_op,
-      const std::vector<std::reference_wrapper<const Mat>> &t_matrices)
-      : op(t_op), matrices(t_matrices) {}
+template <typename T, std::size_t Row, std::size_t Col> class Matrix {
+public:
+  using iterator = typename std::array<T, Row * Col>::iterator;
+  using const_iterator = typename std::array<T, Row * Col>::const_iterator;
 
-  explicit OpNode(
-      const std::function<float(float, float)> &t_op,
-      const std::vector<std::reference_wrapper<const OpNode>> &t_children)
-      : op(t_op), children(t_children) {
-    // std::cout << "children overload constructor is properly called.\n";
+public:
+  Matrix() = default;
+  Matrix(const Matrix<T, Row, Col> &) = default;
+  Matrix(Matrix<T, Row, Col> &&) = default;
+
+  Matrix(std::initializer_list<std::initializer_list<T>> t_list) {
+    if (t_list.size() != Row) {
+      throw std::invalid_argument("Invalid number of rows in initializer list");
+    }
+
+    auto data_iter = m_data.begin();
+    for (const auto &row_list : t_list) {
+      if (row_list.size() != Col) {
+        throw std::invalid_argument("Invalid row size in initializer list");
+      }
+
+      std::copy(row_list.begin(), row_list.end(), data_iter);
+      data_iter += Col;
+    }
   }
 
-  explicit OpNode(
-      const std::function<float(float, float)> &t_op,
-      const std::vector<std::reference_wrapper<const Mat>> &t_matrices,
-      const std::vector<std::reference_wrapper<const OpNode>> &t_children)
-      : op(t_op), matrices(t_matrices), children(t_children) {}
+  Matrix(const std::array<T, Row * Col> &t_data) : m_data(t_data) {}
 
-  std::function<float(float, float)> op;
-  std::vector<std::reference_wrapper<const Mat>> matrices;
-  std::vector<std::reference_wrapper<const OpNode>> children;
-  // make this shared (instance var)
+  auto operator=(const Matrix<T, Row, Col> &lhs)
+      -> Matrix<T, Row, Col> & = default;
+
+  auto operator=(Matrix<T, Row, Col> &&lhs) -> Matrix<T, Row, Col> & = default;
+
+  constexpr auto operator()(std::size_t i, std::size_t j) const noexcept -> T {
+    return m_data[i * Col + j];
+  }
+
+  constexpr auto operator()(std::size_t i, std::size_t j) noexcept -> T & {
+    return m_data[i * Col + j];
+  }
+
+  constexpr auto dims() const noexcept -> std::pair<std::size_t, std::size_t> {
+    return std::make_pair(Row, Col);
+  }
+  constexpr auto row() const noexcept -> std::size_t { return Row; }
+  constexpr auto col() const noexcept -> std::size_t { return Col; }
+
+  auto begin() noexcept -> iterator { return m_data.begin(); }
+  auto end() noexcept -> iterator { return m_data.end(); }
+  auto cbegin() const noexcept -> const_iterator { return m_data.cbegin(); }
+  auto cend() const noexcept -> const_iterator { return m_data.cend(); }
+
+  template <typename Expr>
+  auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
+    for (std::size_t i = 0; i < Row; ++i) {
+      for (std::size_t j = 0; j < Col; ++j) {
+        // Evaluate the expression and assign to the matrix
+        m_data[i * Col + j] = expr(i, j);
+      }
+    }
+    return *this;
+  }
+
+private:
+  std::array<T, Row * Col> m_data;
 };
 
-auto operator+(const Mat &A, const Mat &B) -> OpNode {
-  return OpNode(std::plus<float>(), {std::cref(A), std::cref(B)});
+template <typename T, std::size_t N, std::size_t M>
+constexpr auto operator==(const Matrix<T, N, M> &lhs,
+                          const Matrix<T, N, M> &rhs) -> bool {
+  return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin());
 }
 
-auto operator*(const Mat &A, const Mat &B) -> OpNode {
-  return OpNode(std::multiplies<float>(), {A, B});
+template <typename T, std::size_t N, std::size_t M>
+constexpr auto operator!=(const Matrix<T, N, M> &lhs,
+                          const Matrix<T, N, M> &rhs) -> bool {
+  return !(lhs == rhs);
 }
 
-auto operator+(const OpNode &lhs, const OpNode &rhs) -> OpNode {
-  //   std::cout
-  //       << "OpNode with children is called, children overload is expected\n";
-  return OpNode(std::plus<float>(), {std::cref(lhs), std::cref(rhs)});
-}
+template <typename Op, typename Lhs, typename Rhs> class BinaryExpr {
+public:
+  BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
 
-auto operator*(const OpNode &lhs, const OpNode &rhs) -> OpNode {
-  //   std::cout
-  //       << "OpNode with children is called, children overload is expected\n";
-  return OpNode(std::multiplies<float>(), {std::cref(lhs), std::cref(rhs)});
-}
-
-auto apply(const OpNode &opnode) -> Mat {
-  if (opnode.matrices.empty()) {
-    // Evaluate the children recursively
-    if (opnode.children.empty()) {
-      return {};
-    }
-    Mat result = apply(opnode.children[0]);
-    for (size_t i = 1; i < opnode.children.size(); ++i) {
-      const Mat &matrix = apply(opnode.children[i]);
-      for (size_t j = 0; j < result.size(); ++j) {
-        for (size_t k = 0; k < result[j].size(); ++k) {
-          result[j][k] = opnode.op(result[j][k], matrix[j][k]);
-        }
-      }
-    }
-    return result;
-  } else {
-    // Perform the operation on the input matrices
-    if (opnode.matrices.size() < 2) {
-      return opnode.matrices[0];
-    }
-    Mat result = opnode.matrices[0];
-    for (size_t i = 1; i < opnode.matrices.size(); ++i) {
-      const Mat &matrix = opnode.matrices[i];
-      for (size_t j = 0; j < result.size(); ++j) {
-        for (size_t k = 0; k < result[j].size(); ++k) {
-          result[j][k] = opnode.op(result[j][k], matrix[j][k]);
-        }
-      }
-    }
-    return result;
-  }
-}
-
-auto make_matrix(std::size_t row, std::size_t col,
-                 std::reference_wrapper<std::mt19937> rng) -> Mat {
-  Mat result;
-  result.reserve(row);
-  for (std::size_t i = 0; i < row; i++) {
-    std::vector<float> row;
-    row.reserve(col);
-    std::generate_n(std::back_inserter(row), col, rng);
-    result.emplace_back(row);
+  auto operator()(std::size_t i, std::size_t j) const noexcept {
+    return op(lhs(i, j), rhs(i, j));
   }
 
-  return result;
+private:
+  Lhs lhs;
+  Rhs rhs;
+  Op op;
+};
+
+template <typename Lhs, typename Rhs>
+constexpr auto operator+(const Lhs &lhs, const Rhs &rhs)
+    -> BinaryExpr<std::plus<>, Lhs, Rhs> {
+  return BinaryExpr<std::plus<>, Lhs, Rhs>(lhs, rhs);
+}
+
+template <typename Lhs, typename Rhs>
+constexpr auto operator-(const Lhs &lhs, const Rhs &rhs)
+    -> BinaryExpr<std::minus<>, Lhs, Rhs> {
+  return BinaryExpr<std::minus<>, Lhs, Rhs>(lhs, rhs);
+}
+
+template <typename Lhs, typename Rhs>
+constexpr auto operator*(const Lhs &lhs, const Rhs &rhs)
+    -> BinaryExpr<std::multiplies<>, Lhs, Rhs> {
+  return BinaryExpr<std::multiplies<>, Lhs, Rhs>(lhs, rhs);
+}
+
+template <typename Lhs, typename Rhs>
+constexpr auto operator/(const Lhs &lhs, const Rhs &rhs)
+    -> BinaryExpr<std::divides<>, Lhs, Rhs> {
+  return BinaryExpr<std::divides<>, Lhs, Rhs>(lhs, rhs);
+}
+
+template <typename T, std::size_t Row, std::size_t Col>
+auto operator<<(std::ostream &os, const Matrix<T, Row, Col> &Mat)
+    -> std::ostream & {
+  for (size_t i = 0; i < Row; i++) {
+    for (size_t j = 0; j < Col; j++) {
+      os << Mat(i, j) << " ";
+    }
+    os << '\n';
+  }
+  return os << '\n';
 }
 
 auto main() -> int {
-  std::mt19937 rng_a(64);
-  std::mt19937 rng_b(65);
+  mt19937 rng_a(64);
+  mt19937 rng_b(65);
 
-  const auto A = make_matrix(2048, 2048, rng_a);
-  const auto B = make_matrix(2048, 2048, rng_b);
+  Matrix<int, 256, 256> A(make_flat<int, 256, 256>(std::ref(rng_a)));
+  Matrix<int, 256, 256> B(make_flat<int, 256, 256>(std::ref(rng_b)));
 
-  auto sub1 = A * B;
-  auto sub2 = A + B;
-  auto rootNode = sub1 * sub2;
-
-  std::cout << "A: " << A.size() << "x" << A[0].size() << " dims\n";
-  std::cout << "B: " << B.size() << "x" << B[0].size() << " dims\n";
+  Matrix<int, 256, 256> C;
+  {
+    Timer t;
+    C = A * B * B + A * B + A * A * B;
+  }
 }
