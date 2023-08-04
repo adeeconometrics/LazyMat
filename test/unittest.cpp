@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "../include/LazyExpr.hpp"
 #include "../include/LazyMatrix.hpp"
+#include "../include/LazyOps.hpp"
 #include "../include/Utils.hpp"
 
 #include <iostream>
