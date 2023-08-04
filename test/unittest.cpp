@@ -122,16 +122,16 @@ TEST(UnaryExpr, UnaryOps) {
 
   for (std::size_t i = 0; i < 3; i++) {
     for (std::size_t j = 0; j < 3; j++) {
-      EXPECT_NEAR(Log[i][j], ELog[i][j], 1e-6);
-      EXPECT_NEAR(Log10[i][j], ELog10[i][j], 1e-6);
-      EXPECT_NEAR(Log2[i][j], ELog2[i][j], 1e-6);
-      EXPECT_NEAR(Exp[i][j], EExp[i][j], 1e-4);
-      EXPECT_NEAR(Exp2[i][j], Exp2[i][j], 1e-6);
-      EXPECT_NEAR(Sqrt[i][j], ESqrt[i][j], 1e-6);
-      EXPECT_NEAR(Cbrt[i][j], ECrbt[i][j], 1e-6);
-      EXPECT_NEAR(Sin[i][j], ESin[i][j], 1e-6);
-      EXPECT_NEAR(Cos[i][j], ECos[i][j], 1e-6);
-      EXPECT_NEAR(Tan[i][j], ETan[i][j], 1e-6);
+      EXPECT_NEAR(Log(i, j), ELog(i, j), 1e-6);
+      EXPECT_NEAR(Log10(i, j), ELog10(i, j), 1e-6);
+      EXPECT_NEAR(Log2(i, j), ELog2(i, j), 1e-6);
+      EXPECT_NEAR(Exp(i, j), EExp(i, j), 1e-4);
+      EXPECT_NEAR(Exp2(i, j), Exp2(i, j), 1e-6);
+      EXPECT_NEAR(Sqrt(i, j), ESqrt(i, j), 1e-6);
+      EXPECT_NEAR(Cbrt(i, j), ECrbt(i, j), 1e-6);
+      EXPECT_NEAR(Sin(i, j), ESin(i, j), 1e-6);
+      EXPECT_NEAR(Cos(i, j), ECos(i, j), 1e-6);
+      EXPECT_NEAR(Tan(i, j), ETan(i, j), 1e-6);
     }
   }
 }

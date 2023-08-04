@@ -35,15 +35,11 @@ template <typename T, std::size_t Row, std::size_t Col,
 auto make_matrix(std::reference_wrapper<std::mt19937> prng)
     -> Matrix<T, Row, Col> {
 
-  std::array<std::array<T, Row>, Col> result;
+  std::array<T, Row * Col> result;
+  std::generate_n(std::begin(result), Row * Col, prng);
 
-  for (auto &row : result) {
-    for (auto &element : row) {
-      element = prng();
-    }
-  }
   // std::generate_n(result.data(), Row * Col, prng);
-  return Matrix(result);
+  return Matrix<T, Row, Col>{result};
 }
 
 template <typename T, std::size_t Row, std::size_t Col>
@@ -74,7 +70,7 @@ auto operator<<(std::ostream &os, const lm::Matrix<T, Row, Col> &matrix)
     }
     os << "[";
     for (std::size_t j = 0; j < Col; ++j) {
-      os << std::setw(max_width) << matrix[i][j];
+      os << std::setw(max_width) << matrix[i * Col + j];
       if (j != Col - 1) {
         os << ", ";
       }
