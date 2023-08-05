@@ -76,6 +76,16 @@ auto make_flat(std::reference_wrapper<std::mt19937> prng)
   return result;
 }
 
+template <typename T, std::size_t N, std::size_t M>
+auto make_vmatrix(std::reference_wrapper<std::mt19937> prng) -> std::vector<T> {
+
+  std::vector<T> result;
+  result.reserve(N * M);
+
+  std::generate_n(std::back_inserter(result), N * M, prng);
+  return result;
+}
+
 template <typename T, std::size_t N>
 auto make_vector(std::reference_wrapper<std::mt19937> prng)
     -> std::array<T, N> {
