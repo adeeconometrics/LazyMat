@@ -77,7 +77,7 @@ public:
   }
 
 private:
-  static constexpr std::size_t chunk_size = 2048 * 2048;
+  static constexpr std::size_t chunk_size = 256 * 256;
   std::vector<std::array<T, chunk_size>> m_data{(Row * Col + chunk_size - 1) /
                                                 chunk_size};
 };

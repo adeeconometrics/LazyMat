@@ -153,10 +153,10 @@ auto main() -> int {
   mt19937 rng_a(64);
   mt19937 rng_b(65);
 
-  Matrix<int, 256, 256> A(make_vmatrix<int, 256, 256>(std::ref(rng_a)));
-  Matrix<int, 256, 256> B(make_vmatrix<int, 256, 256>(std::ref(rng_b)));
+  Matrix<int, 2048, 2048> A(make_vmatrix<int, 2048, 2048>(std::ref(rng_a)));
+  Matrix<int, 2048, 2048> B(make_vmatrix<int, 2048, 2048>(std::ref(rng_b)));
 
-  Matrix<int, 256, 256> C;
+  Matrix<int, 2048, 2048> C;
   {
     Timer t;
     C = A * B * B + A * B + A * A * B;
