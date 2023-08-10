@@ -18,7 +18,7 @@ public:
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
                         end_time - start_time)
                         .count();
-    std::cout << "Elapsed time: " << duration << " nanoseconds" << std::endl;
+    std::cout << "Elapsed time: " << duration << " ns" << std::endl;
   }
 
 private:
