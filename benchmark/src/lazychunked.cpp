@@ -9,6 +9,11 @@ using std::initializer_list;
 using std::mt19937;
 using std::vector;
 
+/// @brief Matrix object. Write constructor for
+/// std::initializer_list<std::initializer_list>
+/// @tparam T
+/// @tparam Row
+/// @tparam Col
 template <typename T, std::size_t Row, std::size_t Col> class Matrix {
 public:
   using iterator = typename std::vector<T>::iterator;
@@ -64,10 +69,10 @@ public:
   auto cend() const noexcept -> const_iterator { return m_data.cend(); }
 
   template <typename Expr>
-  auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
+  constexpr auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
     for (std::size_t i = 0; i < Col; ++i) {
-      size_t page_index = i / chunk_size;
-      size_t row_in_page = i % chunk_size;
+      const size_t page_index = i / chunk_size;
+      const size_t row_in_page = i % chunk_size;
       for (std::size_t j = 0; j < Row; ++j) {
         // Evaluate the expression and assign to the matrix
         m_data[page_index][row_in_page * Col + j] = expr(i, j);
