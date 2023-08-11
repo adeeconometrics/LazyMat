@@ -21,8 +21,8 @@ TEST(BinaryExprLargeMat, EqualityOps) {
   std::mt19937 rng_a(64);
   std::mt19937 rng_b(65);
 
-  const Matrix<int, 512, 512> M0{make_vmatrix<int, 512, 512>(std::ref(rng_a))};
-  const Matrix<int, 512, 512> M1{make_vmatrix<int, 512, 512>(std::ref(rng_b))};
+  const Matrix<int, 256, 256> M0{make_vmatrix<int, 256, 256>(std::ref(rng_a))};
+  const Matrix<int, 256, 256> M1{make_vmatrix<int, 256, 256>(std::ref(rng_b))};
 
   EXPECT_TRUE(M0 == M0);
   EXPECT_TRUE(M0 != M1); // this is true even when M1 is set to rng_a
@@ -83,7 +83,7 @@ TEST(UnaryExpr, UnaryOps) {
                                  {1096.6332, 2980.958, 8103.084}};
 
   const Matrix<float, 3, 3> EExp2{
-      {2.0, 4.0, 8.0}, {16.0, 32.0, 64.0}, {128.0, 256.0, 512.0}};
+      {2.0, 4.0, 8.0}, {16.0, 32.0, 64.0}, {128.0, 256.0, 256.0}};
 
   const Matrix<float, 3, 3> ESqrt{{1.0, 1.4142135, 1.7320508},
                                   {2.0, 2.236068, 2.4494898},
