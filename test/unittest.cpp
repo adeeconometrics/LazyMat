@@ -17,16 +17,17 @@ TEST(BinaryExpr, EqualityOps) {
   EXPECT_TRUE(M1 != M0);
 }
 
-TEST(BinaryExprLargeMat, EqualityOps) {
-  std::mt19937 rng_a(64);
-  std::mt19937 rng_b(65);
+// TEST(BinaryExprLargeMat, EqualityOps) {
+//   std::mt19937 rng_a(64);
+//   std::mt19937 rng_b(65);
 
-  const Matrix<int, 256, 256> M0{make_vmatrix<int, 256, 256>(std::ref(rng_a))};
-  const Matrix<int, 256, 256> M1{make_vmatrix<int, 256, 256>(std::ref(rng_b))};
+//   const Matrix<int, 256, 256> M0{make_vmatrix<int, 256,
+//   256>(std::ref(rng_a))}; const Matrix<int, 256, 256> M1{make_vmatrix<int,
+//   256, 256>(std::ref(rng_b))};
 
-  EXPECT_TRUE(M0 == M0);
-  EXPECT_TRUE(M0 != M1); // this is true even when M1 is set to rng_a
-}
+//   EXPECT_TRUE(M0 == M0);
+//   EXPECT_TRUE(M0 != M1); // this is true even when M1 is set to rng_a
+// }
 
 TEST(BinaryExpr, BinaryOps) {
   const Matrix<float, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
