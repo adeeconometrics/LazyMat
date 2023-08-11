@@ -27,6 +27,8 @@ public:
 
   Matrix(const Matrix<T, Row, Col> &) = default;
   Matrix(Matrix<T, Row, Col> &&) = default;
+  Matrix(std::initializer_list<std::initializer_list<T>> t_data)
+      : Matrix(std::vector<T>(t_data.begin(), t_data.end())) {}
 
   Matrix(const std::vector<T> &t_data) {
     if (t_data.size() != Row * Col) {
@@ -63,11 +65,6 @@ public:
   constexpr auto row() const noexcept -> std::size_t { return Row; }
   constexpr auto col() const noexcept -> std::size_t { return Col; }
 
-  auto begin() noexcept -> iterator { return m_data.begin(); }
-  auto end() noexcept -> iterator { return m_data.end(); }
-  auto cbegin() const noexcept -> const_iterator { return m_data.cbegin(); }
-  auto cend() const noexcept -> const_iterator { return m_data.cend(); }
-
   template <typename Expr>
   constexpr auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
     for (std::size_t i = 0; i < Col; ++i) {
@@ -82,7 +79,7 @@ public:
   }
 
 private:
-  static constexpr std::size_t chunk_size = 256 * 256;
+  static constexpr std::size_t chunk_size = 3;
   std::vector<std::array<T, chunk_size>> m_data{(Row * Col + chunk_size - 1) /
                                                 chunk_size};
 };
@@ -90,7 +87,13 @@ private:
 template <typename T, std::size_t N, std::size_t M>
 constexpr auto operator==(const Matrix<T, N, M> &lhs,
                           const Matrix<T, N, M> &rhs) -> bool {
-  return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin());
+  for (std::size_t i = 0; i < N; ++i) {
+    for (std::size_t j = 0; j < M; ++j) {
+      if (lhs(i, j) != rhs(i, j))
+        return false;
+    }
+  }
+  return true;
 }
 
 template <typename T, std::size_t N, std::size_t M>
@@ -153,12 +156,17 @@ auto main() -> int {
   mt19937 rng_a(64);
   mt19937 rng_b(65);
 
-  Matrix<int, 2048, 2048> A(make_vmatrix<int, 2048, 2048>(std::ref(rng_a)));
-  Matrix<int, 2048, 2048> B(make_vmatrix<int, 2048, 2048>(std::ref(rng_b)));
+  Matrix<int, 3, 3> A{std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9}};
+  Matrix<int, 3, 3> B{std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9}};
+  Matrix<int, 3, 3> E{
+      std::vector<int>{3, 20, 63, 144, 275, 468, 735, 1088, 1539}};
 
-  Matrix<int, 2048, 2048> C;
+  Matrix<int, 3, 3> C;
   {
     Timer t;
     C = A * B * B + A * B + A * A * B;
+  }
+  if (C == E) {
+    std::cout << "true";
   }
 }
