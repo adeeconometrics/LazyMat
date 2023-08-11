@@ -16,8 +16,8 @@ using std::vector;
 /// @tparam Col
 template <typename T, std::size_t Row, std::size_t Col> class Matrix {
 public:
-  using iterator = typename std::vector<T>::iterator;
-  using const_iterator = typename std::vector<T>::const_iterator;
+  using iterator = typename std::array<T, Row * Col>::iterator;
+  using const_iterator = typename std::array<T, Row * Col>::const_iterator;
 
 public:
   Matrix() {
@@ -65,6 +65,26 @@ public:
   constexpr auto row() const noexcept -> std::size_t { return Row; }
   constexpr auto col() const noexcept -> std::size_t { return Col; }
 
+  constexpr auto begin() noexcept -> iterator { return m_data[0].begin(); }
+
+  constexpr auto end() noexcept -> iterator {
+    auto last_chunk = (Row * Col) % chunk_size;
+    if (last_chunk == 0)
+      last_chunk = chunk_size;
+    return m_data[(Row * Col) / chunk_size].begin() + last_chunk;
+  }
+
+  constexpr auto cbegin() const noexcept -> const_iterator {
+    return m_data[0].cbegin();
+  }
+
+  constexpr auto cend() const noexcept -> const_iterator {
+    auto last_chunk = (Row * Col) % chunk_size;
+    if (last_chunk == 0)
+      last_chunk = chunk_size;
+    return m_data[(Row * Col) / chunk_size].cbegin() + last_chunk;
+  }
+
   template <typename Expr>
   constexpr auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
     for (std::size_t i = 0; i < Col; ++i) {
@@ -87,13 +107,7 @@ private:
 template <typename T, std::size_t N, std::size_t M>
 constexpr auto operator==(const Matrix<T, N, M> &lhs,
                           const Matrix<T, N, M> &rhs) -> bool {
-  for (std::size_t i = 0; i < N; ++i) {
-    for (std::size_t j = 0; j < M; ++j) {
-      if (lhs(i, j) != rhs(i, j))
-        return false;
-    }
-  }
-  return true;
+  return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin());
 }
 
 template <typename T, std::size_t N, std::size_t M>
