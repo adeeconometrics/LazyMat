@@ -5,6 +5,7 @@
 #include "../include/Utils.hpp"
 
 #include <iostream>
+#include <random>
 
 using namespace lm;
 
@@ -14,6 +15,17 @@ TEST(BinaryExpr, EqualityOps) {
 
   EXPECT_TRUE(M0 == M0);
   EXPECT_TRUE(M1 != M0);
+}
+
+TEST(BinaryExprLargeMat, EqualityOps) {
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  const Matrix<int, 512, 512> M0{make_vmatrix<int, 512, 512>(std::ref(rng_a))};
+  const Matrix<int, 512, 512> M1{make_vmatrix<int, 512, 512>(std::ref(rng_b))};
+
+  EXPECT_TRUE(M0 == M0);
+  EXPECT_TRUE(M0 != M1); // this is true even when M1 is set to rng_a
 }
 
 TEST(BinaryExpr, BinaryOps) {

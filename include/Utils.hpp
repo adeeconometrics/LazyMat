@@ -36,6 +36,19 @@ auto make_matrix(std::reference_wrapper<std::mt19937> prng)
     -> Matrix<T, Row, Col> {
 
   std::array<T, Row * Col> result;
+  std::generate_n(std::back_inserter(result), Row * Col, prng);
+
+  // std::generate_n(result.data(), Row * Col, prng);
+  return Matrix<T, Row, Col>{result};
+}
+
+template <typename T, std::size_t Row, std::size_t Col,
+          typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+auto make_vmatrix(std::reference_wrapper<std::mt19937> prng)
+    -> Matrix<T, Row, Col> {
+
+  std::vector<T> result;
+  result.reserve(Row * Col);
   std::generate_n(std::begin(result), Row * Col, prng);
 
   // std::generate_n(result.data(), Row * Col, prng);
@@ -70,7 +83,7 @@ auto operator<<(std::ostream &os, const lm::Matrix<T, Row, Col> &matrix)
     }
     os << "[";
     for (std::size_t j = 0; j < Col; ++j) {
-      os << std::setw(max_width) << matrix[i * Col + j];
+      os << std::setw(max_width) << matrix(i, j);
       if (j != Col - 1) {
         os << ", ";
       }
