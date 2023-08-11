@@ -11,6 +11,18 @@
 
 namespace lm {
 
+template <typename T, std::size_t Row, std::size_t Col>
+constexpr auto operator==(const Matrix<T, Row, Col> &lhs,
+                          const Matrix<T, Row, Col> &rhs) -> bool {
+  return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin());
+}
+
+template <typename T, std::size_t Row, std::size_t Col>
+constexpr auto operator!=(const Matrix<T, Row, Col> &lhs,
+                          const Matrix<T, Row, Col> &rhs) -> bool {
+  return !(lhs == rhs);
+}
+
 template <typename Lhs, typename Rhs>
 constexpr auto operator+(const Lhs &lhs, const Rhs &rhs)
     -> BinaryExpr<std::plus<>, Lhs, Rhs> {

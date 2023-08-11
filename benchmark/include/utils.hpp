@@ -18,7 +18,7 @@ public:
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
                         end_time - start_time)
                         .count();
-    std::cout << "Elapsed time: " << duration << " nanoseconds" << std::endl;
+    std::cout << "Elapsed time: " << duration << " ns" << std::endl;
   }
 
 private:
@@ -73,6 +73,16 @@ auto make_flat(std::reference_wrapper<std::mt19937> prng)
 
   std::array<T, N * M> result;
   std::generate_n(result.begin(), N * M, prng);
+  return result;
+}
+
+template <typename T, std::size_t N, std::size_t M>
+auto make_vmatrix(std::reference_wrapper<std::mt19937> prng) -> std::vector<T> {
+
+  std::vector<T> result;
+  result.reserve(N * M);
+
+  std::generate_n(std::back_inserter(result), N * M, prng);
   return result;
 }
 
