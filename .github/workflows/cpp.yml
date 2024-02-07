@@ -16,8 +16,8 @@ jobs:
       - name: configure
         run: sudo apt-get install make cmake build-essential
       - name: gtest
-        run: | 
-          sudo apt-get install libgtest-dev
+        run: |
+          sudo apt-get install libgtest-dev libomp-dev
           cd ${{github.workspace}} 
           mkdir lib
           cd lib
@@ -28,13 +28,13 @@ jobs:
           cmake ../  
           make
       - name: build
-        run: | 
+        run: |
           cd ${{github.workspace}} 
           mkdir build
           cd build 
           cmake ../ 
           make
       - name: test
-        run: | 
+        run: |
           cd ${{github.workspace}}/build 
           ctest --output-on-failure
