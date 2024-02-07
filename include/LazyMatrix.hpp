@@ -198,6 +198,7 @@ public:
 
   template <typename Expr>
   constexpr auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
+#pragma omp parallel
     for (std::size_t i = 0; i < Col; ++i) {
       const size_t page_index = i / chunk_size;
       const size_t row_in_page = i % chunk_size;
