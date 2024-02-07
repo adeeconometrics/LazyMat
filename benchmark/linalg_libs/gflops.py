@@ -13,8 +13,8 @@ def make_table(t_values:dict) -> None:
 if __name__ == "__main__":
     table = []
     equation = lambda A,B:  A * B + B / A * B * B - A
-    M,N,K = 1024,1024,1024
-    nsec = sum((44267640,41932253,41677664))/3*1e-9
+    M,N,K = 128,128,128
+    nsec = 86*1e-9
     
     lm_gflops = get_gflops(N*M*6, nsec)
     table.append(("lazy_mat", lm_gflops, nsec, '---'))
