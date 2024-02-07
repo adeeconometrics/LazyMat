@@ -11,18 +11,27 @@
 
 class Timer {
 public:
-  Timer() : start_time(std::chrono::high_resolution_clock::now()) {}
+  explicit Timer()
+      : start_time(std::chrono::high_resolution_clock::now()), m_iterations(1) {
+  }
+  explicit Timer(std::size_t t_iterations) : m_iterations(t_iterations) {}
 
   ~Timer() {
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
-                        end_time - start_time)
-                        .count();
-    std::cout << "Elapsed time: " << duration << " ns" << std::endl;
+    auto total_duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
+                              end_time - start_time)
+                              .count();
+    auto mean_duration = total_duration / m_iterations;
+    std::cout << "Mean elapsed time: " << mean_duration << " ns" << std::endl;
+  }
+
+  auto start() -> void {
+    start_time = std::chrono::high_resolution_clock::now();
   }
 
 private:
   std::chrono::high_resolution_clock::time_point start_time;
+  std::size_t m_iterations{};
 };
 
 template <typename T>

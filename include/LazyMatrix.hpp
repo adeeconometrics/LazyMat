@@ -10,6 +10,8 @@
 #include <utility>
 #include <vector>
 
+#include <omp.h>
+
 namespace lm {
 
 template <typename T, std::size_t Row, std::size_t Col, typename = void>
@@ -110,8 +112,9 @@ private:
   std::array<T, Row * Col> m_data{};
 };
 
+#define STACK_FRAME 256 * 256
 template <typename T, std::size_t Row, std::size_t Col>
-class Matrix<T, Row, Col, std::enable_if_t<(Row * Col) >= (256 * 256)>> {
+class Matrix<T, Row, Col, std::enable_if_t<(Row * Col) >= (STACK_FRAME)>> {
 public:
   using iterator = typename std::array<T, Row * Col>::iterator;
   using const_iterator = typename std::array<T, Row * Col>::const_iterator;
@@ -195,9 +198,11 @@ public:
 
   template <typename Expr>
   constexpr auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
+#pragma omp parallel
     for (std::size_t i = 0; i < Col; ++i) {
       const size_t page_index = i / chunk_size;
       const size_t row_in_page = i % chunk_size;
+#pragma omp parallel for simd
       for (std::size_t j = 0; j < Row; ++j) {
         // Evaluate the expression and assign to the matrix
         m_data[page_index][row_in_page * Col + j] = expr(i, j);

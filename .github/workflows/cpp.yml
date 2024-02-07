@@ -14,9 +14,9 @@ jobs:
       - name: git
         run: git --version
       - name: configure
-        run: sudo apt-get install make cmake build-essential
+        run: sudo apt-get install make cmake build-essential  libomp-dev
       - name: gtest
-        run: | 
+        run: |
           sudo apt-get install libgtest-dev
           cd ${{github.workspace}} 
           mkdir lib
@@ -28,13 +28,13 @@ jobs:
           cmake ../  
           make
       - name: build
-        run: | 
+        run: |
           cd ${{github.workspace}} 
           mkdir build
           cd build 
-          cmake ../ 
+          cmake -DCMAKE_BUILD_TYPE=Debug ../ 
           make
       - name: test
-        run: | 
+        run: |
           cd ${{github.workspace}}/build 
           ctest --output-on-failure
