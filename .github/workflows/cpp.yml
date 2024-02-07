@@ -14,10 +14,10 @@ jobs:
       - name: git
         run: git --version
       - name: configure
-        run: sudo apt-get install make cmake build-essential
+        run: sudo apt-get install make cmake build-essential  libomp-dev
       - name: gtest
         run: |
-          sudo apt-get install libgtest-dev libomp-dev
+          sudo apt-get install libgtest-dev
           cd ${{github.workspace}} 
           mkdir lib
           cd lib
