@@ -15,7 +15,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Set compiler flags for debug and release versions
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra -pedantic -fopenmp -pthread")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -fopenmp -pthread")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -fopenmp -pthread") # autovectorize is enabled
 
 # Add source and include directories
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
