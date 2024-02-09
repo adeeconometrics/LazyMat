@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classlm_1_1BinaryExpr" kind="class" language="C++" prot="public">
+    <compoundname>lm::BinaryExpr</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename Op</type>
+      </param>
+      <param>
+        <type>typename Lhs</type>
+      </param>
+      <param>
+        <type>typename Rhs</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classlm_1_1BinaryExpr_1a63479535227d34ca68d546aa068b5227" prot="private" static="no" mutable="no">
+        <type>Lhs</type>
+        <definition>Lhs lm::BinaryExpr&lt; Op, Lhs, Rhs &gt;::lhs</definition>
+        <argsstring></argsstring>
+        <name>lhs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="26" column="7" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classlm_1_1BinaryExpr_1a607dc116f598c5096cea34972366b7ae" prot="private" static="no" mutable="no">
+        <type>Rhs</type>
+        <definition>Rhs lm::BinaryExpr&lt; Op, Lhs, Rhs &gt;::rhs</definition>
+        <argsstring></argsstring>
+        <name>rhs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="27" column="7" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classlm_1_1BinaryExpr_1a6971ae92d839d19086a6a5d06a28bf15" prot="private" static="no" mutable="no">
+        <type>Op</type>
+        <definition>Op lm::BinaryExpr&lt; Op, Lhs, Rhs &gt;::op</definition>
+        <argsstring></argsstring>
+        <name>op</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="28" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classlm_1_1BinaryExpr_1ae3b9cc3731ea484bad650cac7285153d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>lm::BinaryExpr&lt; Op, Lhs, Rhs &gt;::BinaryExpr</definition>
+        <argsstring>(const Lhs &amp;lhs, const Rhs &amp;rhs)</argsstring>
+        <name>BinaryExpr</name>
+        <param>
+          <type>const Lhs &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const Rhs &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="19" column="3" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classlm_1_1BinaryExpr_1a5a594e22f0cf4534ccb878708ccb560b" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto lm::BinaryExpr&lt; Op, Lhs, Rhs &gt;::operator()</definition>
+        <argsstring>(std::size_t i, std::size_t j) const noexcept</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="21" column="8" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="21" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="17" column="33" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="17" bodyend="29"/>
+    <listofallmembers>
+      <member refid="classlm_1_1BinaryExpr_1ae3b9cc3731ea484bad650cac7285153d" prot="public" virt="non-virtual"><scope>lm::BinaryExpr</scope><name>BinaryExpr</name></member>
+      <member refid="classlm_1_1BinaryExpr_1a63479535227d34ca68d546aa068b5227" prot="private" virt="non-virtual"><scope>lm::BinaryExpr</scope><name>lhs</name></member>
+      <member refid="classlm_1_1BinaryExpr_1a6971ae92d839d19086a6a5d06a28bf15" prot="private" virt="non-virtual"><scope>lm::BinaryExpr</scope><name>op</name></member>
+      <member refid="classlm_1_1BinaryExpr_1a5a594e22f0cf4534ccb878708ccb560b" prot="public" virt="non-virtual"><scope>lm::BinaryExpr</scope><name>operator()</name></member>
+      <member refid="classlm_1_1BinaryExpr_1a607dc116f598c5096cea34972366b7ae" prot="private" virt="non-virtual"><scope>lm::BinaryExpr</scope><name>rhs</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

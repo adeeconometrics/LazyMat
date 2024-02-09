@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structlm_1_1CosOp" kind="struct" language="C++" prot="public">
+    <compoundname>lm::CosOp</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structlm_1_1CosOp_1a0f336aba0ae6b10cb36eb4eb8fac5a39" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename</type>
+            <defval>std::enable_if_t&lt;std::is_arithmetic_v&lt;T&gt;&gt;</defval>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::CosOp::operator()</definition>
+        <argsstring>(T t) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>T</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="162" column="8" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="162" bodyend="164"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="160" column="12" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="160" bodyend="165"/>
+    <listofallmembers>
+      <member refid="structlm_1_1CosOp_1a0f336aba0ae6b10cb36eb4eb8fac5a39" prot="public" virt="non-virtual"><scope>lm::CosOp</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

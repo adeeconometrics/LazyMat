@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classlm_1_1Timer" kind="class" language="C++" prot="public">
+    <compoundname>lm::Timer</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classlm_1_1Timer_1a1c9557676a01b33dfa85585a1f1f5400" prot="private" static="no" mutable="no">
+        <type>std::chrono::high_resolution_clock::time_point</type>
+        <definition>std::chrono::high_resolution_clock::time_point lm::Timer::start_time</definition>
+        <argsstring></argsstring>
+        <name>start_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="39" column="50" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classlm_1_1Timer_1a5159bfd63c0d75a8a1555add9575c3a2" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t lm::Timer::m_iterations</definition>
+        <argsstring></argsstring>
+        <name>m_iterations</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="40" column="15" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classlm_1_1Timer_1a8d18caef7df2aa11de126f9e60da6f53" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>lm::Timer::Timer</definition>
+        <argsstring>()</argsstring>
+        <name>Timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="20" column="12" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="20" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classlm_1_1Timer_1a7a08ecd16c1839954fc408227e0ad257" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>lm::Timer::Timer</definition>
+        <argsstring>(std::size_t t_iterations)</argsstring>
+        <name>Timer</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>t_iterations</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="23" column="12" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classlm_1_1Timer_1a20baf03506a2a8237b4cb2576b344889" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>lm::Timer::~Timer</definition>
+        <argsstring>()</argsstring>
+        <name>~Timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="25" column="3" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="25" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classlm_1_1Timer_1ab91388a619d6dd08c14835bfc60256d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto lm::Timer::start</definition>
+        <argsstring>() -&gt; void</argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="34" column="8" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="18" column="12" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="18" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classlm_1_1Timer_1a5159bfd63c0d75a8a1555add9575c3a2" prot="private" virt="non-virtual"><scope>lm::Timer</scope><name>m_iterations</name></member>
+      <member refid="classlm_1_1Timer_1ab91388a619d6dd08c14835bfc60256d6" prot="public" virt="non-virtual"><scope>lm::Timer</scope><name>start</name></member>
+      <member refid="classlm_1_1Timer_1a1c9557676a01b33dfa85585a1f1f5400" prot="private" virt="non-virtual"><scope>lm::Timer</scope><name>start_time</name></member>
+      <member refid="classlm_1_1Timer_1a8d18caef7df2aa11de126f9e60da6f53" prot="public" virt="non-virtual"><scope>lm::Timer</scope><name>Timer</name></member>
+      <member refid="classlm_1_1Timer_1a7a08ecd16c1839954fc408227e0ad257" prot="public" virt="non-virtual"><scope>lm::Timer</scope><name>Timer</name></member>
+      <member refid="classlm_1_1Timer_1a20baf03506a2a8237b4cb2576b344889" prot="public" virt="non-virtual"><scope>lm::Timer</scope><name>~Timer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

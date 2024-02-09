@@ -1,0 +1,995 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespacelm" kind="namespace" language="C++">
+    <compoundname>lm</compoundname>
+    <innerclass refid="structlm_1_1ACoshOp" prot="public">lm::ACoshOp</innerclass>
+    <innerclass refid="structlm_1_1ASinhOp" prot="public">lm::ASinhOp</innerclass>
+    <innerclass refid="structlm_1_1ASinOp" prot="public">lm::ASinOp</innerclass>
+    <innerclass refid="structlm_1_1ATanhOp" prot="public">lm::ATanhOp</innerclass>
+    <innerclass refid="structlm_1_1ATanOp" prot="public">lm::ATanOp</innerclass>
+    <innerclass refid="classlm_1_1BinaryExpr" prot="public">lm::BinaryExpr</innerclass>
+    <innerclass refid="structlm_1_1CbrtOp" prot="public">lm::CbrtOp</innerclass>
+    <innerclass refid="structlm_1_1CeilOp" prot="public">lm::CeilOp</innerclass>
+    <innerclass refid="structlm_1_1CoshOp" prot="public">lm::CoshOp</innerclass>
+    <innerclass refid="structlm_1_1CosOp" prot="public">lm::CosOp</innerclass>
+    <innerclass refid="structlm_1_1ErfcOp" prot="public">lm::ErfcOp</innerclass>
+    <innerclass refid="structlm_1_1ErfOp" prot="public">lm::ErfOp</innerclass>
+    <innerclass refid="structlm_1_1Exp2Op" prot="public">lm::Exp2Op</innerclass>
+    <innerclass refid="structlm_1_1ExpOp" prot="public">lm::ExpOp</innerclass>
+    <innerclass refid="structlm_1_1FloorOp" prot="public">lm::FloorOp</innerclass>
+    <innerclass refid="structlm_1_1LGammaOp" prot="public">lm::LGammaOp</innerclass>
+    <innerclass refid="structlm_1_1Log10Op" prot="public">lm::Log10Op</innerclass>
+    <innerclass refid="structlm_1_1Log2Op" prot="public">lm::Log2Op</innerclass>
+    <innerclass refid="structlm_1_1LogOp" prot="public">lm::LogOp</innerclass>
+    <innerclass refid="classlm_1_1Matrix" prot="public">lm::Matrix</innerclass>
+    <innerclass refid="classlm_1_1Matrix_3_01T_00_01Row_00_01Col_00_01std_1_1enable__if__t_3_07Row_01_5Col_08_01_4_0a_07STACK__FRAME_08_4" prot="public">lm::Matrix&lt; T, Row, Col, std::enable_if_t&lt;(Row *Col) &gt;=(STACK_FRAME)&gt;</innerclass>
+    <innerclass refid="structlm_1_1Mod" prot="public">lm::Mod</innerclass>
+    <innerclass refid="structlm_1_1SinhOp" prot="public">lm::SinhOp</innerclass>
+    <innerclass refid="structlm_1_1SinOp" prot="public">lm::SinOp</innerclass>
+    <innerclass refid="structlm_1_1SqrtOp" prot="public">lm::SqrtOp</innerclass>
+    <innerclass refid="structlm_1_1TanhOp" prot="public">lm::TanhOp</innerclass>
+    <innerclass refid="structlm_1_1TanOp" prot="public">lm::TanOp</innerclass>
+    <innerclass refid="structlm_1_1TGammaOp" prot="public">lm::TGammaOp</innerclass>
+    <innerclass refid="classlm_1_1Timer" prot="public">lm::Timer</innerclass>
+    <innerclass refid="structlm_1_1ToDeg" prot="public">lm::ToDeg</innerclass>
+    <innerclass refid="structlm_1_1ToRad" prot="public">lm::ToRad</innerclass>
+    <innerclass refid="classlm_1_1UnaryExpr" prot="public">lm::UnaryExpr</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="LazyOps_8hpp_1ad32ff7e2d476f0d4d55cbd0dc73d8ca0" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Row</declname>
+            <defname>Row</defname>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Col</declname>
+            <defname>Col</defname>
+          </param>
+        </templateparamlist>
+        <type>constexpr auto</type>
+        <definition>constexpr auto lm::operator==</definition>
+        <argsstring>(const Matrix&lt; T, Row, Col &gt; &amp;lhs, const Matrix&lt; T, Row, Col &gt; &amp;rhs) -&gt; bool</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="classlm_1_1Matrix" kindref="compound">Matrix</ref>&lt; T, Row, Col &gt; &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classlm_1_1Matrix" kindref="compound">Matrix</ref>&lt; T, Row, Col &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="15" column="16" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="15" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1aa9e8d95e72c578c4240b5895fb168950" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Row</declname>
+            <defname>Row</defname>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Col</declname>
+            <defname>Col</defname>
+          </param>
+        </templateparamlist>
+        <type>constexpr auto</type>
+        <definition>constexpr auto lm::operator!=</definition>
+        <argsstring>(const Matrix&lt; T, Row, Col &gt; &amp;lhs, const Matrix&lt; T, Row, Col &gt; &amp;rhs) -&gt; bool</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="classlm_1_1Matrix" kindref="compound">Matrix</ref>&lt; T, Row, Col &gt; &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classlm_1_1Matrix" kindref="compound">Matrix</ref>&lt; T, Row, Col &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="21" column="16" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="21" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a304405f104fbae830304c66651cfc9e1" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Lhs</type>
+          </param>
+          <param>
+            <type>typename Rhs</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr auto</type>
+        <definition>constexpr auto lm::operator+</definition>
+        <argsstring>(const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; BinaryExpr&lt; std::plus&lt;&gt;, Lhs, Rhs &gt;</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const Lhs &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const Rhs &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="27" column="16" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a37765e01da68b97036f49e71a6cb148a" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Lhs</type>
+          </param>
+          <param>
+            <type>typename Rhs</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr auto</type>
+        <definition>constexpr auto lm::operator-</definition>
+        <argsstring>(const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; BinaryExpr&lt; std::minus&lt;&gt;, Lhs, Rhs &gt;</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const Lhs &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const Rhs &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="33" column="16" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1aca46365f4ba0607bf07437fafb388b3b" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Lhs</type>
+          </param>
+          <param>
+            <type>typename Rhs</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr auto</type>
+        <definition>constexpr auto lm::operator*</definition>
+        <argsstring>(const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; BinaryExpr&lt; std::multiplies&lt;&gt;, Lhs, Rhs &gt;</argsstring>
+        <name>operator*</name>
+        <param>
+          <type>const Lhs &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const Rhs &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="39" column="16" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1aab6731167c539697f23e0344285da339" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Lhs</type>
+          </param>
+          <param>
+            <type>typename Rhs</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr auto</type>
+        <definition>constexpr auto lm::operator/</definition>
+        <argsstring>(const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; BinaryExpr&lt; std::divides&lt;&gt;, Lhs, Rhs &gt;</argsstring>
+        <name>operator/</name>
+        <param>
+          <type>const Lhs &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const Rhs &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="45" column="16" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1ac907013bb029834435cc1176bac5daed" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Lhs</type>
+          </param>
+          <param>
+            <type>typename Rhs</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr auto</type>
+        <definition>constexpr auto lm::operator%</definition>
+        <argsstring>(const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; BinaryExpr&lt; Mod, Lhs, Rhs &gt;</argsstring>
+        <name>operator%</name>
+        <param>
+          <type>const Lhs &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const Rhs &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="57" column="16" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="57" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1aa6b6172d8d63855f91810c804bd958cb" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr auto</type>
+        <definition>constexpr auto lm::operator-</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; std::negate&lt;&gt;, Expr &gt;</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="63" column="16" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="63" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a973814b5358b979054e5a9050f107b0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::log</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; LogOp, Expr &gt;</argsstring>
+        <name>log</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="74" column="18" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="74" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1acdea403a2d8c3c0a766348fa9f67b635" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::log10</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; Log10Op, Expr &gt;</argsstring>
+        <name>log10</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="86" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="86" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a8a33d8478b4a25870774bb5e11f45e4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::log2</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; Log2Op, Expr &gt;</argsstring>
+        <name>log2</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="98" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="98" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1ae022144d1e2baea13ecfce0295515684" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::exp</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ExpOp, Expr &gt;</argsstring>
+        <name>exp</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="109" column="18" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="109" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a192e14aa06b3666b62e1f7520329f99c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::exp2</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; Exp2Op, Expr &gt;</argsstring>
+        <name>exp2</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="121" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="121" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a732708177a22d8cf6f6b72946978532e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::sqrt</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; SqrtOp, Expr &gt;</argsstring>
+        <name>sqrt</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="133" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="133" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a6a08680c96f97a1d41fa125d07369a2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::cbrt</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; CbrtOp, Expr &gt;</argsstring>
+        <name>cbrt</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="145" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="145" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a2631b118bd7468e3fc7635e03dfc4516" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::sin</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; SinOp, Expr &gt;</argsstring>
+        <name>sin</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="156" column="18" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="156" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a4cc135da428b8d6fa198bb420bf4e09f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::cos</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; CosOp, Expr &gt;</argsstring>
+        <name>cos</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="167" column="18" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="167" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a0a20a3e284039fe094010023394fcc4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::tan</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; TanOp, Expr &gt;</argsstring>
+        <name>tan</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="178" column="18" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="178" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a5336a82d154c72ab9d3ecaf63b3113df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::asin</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ASinOp, Expr &gt;</argsstring>
+        <name>asin</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="190" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="190" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1ac2ed6f11d78f1dc561854697ae851c58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::atan</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ATanOp, Expr &gt;</argsstring>
+        <name>atan</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="202" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="202" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1aa3a7891d8b533dc8b15d89409f6047fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::sinh</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; SinhOp, Expr &gt;</argsstring>
+        <name>sinh</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="214" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="214" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a603ec47d4ab43d071cb1d5333c657d49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::cosh</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; CoshOp, Expr &gt;</argsstring>
+        <name>cosh</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="226" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="226" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1afcde5070e5c5ed66be89edd61c2f2c2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::tanh</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; TanhOp, Expr &gt;</argsstring>
+        <name>tanh</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="238" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="238" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a16a046bb30cdf42b472a3ceb5e199593" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::asinh</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ASinhOp, Expr &gt;</argsstring>
+        <name>asinh</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="250" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="250" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1aecdf23a17a537bc27d5e773a644268d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::acosh</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ACoshOp, Expr &gt;</argsstring>
+        <name>acosh</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="262" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="262" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1af293a0519befe714440043b79e288e72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::atanh</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ATanhOp, Expr &gt;</argsstring>
+        <name>atanh</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="274" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="274" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a11084152a8e6c44de15e746ae27bfeb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::to_deg</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ToDeg, Expr &gt;</argsstring>
+        <name>to_deg</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="286" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="286" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1afa3990699ead9390820a2e460b0e1cf4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::to_rad</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ToRad, Expr &gt;</argsstring>
+        <name>to_rad</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="298" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="298" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1aca35e43a7fb10415a703032bf8bbb5c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::erf</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ErfOp, Expr &gt;</argsstring>
+        <name>erf</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="309" column="18" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="309" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a5816f5d1c77ce48b862b803e95f820b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::erfc</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; ErfcOp, Expr &gt;</argsstring>
+        <name>erfc</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="321" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="321" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a0d8d9e3759bbb3bf9d55347396db7b1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::tgamma</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; TGammaOp, Expr &gt;</argsstring>
+        <name>tgamma</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="333" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="333" bodyend="335"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1ac706afb4d630ec66da38f2bd35861740" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::lgamma</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; LGammaOp, Expr &gt;</argsstring>
+        <name>lgamma</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="345" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="345" bodyend="347"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a5e505e1bc8bb121d6feb415ca2c7d8cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::ceil</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; CeilOp, Expr &gt;</argsstring>
+        <name>ceil</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="357" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="357" bodyend="359"/>
+      </memberdef>
+      <memberdef kind="function" id="LazyOps_8hpp_1a36b34bcc8ab3af9627f618f50d5da90a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Expr</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::floor</definition>
+        <argsstring>(const Expr &amp;expr) -&gt; UnaryExpr&lt; FloorOp, Expr &gt;</argsstring>
+        <name>floor</name>
+        <param>
+          <type>const Expr &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="369" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="369" bodyend="371"/>
+      </memberdef>
+      <memberdef kind="function" id="Utils_8hpp_1acfd043c79242801a367258ef1da4b931" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Row</declname>
+            <defname>Row</defname>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Col</declname>
+            <defname>Col</defname>
+          </param>
+          <param>
+            <type>typename</type>
+            <defval>std::enable_if_t&lt;std::is_arithmetic_v&lt;T&gt;&gt;</defval>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::make_matrix</definition>
+        <argsstring>(std::reference_wrapper&lt; std::mt19937 &gt; prng) -&gt; Matrix&lt; T, Row, Col &gt;</argsstring>
+        <name>make_matrix</name>
+        <param>
+          <type>std::reference_wrapper&lt; std::mt19937 &gt;</type>
+          <declname>prng</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="45" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="45" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="Utils_8hpp_1adac84694c3a48865943ab855b155795a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Row</declname>
+            <defname>Row</defname>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Col</declname>
+            <defname>Col</defname>
+          </param>
+          <param>
+            <type>typename</type>
+            <defval>std::enable_if_t&lt;std::is_arithmetic_v&lt;T&gt;&gt;</defval>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::make_vmatrix</definition>
+        <argsstring>(std::reference_wrapper&lt; std::mt19937 &gt; prng) -&gt; Matrix&lt; T, Row, Col &gt;</argsstring>
+        <name>make_vmatrix</name>
+        <param>
+          <type>std::reference_wrapper&lt; std::mt19937 &gt;</type>
+          <declname>prng</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="57" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="57" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="Utils_8hpp_1a2fa99c7ce3da9959cabc6a6f37946211" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Row</declname>
+            <defname>Row</defname>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Col</declname>
+            <defname>Col</defname>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const lm::Matrix&lt; T, Row, Col &gt; &amp;matrix) -&gt; std::ostream &amp;</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classlm_1_1Matrix" kindref="compound">lm::Matrix</ref>&lt; T, Row, Col &gt; &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="69" column="1" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="69" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="Utils_8hpp_1ad518db857ea874ec1afe423464121c00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>Row</declname>
+            <defname>Row</defname>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const std::array&lt; T, Row &gt; &amp;v) -&gt; std::ostream &amp;</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; T, Row &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="110" column="1" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="110" bodyend="117"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="15" column="12"/>
+  </compounddef>
+</doxygen>

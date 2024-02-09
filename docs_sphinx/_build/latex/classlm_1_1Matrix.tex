@@ -1,0 +1,76 @@
+\hypertarget{classlm_1_1Matrix}{}\doxysection{lm\+::Matrix$<$ T, Row, Col, typename $>$ Class Template Reference}
+\label{classlm_1_1Matrix}\index{lm::Matrix$<$ T, Row, Col, typename $>$@{lm::Matrix$<$ T, Row, Col, typename $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a5af3608d7451783583aaf522cbbdef16}\label{classlm_1_1Matrix_a5af3608d7451783583aaf522cbbdef16}} 
+using {\bfseries iterator} = typename std\+::array$<$ T, Row $\ast$Col $>$\+::iterator
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a96883eaaef46ac5e008e82b270e550c8}\label{classlm_1_1Matrix_a96883eaaef46ac5e008e82b270e550c8}} 
+using {\bfseries const\+\_\+iterator} = typename std\+::array$<$ T, Row $\ast$Col $>$\+::const\+\_\+iterator
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a39c52a210f3e443929c728583f51ee54}\label{classlm_1_1Matrix_a39c52a210f3e443929c728583f51ee54}} 
+{\bfseries Matrix} (const \mbox{\hyperlink{classlm_1_1Matrix}{Matrix}}$<$ T, Row, Col $>$ \&other)
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a89baf27b93e1c70caf27cc011945c341}\label{classlm_1_1Matrix_a89baf27b93e1c70caf27cc011945c341}} 
+{\bfseries Matrix} (\mbox{\hyperlink{classlm_1_1Matrix}{Matrix}}$<$ T, Row, Col $>$ \&\&other)
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_aa60d38bbb7516adb34f2ce8e6fec39e8}\label{classlm_1_1Matrix_aa60d38bbb7516adb34f2ce8e6fec39e8}} 
+{\bfseries Matrix} (std\+::initializer\+\_\+list$<$ std\+::initializer\+\_\+list$<$ T $>$$>$ t\+\_\+list)
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a43a27fba244986b00f7f257f8c72cafd}\label{classlm_1_1Matrix_a43a27fba244986b00f7f257f8c72cafd}} 
+{\bfseries Matrix} (const std\+::array$<$ T, Row $\ast$Col $>$ \&t\+\_\+data)
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a208720ec897434364ef94a2949dee81a}\label{classlm_1_1Matrix_a208720ec897434364ef94a2949dee81a}} 
+{\bfseries Matrix} (const std\+::vector$<$ T $>$ \&t\+\_\+data)
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_abe5d6e205e2b20a71606f0cf7794860f}\label{classlm_1_1Matrix_abe5d6e205e2b20a71606f0cf7794860f}} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classlm_1_1Matrix}{Matrix}}$<$ T, Row, Col $>$ \&lhs) noexcept -\/$>$ \mbox{\hyperlink{classlm_1_1Matrix}{Matrix}}$<$ T, Row, Col $>$ \&
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_af695fe19209d6296c30f235fb2a94b50}\label{classlm_1_1Matrix_af695fe19209d6296c30f235fb2a94b50}} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classlm_1_1Matrix}{Matrix}}$<$ T, Row, Col $>$ \&\&lhs) -\/$>$ \mbox{\hyperlink{classlm_1_1Matrix}{Matrix}}$<$ T, Row, Col $>$ \&
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_ae3c0f023f0d2b3535421cd695d4a207f}\label{classlm_1_1Matrix_ae3c0f023f0d2b3535421cd695d4a207f}} 
+constexpr auto {\bfseries operator\mbox{[}$\,$\mbox{]}} (std\+::size\+\_\+t index) -\/$>$ T \&
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_aeb27218deca05563ee0e035a628b267c}\label{classlm_1_1Matrix_aeb27218deca05563ee0e035a628b267c}} 
+constexpr auto {\bfseries operator\mbox{[}$\,$\mbox{]}} (std\+::size\+\_\+t index) const -\/$>$ const T \&
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a1cfbde868a350a2fc348ab1f420225e2}\label{classlm_1_1Matrix_a1cfbde868a350a2fc348ab1f420225e2}} 
+constexpr auto {\bfseries operator()} (std\+::size\+\_\+t i, std\+::size\+\_\+t j) const noexcept -\/$>$ T
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a4b8309bf6d928f64c342940caf2b2213}\label{classlm_1_1Matrix_a4b8309bf6d928f64c342940caf2b2213}} 
+constexpr auto {\bfseries operator()} (std\+::size\+\_\+t i, std\+::size\+\_\+t j) noexcept -\/$>$ T \&
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a64f28b54022796f0a50bceb1c75bd7f8}\label{classlm_1_1Matrix_a64f28b54022796f0a50bceb1c75bd7f8}} 
+constexpr auto {\bfseries dims} () const noexcept -\/$>$ std\+::pair$<$ std\+::size\+\_\+t, std\+::size\+\_\+t $>$
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a979777f4a0e2e79fbfa2b9095b881816}\label{classlm_1_1Matrix_a979777f4a0e2e79fbfa2b9095b881816}} 
+constexpr auto {\bfseries row} () const noexcept -\/$>$ std\+::size\+\_\+t
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a256d3c23a6d353fb4c8c6a74c9e4a8ac}\label{classlm_1_1Matrix_a256d3c23a6d353fb4c8c6a74c9e4a8ac}} 
+constexpr auto {\bfseries col} () const noexcept -\/$>$ std\+::size\+\_\+t
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a971e2373fe596e2ba2aa360a6bf6a9bb}\label{classlm_1_1Matrix_a971e2373fe596e2ba2aa360a6bf6a9bb}} 
+auto {\bfseries begin} () noexcept -\/$>$ iterator
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a2a320894ab639f4ccbcfb0093babb0b0}\label{classlm_1_1Matrix_a2a320894ab639f4ccbcfb0093babb0b0}} 
+auto {\bfseries end} () noexcept -\/$>$ iterator
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_aec9f6a35acee52bf4984483b316d2271}\label{classlm_1_1Matrix_aec9f6a35acee52bf4984483b316d2271}} 
+auto {\bfseries cbegin} () const noexcept -\/$>$ const\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_aa01dafb60f3caf3a041868205c909409}\label{classlm_1_1Matrix_aa01dafb60f3caf3a041868205c909409}} 
+auto {\bfseries cend} () const noexcept -\/$>$ const\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classlm_1_1Matrix_a15c9b11c3350a513e473edf90b4a8818}\label{classlm_1_1Matrix_a15c9b11c3350a513e473edf90b4a8818}} 
+{\footnotesize template$<$typename Expr $>$ }\\auto {\bfseries operator=} (const Expr \&expr) -\/$>$ \mbox{\hyperlink{classlm_1_1Matrix}{Matrix}}$<$ T, Row, Col $>$ \&
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/\+Users/ddamiana/\+Documents/\+Code\+Projects/personal/\+Lazy\+Mat/include/Lazy\+Matrix.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structlm_1_1ASinhOp" kind="struct" language="C++" prot="public">
+    <compoundname>lm::ASinhOp</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structlm_1_1ASinhOp_1aaa9057a19bdbb8c6838889d2d74ac018" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename</type>
+            <defval>std::enable_if_t&lt;std::is_arithmetic_v&lt;T&gt;&gt;</defval>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto lm::ASinhOp::operator()</definition>
+        <argsstring>(T t) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>T</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="244" column="8" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="244" bodyend="246"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" line="242" column="14" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyOps.hpp" bodystart="242" bodyend="247"/>
+    <listofallmembers>
+      <member refid="structlm_1_1ASinhOp_1aaa9057a19bdbb8c6838889d2d74ac018" prot="public" virt="non-virtual"><scope>lm::ASinhOp</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

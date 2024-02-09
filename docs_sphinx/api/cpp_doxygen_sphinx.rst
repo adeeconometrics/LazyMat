@@ -1,0 +1,16 @@
+.. _api_foo:
+
+Foo
+===
+
+.. doxygenfile:: LazyExpr.hpp 
+   :project: C++ Sphinx Doxygen Breathe
+
+.. doxygenfile:: LazyMatrix.hpp
+   :project: C++ Sphinx Doxygen Breathe
+
+.. doxygenfile:: LazyOps.hpp
+   :project: C++ Sphinx Doxygen Breathe
+
+.. doxygenfile:: Utils.hpp
+   :project: C++ Sphinx Doxygen Breathe
