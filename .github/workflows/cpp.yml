@@ -37,7 +37,7 @@ jobs:
           cd ${{github.workspace}} 
           mkdir build
           cd build 
-          cmake -DCMAKE_BUILD_TYPE=Debug ../ 
+          cmake -DCMAKE_BUILD_TYPE=Release ../ 
           make
           doxygen Doxyfile.out
       - name: test
