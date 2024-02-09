@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
     steps:
       - uses: actions/checkout@v3
       - name: git
@@ -44,15 +46,15 @@ jobs:
         run: |
           cd ${{github.workspace}}/build 
           ctest --output-on-failure
-      - name: Checkout repo
+      - name: checkout repo
         uses: actions/checkout@1.0.0
-      - name: Build docs
+      - name: build docs
         run: |
           cd docs_sphinx
           make html
           cd _build/html
           touch .nojekyll
-      - name: Deploy
+      - name: deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
