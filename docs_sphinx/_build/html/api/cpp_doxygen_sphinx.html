@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Foo &#8212; LazyMat 0.5.0 documentation</title>
+    <title>LazyExpr &#8212; LazyMat 0.5.0 documentation</title>
   
   
   
@@ -277,7 +277,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Foo</li>
+    <li class="breadcrumb-item active" aria-current="page">LazyExpr</li>
   </ul>
 </nav>
 </div>
@@ -294,8 +294,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="foo">
-<span id="api-foo"></span><h1>Foo<a class="headerlink" href="#foo" title="Permalink to this heading">#</a></h1>
+  <section id="lazyexpr">
+<span id="api-foo"></span><h1>LazyExpr<a class="headerlink" href="#lazyexpr" title="Permalink to this heading">#</a></h1>
 <dl class="cpp type">
 <dt class="sig sig-object cpp" id="_CPPv42lm">
 <span id="_CPPv32lm"></span><span id="_CPPv22lm"></span><span id="lm"></span><span class="target" id="namespacelm"></span><span class="k"><span class="pre">namespace</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lm</span></span></span><a class="headerlink" href="#_CPPv42lm" title="Permalink to this definition">#</a><br /></dt>
@@ -368,6 +368,9 @@ document.write(`
 
 </dd></dl>
 
+</section>
+<section id="lazymatrix">
+<h1>LazyMatrix<a class="headerlink" href="#lazymatrix" title="Permalink to this heading">#</a></h1>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
 <dl class="cpp macro">
@@ -770,6 +773,9 @@ document.write(`
 
 </dd></dl>
 
+</section>
+<section id="lazyops">
+<h1>LazyOps<a class="headerlink" href="#lazyops" title="Permalink to this heading">#</a></h1>
 <dl class="cpp type">
 <dt class="sig sig-object cpp">
 <span class="target" id="namespacelm"></span><span class="k"><span class="pre">namespace</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lm</span></span></span><br /></dt>
@@ -1300,6 +1306,78 @@ document.write(`
 </dd></dl>
 
 </section>
+<section id="utils">
+<h1>Utils<a class="headerlink" href="#utils" title="Permalink to this heading">#</a></h1>
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="namespacelm"></span><span class="k"><span class="pre">namespace</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lm</span></span></span><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE">
+<span id="_CPPv3I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixENSt17reference_wrapperINSt7mt19937EEE"></span><span id="_CPPv2I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixENSt17reference_wrapperINSt7mt19937EEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Row</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Col</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">enable_if_t</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">is_arithmetic_v</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_matrix::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="Utils_8hpp_1acfd043c79242801a367258ef1da4b931"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">make_matrix</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">reference_wrapper</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mt19937</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">prng</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm6MatrixE" title="lm::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_matrix::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_matrix::Row"><span class="n"><span class="pre">Row</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_matrix::Col"><span class="n"><span class="pre">Col</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE">
+<span id="_CPPv3I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixENSt17reference_wrapperINSt7mt19937EEE"></span><span id="_CPPv2I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixENSt17reference_wrapperINSt7mt19937EEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Row</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Col</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">enable_if_t</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">is_arithmetic_v</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_vmatrix::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="Utils_8hpp_1adac84694c3a48865943ab855b155795a"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">make_vmatrix</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">reference_wrapper</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mt19937</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">prng</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm6MatrixE" title="lm::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_vmatrix::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_vmatrix::Row"><span class="n"><span class="pre">Row</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_vmatrix::Col"><span class="n"><span class="pre">Col</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE">
+<span id="_CPPv3I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE"></span><span id="_CPPv2I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Row</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Col</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="Utils_8hpp_1a2fa99c7ce3da9959cabc6a6f37946211"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">os</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv42lm" title="lm"><span class="n"><span class="pre">lm</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm6MatrixE" title="lm::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE" title="lm::operator&lt;&lt;::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE" title="lm::operator&lt;&lt;::Row"><span class="n"><span class="pre">Row</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE" title="lm::operator&lt;&lt;::Col"><span class="n"><span class="pre">Col</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">matrix</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKNSt5arrayI1T3RowEE">
+<span id="_CPPv3I0_NSt6size_tEEN2lmlsERNSt7ostreamERKNSt5arrayI1T3RowEE"></span><span id="_CPPv2I0_NSt6size_tEEN2lmlsERNSt7ostreamERKNSt5arrayI1T3RowEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Row</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="Utils_8hpp_1ad518db857ea874ec1afe423464121c00"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">os</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKNSt5arrayI1T3RowEE" title="lm::operator&lt;&lt;::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKNSt5arrayI1T3RowEE" title="lm::operator&lt;&lt;::Row"><span class="n"><span class="pre">Row</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4I0_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKNSt5arrayI1T3RowEE" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2lm5TimerE">
+<span id="_CPPv3N2lm5TimerE"></span><span id="_CPPv2N2lm5TimerE"></span><span id="lm::Timer"></span><span class="target" id="classlm_1_1Timer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Timer</span></span></span><a class="headerlink" href="#_CPPv4N2lm5TimerE" title="Permalink to this definition">#</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2lm5Timer5TimerEv">
+<span id="_CPPv3N2lm5Timer5TimerEv"></span><span id="_CPPv2N2lm5Timer5TimerEv"></span><span id="lm::Timer::Timer"></span><span class="target" id="classlm_1_1Timer_1a8d18caef7df2aa11de126f9e60da6f53"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Timer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2lm5Timer5TimerEv" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2lm5Timer5TimerENSt6size_tE">
+<span id="_CPPv3N2lm5Timer5TimerENSt6size_tE"></span><span id="_CPPv2N2lm5Timer5TimerENSt6size_tE"></span><span id="lm::Timer::Timer__std::s"></span><span class="target" id="classlm_1_1Timer_1a7a08ecd16c1839954fc408227e0ad257"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Timer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">t_iterations</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2lm5Timer5TimerENSt6size_tE" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2lm5TimerD0Ev">
+<span id="_CPPv3N2lm5TimerD0Ev"></span><span id="_CPPv2N2lm5TimerD0Ev"></span><span id="lm::Timer::~Timer"></span><span class="target" id="classlm_1_1Timer_1a20baf03506a2a8237b4cb2576b344889"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Timer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2lm5TimerD0Ev" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2lm5Timer5startEv">
+<span id="_CPPv3N2lm5Timer5startEv"></span><span id="_CPPv2N2lm5Timer5startEv"></span><span id="lm::Timer::start"></span><span class="target" id="classlm_1_1Timer_1ab91388a619d6dd08c14835bfc60256d6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><a class="headerlink" href="#_CPPv4N2lm5Timer5startEv" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-members">Private Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2lm5Timer10start_timeE">
+<span id="_CPPv3N2lm5Timer10start_timeE"></span><span id="_CPPv2N2lm5Timer10start_timeE"></span><span id="lm::Timer::start_time__std::chrono::high_resolution_clock::time_point"></span><span class="target" id="classlm_1_1Timer_1a1c9557676a01b33dfa85585a1f1f5400"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">chrono</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">high_resolution_clock</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">time_point</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start_time</span></span></span><a class="headerlink" href="#_CPPv4N2lm5Timer10start_timeE" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2lm5Timer12m_iterationsE">
+<span id="_CPPv3N2lm5Timer12m_iterationsE"></span><span id="_CPPv2N2lm5Timer12m_iterationsE"></span><span id="lm::Timer::m_iterations__std::s"></span><span class="target" id="classlm_1_1Timer_1a5159bfd63c0d75a8a1555add9575c3a2"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_iterations</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N2lm5Timer12m_iterationsE" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 
 
                 </article>
@@ -1319,6 +1397,21 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">LazyExpr</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lazymatrix">LazyMatrix</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lazyops">LazyOps</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#utils">Utils</a></li>
+</ul>
+
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
