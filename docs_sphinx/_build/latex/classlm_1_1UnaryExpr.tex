@@ -1,5 +1,14 @@
 \hypertarget{classlm_1_1UnaryExpr}{}\doxysection{lm\+::Unary\+Expr$<$ Op, Expr $>$ Class Template Reference}
 \label{classlm_1_1UnaryExpr}\index{lm::UnaryExpr$<$ Op, Expr $>$@{lm::UnaryExpr$<$ Op, Expr $>$}}
+
+
+Template functor for unary expressions. Contains an abstract representation of unary ops and an A\+PI for recursively calling eval via {\ttfamily operator()} overload.  
+
+
+
+
+{\ttfamily \#include $<$Lazy\+Expr.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -9,6 +18,21 @@
 \mbox{\Hypertarget{classlm_1_1UnaryExpr_a8545e65d99c16d11a2f156283a5a2ced}\label{classlm_1_1UnaryExpr_a8545e65d99c16d11a2f156283a5a2ced}} 
 auto {\bfseries operator()} (std\+::size\+\_\+t i, std\+::size\+\_\+t j) const
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Op, typename Expr$>$\newline
+class lm\+::\+Unary\+Expr$<$ Op, Expr $>$}
+
+Template functor for unary expressions. Contains an abstract representation of unary ops and an A\+PI for recursively calling eval via {\ttfamily operator()} overload. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Op} & Operator type specified in {\ttfamily Lazy\+Ops.\+hpp} \\
+\hline
+{\em Expr} & Unary expression \\
+\hline
+\end{DoxyTemplParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

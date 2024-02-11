@@ -302,7 +302,19 @@ document.write(`
 <dd><dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv4I000EN2lm10BinaryExprE">
 <span id="_CPPv3I000EN2lm10BinaryExprE"></span><span id="_CPPv2I000EN2lm10BinaryExprE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Op</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Lhs</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Rhs</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classlm_1_1BinaryExpr"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BinaryExpr</span></span></span><a class="headerlink" href="#_CPPv4I000EN2lm10BinaryExprE" title="Permalink to this definition">#</a><br /></dt>
-<dd><div class="breathe-sectiondef docutils container">
+<dd><div class="docutils container">
+<em>#include &lt;LazyExpr.hpp&gt;</em></div>
+<p>Template functor for binary expressions. Contains an abstract representation of binary ops and an API for recursively calling eval via <code class="docutils literal notranslate"><span class="pre">operator()</span></code> overload. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Op</strong> – Operator type specified in <code class="docutils literal notranslate"><span class="pre">LazyOps.hpp</span></code></p></li>
+<li><p><strong>Lhs</strong> – Left hand side of the expr. </p></li>
+<li><p><strong>Rhs</strong> – Righ hand side of the expr. </p></li>
+</ul>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2lm10BinaryExpr10BinaryExprERK3LhsRK3Rhs">
@@ -338,7 +350,18 @@ document.write(`
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv4I00EN2lm9UnaryExprE">
 <span id="_CPPv3I00EN2lm9UnaryExprE"></span><span id="_CPPv2I00EN2lm9UnaryExprE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Op</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Expr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classlm_1_1UnaryExpr"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UnaryExpr</span></span></span><a class="headerlink" href="#_CPPv4I00EN2lm9UnaryExprE" title="Permalink to this definition">#</a><br /></dt>
-<dd><div class="breathe-sectiondef docutils container">
+<dd><div class="docutils container">
+<em>#include &lt;LazyExpr.hpp&gt;</em></div>
+<p>Template functor for unary expressions. Contains an abstract representation of unary ops and an API for recursively calling eval via <code class="docutils literal notranslate"><span class="pre">operator()</span></code> overload. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Op</strong> – Operator type specified in <code class="docutils literal notranslate"><span class="pre">LazyOps.hpp</span></code></p></li>
+<li><p><strong>Expr</strong> – Unary expression </p></li>
+</ul>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2lm9UnaryExpr9UnaryExprERK4Expr">
@@ -1316,38 +1339,117 @@ document.write(`
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE">
 <span id="_CPPv3I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixENSt17reference_wrapperINSt7mt19937EEE"></span><span id="_CPPv2I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixENSt17reference_wrapperINSt7mt19937EEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Row</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Col</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">enable_if_t</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">is_arithmetic_v</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_matrix::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="Utils_8hpp_1acfd043c79242801a367258ef1da4b931"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">make_matrix</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">reference_wrapper</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mt19937</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">prng</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm6MatrixE" title="lm::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_matrix::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_matrix::Row"><span class="n"><span class="pre">Row</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_matrix::Col"><span class="n"><span class="pre">Col</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm11make_matrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Returns a random matrix given by prng. This implements an <code class="docutils literal notranslate"><span class="pre">std::array</span></code> base and aligns the matrix in memory. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>T</strong> – Type of the matrix; constrained to types supported by prng. </p></li>
+<li><p><strong>Row</strong> – Specifies the size of the row. </p></li>
+<li><p><strong>Col</strong> – Specifies the size of col. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>prng</strong> – function wrapper for prng, defaults to <code class="docutils literal notranslate"><span class="pre">std::mt19937</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><a class="reference internal" href="#classlm_1_1Matrix"><span class="std std-ref"><span class="pre">Matrix</span></span></a><span class="pre">&lt;T,</span> <span class="pre">Row,</span> <span class="pre">Col&gt;</span></code> random matrix described by prng. </p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE">
 <span id="_CPPv3I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixENSt17reference_wrapperINSt7mt19937EEE"></span><span id="_CPPv2I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixENSt17reference_wrapperINSt7mt19937EEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Row</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Col</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">enable_if_t</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">is_arithmetic_v</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_vmatrix::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="Utils_8hpp_1adac84694c3a48865943ab855b155795a"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">make_vmatrix</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">reference_wrapper</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mt19937</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">prng</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm6MatrixE" title="lm::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_vmatrix::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_vmatrix::Row"><span class="n"><span class="pre">Row</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="lm::make_vmatrix::Col"><span class="n"><span class="pre">Col</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm12make_vmatrixE6MatrixI1T3Row3ColENSt17reference_wrapperINSt7mt19937EEE" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Returns a random matrix given by prng. This implements <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> base to hold for larger size matrices that goes beyond the stack limit of <code class="docutils literal notranslate"><span class="pre">std::array</span></code>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>T</strong> – Type of the matrix; constrained to types supported by prng. </p></li>
+<li><p><strong>Row</strong> – Specifies the size of the row. </p></li>
+<li><p><strong>Col</strong> – Specifies the size of col. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>prng</strong> – function wrapper for prng, defaults to <code class="docutils literal notranslate"><span class="pre">std::mt19937</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><a class="reference internal" href="#classlm_1_1Matrix"><span class="std std-ref"><span class="pre">Matrix</span></span></a><span class="pre">&lt;T,</span> <span class="pre">Row,</span> <span class="pre">Col&gt;</span></code> random matrix described by prng. </p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE">
 <span id="_CPPv3I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE"></span><span id="_CPPv2I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Row</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Col</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="Utils_8hpp_1a2fa99c7ce3da9959cabc6a6f37946211"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">os</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv42lm" title="lm"><span class="n"><span class="pre">lm</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tE0EN2lm6MatrixE" title="lm::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE" title="lm::operator&lt;&lt;::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE" title="lm::operator&lt;&lt;::Row"><span class="n"><span class="pre">Row</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE" title="lm::operator&lt;&lt;::Col"><span class="n"><span class="pre">Col</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">matrix</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4I0_NSt6size_tE_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKN2lm6MatrixI1T3Row3ColEE" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Operator overload to display the matrix in <code class="docutils literal notranslate"><span class="pre">std::cout</span></code>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>T</strong> – Type of the matrix. </p></li>
+<li><p><strong>Row</strong> – Specifies the size of the row. </p></li>
+<li><p><strong>Col</strong> – Specifies the size of the col. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>os</strong> – <code class="docutils literal notranslate"><span class="pre">std::ostream</span></code> that records the buffer to be printed. </p></li>
+<li><p><strong>matrix</strong> – matrix to be registered in the output buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::ostream&amp;</span></code> reference output buffer </p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I0_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKNSt5arrayI1T3RowEE">
 <span id="_CPPv3I0_NSt6size_tEEN2lmlsERNSt7ostreamERKNSt5arrayI1T3RowEE"></span><span id="_CPPv2I0_NSt6size_tEEN2lmlsERNSt7ostreamERKNSt5arrayI1T3RowEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Row</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="Utils_8hpp_1ad518db857ea874ec1afe423464121c00"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">os</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKNSt5arrayI1T3RowEE" title="lm::operator&lt;&lt;::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKNSt5arrayI1T3RowEE" title="lm::operator&lt;&lt;::Row"><span class="n"><span class="pre">Row</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4I0_NSt6size_tEEN2lmlsERNSt7ostreamERNSt7ostreamERKNSt5arrayI1T3RowEE" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Operator overload to display the vector of type <code class="docutils literal notranslate"><span class="pre">std::array</span></code>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>T</strong> – Type of the vector </p></li>
+<li><p><strong>Row</strong> – Specifies the size of the row. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>os</strong> – <code class="docutils literal notranslate"><span class="pre">std::ostream</span></code> that records the buffer to be printed. </p></li>
+<li><p><strong>v</strong> – vector to be registered in the output buffer </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::ostream&amp;</span></code> reference to the output buffer </p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv4N2lm5TimerE">
 <span id="_CPPv3N2lm5TimerE"></span><span id="_CPPv2N2lm5TimerE"></span><span id="lm::Timer"></span><span class="target" id="classlm_1_1Timer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Timer</span></span></span><a class="headerlink" href="#_CPPv4N2lm5TimerE" title="Permalink to this definition">#</a><br /></dt>
-<dd><div class="breathe-sectiondef docutils container">
+<dd><div class="docutils container">
+<em>#include &lt;Utils.hpp&gt;</em></div>
+<p>Serves as a simple timer utility used for benchmarking performance. </p>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2lm5Timer5TimerEv">
 <span id="_CPPv3N2lm5Timer5TimerEv"></span><span id="_CPPv2N2lm5Timer5TimerEv"></span><span id="lm::Timer::Timer"></span><span class="target" id="classlm_1_1Timer_1a8d18caef7df2aa11de126f9e60da6f53"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Timer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2lm5Timer5TimerEv" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Construct a new <a class="reference internal" href="#classlm_1_1Timer"><span class="std std-ref">Timer</span></a> object. </p>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2lm5Timer5TimerENSt6size_tE">
 <span id="_CPPv3N2lm5Timer5TimerENSt6size_tE"></span><span id="_CPPv2N2lm5Timer5TimerENSt6size_tE"></span><span id="lm::Timer::Timer__std::s"></span><span class="target" id="classlm_1_1Timer_1a7a08ecd16c1839954fc408227e0ad257"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Timer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">t_iterations</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2lm5Timer5TimerENSt6size_tE" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Construct a new <a class="reference internal" href="#classlm_1_1Timer"><span class="std std-ref">Timer</span></a> object. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t_iterations</strong> – specifies the number of iterations </p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2lm5TimerD0Ev">
@@ -1357,7 +1459,8 @@ document.write(`
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2lm5Timer5startEv">
 <span id="_CPPv3N2lm5Timer5startEv"></span><span id="_CPPv2N2lm5Timer5startEv"></span><span id="lm::Timer::start"></span><span class="target" id="classlm_1_1Timer_1ab91388a619d6dd08c14835bfc60256d6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><a class="headerlink" href="#_CPPv4N2lm5Timer5startEv" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Function for setting a start point of the timer. End time is taken in the destructor. </p>
+</dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">

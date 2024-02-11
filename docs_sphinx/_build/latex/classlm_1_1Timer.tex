@@ -1,14 +1,69 @@
 \hypertarget{classlm_1_1Timer}{}\doxysection{lm\+::Timer Class Reference}
 \label{classlm_1_1Timer}\index{lm::Timer@{lm::Timer}}
+
+
+Serves as a simple timer utility used for benchmarking performance.  
+
+
+
+
+{\ttfamily \#include $<$Utils.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{classlm_1_1Timer_a8d18caef7df2aa11de126f9e60da6f53}{Timer}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classlm_1_1Timer}{Timer}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classlm_1_1Timer_a7a08ecd16c1839954fc408227e0ad257}{Timer}} (std\+::size\+\_\+t t\+\_\+iterations)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classlm_1_1Timer}{Timer}} object. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classlm_1_1Timer_ab91388a619d6dd08c14835bfc60256d6}{start}} () -\/$>$ void
+\begin{DoxyCompactList}\small\item\em Function for setting a start point of the timer. End time is taken in the destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Serves as a simple timer utility used for benchmarking performance. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classlm_1_1Timer_a8d18caef7df2aa11de126f9e60da6f53}\label{classlm_1_1Timer_a8d18caef7df2aa11de126f9e60da6f53}} 
+\index{lm::Timer@{lm::Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!lm::Timer@{lm::Timer}}
+\doxysubsubsection{\texorpdfstring{Timer()}{Timer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily lm\+::\+Timer\+::\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Construct a new \mbox{\hyperlink{classlm_1_1Timer}{Timer}} object. 
+
 \mbox{\Hypertarget{classlm_1_1Timer_a7a08ecd16c1839954fc408227e0ad257}\label{classlm_1_1Timer_a7a08ecd16c1839954fc408227e0ad257}} 
-{\bfseries Timer} (std\+::size\+\_\+t t\+\_\+iterations)
-\item 
+\index{lm::Timer@{lm::Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!lm::Timer@{lm::Timer}}
+\doxysubsubsection{\texorpdfstring{Timer()}{Timer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily lm\+::\+Timer\+::\+Timer (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{t\+\_\+iterations }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Construct a new \mbox{\hyperlink{classlm_1_1Timer}{Timer}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+iterations} & specifies the number of iterations \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classlm_1_1Timer_ab91388a619d6dd08c14835bfc60256d6}\label{classlm_1_1Timer_ab91388a619d6dd08c14835bfc60256d6}} 
-auto {\bfseries start} () -\/$>$ void
-\end{DoxyCompactItemize}
+\index{lm::Timer@{lm::Timer}!start@{start}}
+\index{start@{start}!lm::Timer@{lm::Timer}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily auto lm\+::\+Timer\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) -\/$>$ void \hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function for setting a start point of the timer. End time is taken in the destructor. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

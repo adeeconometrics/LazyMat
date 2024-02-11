@@ -875,12 +875,50 @@
           <declname>prng</declname>
         </param>
         <briefdescription>
+<para>Returns a random matrix given by prng. This implements an <computeroutput>std::array</computeroutput> base and aligns the matrix in memory. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the matrix; constrained to types supported by prng. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies the size of the row. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies the size of col. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function wrapper for prng, defaults to <computeroutput>std::mt19937</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput><ref refid="classlm_1_1Matrix" kindref="compound">Matrix</ref>&lt;T, Row, Col&gt;</computeroutput> random matrix described by prng. </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="45" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="45" bodyend="53"/>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="71" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="71" bodyend="79"/>
       </memberdef>
       <memberdef kind="function" id="Utils_8hpp_1adac84694c3a48865943ab855b155795a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -911,12 +949,50 @@
           <declname>prng</declname>
         </param>
         <briefdescription>
+<para>Returns a random matrix given by prng. This implements <computeroutput>std::vector</computeroutput> base to hold for larger size matrices that goes beyond the stack limit of <computeroutput>std::array</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the matrix; constrained to types supported by prng. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies the size of the row. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies the size of col. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function wrapper for prng, defaults to <computeroutput>std::mt19937</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput><ref refid="classlm_1_1Matrix" kindref="compound">Matrix</ref>&lt;T, Row, Col&gt;</computeroutput> random matrix described by prng. </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="57" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="57" bodyend="66"/>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="93" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="93" bodyend="102"/>
       </memberdef>
       <memberdef kind="function" id="Utils_8hpp_1a2fa99c7ce3da9959cabc6a6f37946211" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -947,12 +1023,58 @@
           <declname>matrix</declname>
         </param>
         <briefdescription>
+<para>Operator overload to display the matrix in <computeroutput>std::cout</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the matrix. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies the size of the row. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies the size of the col. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><computeroutput>std::ostream</computeroutput> that records the buffer to be printed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>matrix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matrix to be registered in the output buffer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>std::ostream&amp;</computeroutput> reference output buffer </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="69" column="1" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="69" bodyend="107"/>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="114" column="1" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="114" bodyend="152"/>
       </memberdef>
       <memberdef kind="function" id="Utils_8hpp_1ad518db857ea874ec1afe423464121c00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -978,12 +1100,50 @@
           <declname>v</declname>
         </param>
         <briefdescription>
+<para>Operator overload to display the vector of type <computeroutput>std::array</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies the size of the row. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><computeroutput>std::ostream</computeroutput> that records the buffer to be printed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector to be registered in the output buffer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>std::ostream&amp;</computeroutput> reference to the output buffer </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="110" column="1" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="110" bodyend="117"/>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" line="163" column="1" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/Utils.hpp" bodystart="163" bodyend="170"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classlm_1_1UnaryExpr" kind="class" language="C++" prot="public">
     <compoundname>lm::UnaryExpr</compoundname>
+    <includes local="no">LazyExpr.hpp</includes>
     <templateparamlist>
       <param>
         <type>typename Op</type>
@@ -22,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="38" column="8" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="38" bodyend="-1"/>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="53" column="8" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classlm_1_1UnaryExpr_1a44a64ea11c43ac4ec8332ad7c131cb08" prot="private" static="no" mutable="no">
         <type>Op</type>
@@ -35,7 +36,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="39" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="39" bodyend="-1"/>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="54" column="6" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -54,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="33" column="3" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="33" bodyend="33"/>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="48" column="3" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="48" bodyend="48"/>
       </memberdef>
       <memberdef kind="function" id="classlm_1_1UnaryExpr_1a8545e65d99c16d11a2f156283a5a2ced" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -75,14 +76,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="35" column="8" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="35" bodyend="35"/>
+        <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="50" column="8" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="50" bodyend="50"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Template functor for unary expressions. Contains an abstract representation of unary ops and an API for recursively calling eval via <computeroutput>operator()</computeroutput> overload. </para>
     </briefdescription>
     <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Operator type specified in <computeroutput>LazyOps.hpp</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Expr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Unary expression </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
     </detaileddescription>
-    <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="31" column="30" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="31" bodyend="40"/>
+    <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" line="46" column="30" bodyfile="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/LazyExpr.hpp" bodystart="46" bodyend="55"/>
     <listofallmembers>
       <member refid="classlm_1_1UnaryExpr_1acadc75f21a762b250b6b37506f06f4f9" prot="private" virt="non-virtual"><scope>lm::UnaryExpr</scope><name>expr</name></member>
       <member refid="classlm_1_1UnaryExpr_1a44a64ea11c43ac4ec8332ad7c131cb08" prot="private" virt="non-virtual"><scope>lm::UnaryExpr</scope><name>op</name></member>
