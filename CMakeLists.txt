@@ -16,9 +16,16 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # Find OpenMP
 find_package(OpenMP REQUIRED)
 
-# Set compiler flags for debug and release versions
-set(CMAKE_CXX_FLAGS_DEBUG "-g -O3 -Wall -Wextra -pedantic -fopenmp -pthread")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -fopenmp -pthread") # autovectorize is enabled
+# Set compiler flags for debug and release versions. NOTE DEBUG SHOULD BE -O0
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    # Set compiler flags for macOS
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -O3 -Wall -Wextra -pedantic -Xclang -fopenmp -pthread")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -Xclang -fopenmp -pthread")
+else()
+    # Set compiler flags for other systems
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra -pedantic -fopenmp -pthread")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -fopenmp -pthread")
+endif()
 
 # Add source and include directories
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
