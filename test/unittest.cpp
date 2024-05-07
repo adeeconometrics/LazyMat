@@ -172,3 +172,15 @@ TEST(UnaryExpr, UnaryOps) {
     }
   }
 }
+
+TEST(TestMatMulExpr, MatMul) {
+  const Matrix<float, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  const Matrix<float, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+
+  const Matrix<float, 3, 3> EMul{{30, 24, 18}, {84, 69, 54}, {138, 114, 90}};
+
+  Matrix<float, 3, 3> Mul{};
+  Mul = matmul(M0, M1);
+
+  EXPECT_EQ(Mul, EMul);
+}
