@@ -17,8 +17,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 find_package(OpenMP REQUIRED)
 
 # Set compiler flags for debug and release versions
-set(CMAKE_CXX_FLAGS_DEBUG "-g -O3 -Wall -Wextra -pedantic -Xclang -fopenmp -pthread")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -Xclang -fopenmp -pthread") # autovectorize is enabled
+set(CMAKE_CXX_FLAGS_DEBUG "-g -O3 -Wall -Wextra -pedantic -fopenmp -pthread")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -fopenmp -pthread") # autovectorize is enabled
 
 # Add source and include directories
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
@@ -79,7 +79,23 @@ include(CPack)
 # Doxygen
 
 # look for Doxygen package
+find_package(Doxygen)
 
-# # Set LDFLAGS and CPPFLAGS
-# set(ENV{LDFLAGS} "-L/opt/homebrew/opt/libomp/lib")
-# set(ENV{CPPFLAGS} "-I/opt/homebrew/opt/libomp/include")
+if(DOXYGEN_FOUND)
+    # set input and output files
+    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/docs_doxy/Doxyfile.in)
+    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile.out)
+
+    # request to configure the file
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+    message("Doxygen build started")
+
+    # Note: do not put "ALL" - this builds docs together with application EVERY TIME!
+    add_custom_target(docs
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM)
+else(DOXYGEN_FOUND)
+    message("Doxygen need to be installed to generate the doxygen documentation")
+endif(DOXYGEN_FOUND)
