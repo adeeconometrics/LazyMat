@@ -9,6 +9,7 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <iterator>
 #include <random>
 #include <string>
 #include <type_traits>
@@ -95,7 +96,8 @@ auto make_vmatrix(std::reference_wrapper<std::mt19937> prng)
 
   std::vector<T> result;
   result.reserve(Row * Col);
-  std::generate_n(std::begin(result), Row * Col, prng);
+
+  std::generate_n(std::back_inserter(result), Row * Col, prng);
 
   // std::generate_n(result.data(), Row * Col, prng);
   return Matrix<T, Row, Col>{result};
@@ -111,8 +113,8 @@ auto make_vmatrix(std::reference_wrapper<std::mt19937> prng)
  * @return `std::ostream&` reference output buffer
  */
 template <typename T, std::size_t Row, std::size_t Col>
-auto operator<<(std::ostream &os, const lm::Matrix<T, Row, Col> &matrix)
-    -> std::ostream & {
+auto operator<<(std::ostream &os,
+                const lm::Matrix<T, Row, Col> &matrix) -> std::ostream & {
   static_assert(std::is_arithmetic_v<T>,
                 "template parameter must be of type arithmetic");
 
@@ -160,8 +162,8 @@ auto operator<<(std::ostream &os, const lm::Matrix<T, Row, Col> &matrix)
  * @return `std::ostream&` reference to the output buffer
  */
 template <typename T, std::size_t Row>
-auto operator<<(std::ostream &os, const std::array<T, Row> &v)
-    -> std::ostream & {
+auto operator<<(std::ostream &os,
+                const std::array<T, Row> &v) -> std::ostream & {
   os << "[";
   for (const auto i : v) {
     os << i << " ";

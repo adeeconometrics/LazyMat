@@ -24,14 +24,14 @@ constexpr auto operator!=(const Matrix<T, Row, Col> &lhs,
 }
 
 template <typename Lhs, typename Rhs>
-constexpr auto operator+(const Lhs &lhs, const Rhs &rhs)
-    -> BinaryExpr<std::plus<>, Lhs, Rhs> {
+constexpr auto operator+(const Lhs &lhs,
+                         const Rhs &rhs) -> BinaryExpr<std::plus<>, Lhs, Rhs> {
   return BinaryExpr<std::plus<>, Lhs, Rhs>(lhs, rhs);
 }
 
 template <typename Lhs, typename Rhs>
-constexpr auto operator-(const Lhs &lhs, const Rhs &rhs)
-    -> BinaryExpr<std::minus<>, Lhs, Rhs> {
+constexpr auto operator-(const Lhs &lhs,
+                         const Rhs &rhs) -> BinaryExpr<std::minus<>, Lhs, Rhs> {
   return BinaryExpr<std::minus<>, Lhs, Rhs>(lhs, rhs);
 }
 
@@ -54,8 +54,8 @@ struct Mod {
 };
 
 template <typename Lhs, typename Rhs>
-constexpr auto operator%(const Lhs &lhs, const Rhs &rhs)
-    -> BinaryExpr<Mod, Lhs, Rhs> {
+constexpr auto operator%(const Lhs &lhs,
+                         const Rhs &rhs) -> BinaryExpr<Mod, Lhs, Rhs> {
   return BinaryExpr<Mod, Lhs, Rhs>(lhs, rhs);
 }
 

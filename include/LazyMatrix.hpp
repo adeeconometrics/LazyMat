@@ -21,11 +21,11 @@ public:
   using const_iterator = typename std::array<T, Row * Col>::const_iterator;
 
 public:
-  Matrix(){};
+  Matrix() {};
 
-  Matrix(const Matrix<T, Row, Col> &other) : m_data(other.m_data){};
+  Matrix(const Matrix<T, Row, Col> &other) : m_data(other.m_data) {};
 
-  Matrix(Matrix<T, Row, Col> &&other) : m_data(std::move(other.m_data)){};
+  Matrix(Matrix<T, Row, Col> &&other) : m_data(std::move(other.m_data)) {};
 
   Matrix(std::initializer_list<std::initializer_list<T>> t_list) {
     // rewrite implementation
@@ -54,8 +54,8 @@ public:
     std::copy(t_data.cbegin(), t_data.cend(), m_data.begin());
   }
 
-  auto operator=(const Matrix<T, Row, Col> &lhs) noexcept
-      -> Matrix<T, Row, Col> & {
+  auto
+  operator=(const Matrix<T, Row, Col> &lhs) noexcept -> Matrix<T, Row, Col> & {
     std::swap(m_data, lhs.m_data);
     return *this;
   };
@@ -125,9 +125,9 @@ public:
       page = std::array<T, chunk_size>{};
   }
 
-  Matrix(const Matrix<T, Row, Col> &other) : m_data(other.m_data){};
+  Matrix(const Matrix<T, Row, Col> &other) : m_data(other.m_data) {};
 
-  Matrix(Matrix<T, Row, Col> &&other) : m_data(std::move(other.m_data)){};
+  Matrix(Matrix<T, Row, Col> &&other) : m_data(std::move(other.m_data)) {};
 
   Matrix(std::initializer_list<std::initializer_list<T>> t_data)
       : Matrix(std::vector<T>(flatten_initializer_list(t_data))) {}
@@ -145,8 +145,8 @@ public:
     }
   }
 
-  auto operator=(const Matrix<T, Row, Col> &lhs) noexcept
-      -> Matrix<T, Row, Col> & {
+  auto
+  operator=(const Matrix<T, Row, Col> &lhs) noexcept -> Matrix<T, Row, Col> & {
     std::swap(m_data, lhs.m_data);
     return *this;
   };
@@ -197,15 +197,16 @@ public:
   }
 
   template <typename Expr>
-  constexpr auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
-#pragma omp parallel
+  auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
+#pragma omp parallel for
     for (std::size_t i = 0; i < Col; ++i) {
       const size_t page_index = i / chunk_size;
       const size_t row_in_page = i % chunk_size;
-#pragma omp parallel for simd
+      T *data_ptr = &m_data[page_index][row_in_page * Col];
+#pragma omp simd
       for (std::size_t j = 0; j < Row; ++j) {
         // Evaluate the expression and assign to the matrix
-        m_data[page_index][row_in_page * Col + j] = expr(i, j);
+        data_ptr[j] = expr(i, j);
       }
     }
     return *this;
