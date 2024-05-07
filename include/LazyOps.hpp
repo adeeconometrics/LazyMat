@@ -47,6 +47,11 @@ constexpr auto operator/(const Lhs &lhs, const Rhs &rhs)
   return BinaryExpr<std::divides<>, Lhs, Rhs>(lhs, rhs);
 }
 
+template <typename Lhs, typename Rhs>
+constexpr auto matmul(const Lhs &lhs, const Rhs &rhs) -> MatMulExpr<Lhs, Rhs> {
+  return MatMulExpr<Lhs, Rhs>(lhs, rhs);
+}
+
 struct Mod {
   template <typename Lhs, typename Rhs> auto operator()(Lhs l, Rhs r) const {
     return l % r;

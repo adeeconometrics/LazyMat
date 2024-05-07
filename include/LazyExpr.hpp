@@ -54,6 +54,25 @@ private:
   Op op;
 };
 
+template <typename Lhs, typename Rhs> class MatMulExpr {
+public:
+  constexpr MatMulExpr(const Lhs &lhs, const Rhs &rhs) : lhs_(lhs), rhs_(rhs) {}
+
+  auto operator()(std::size_t i, std::size_t j) const {
+    auto result = lhs_(i, 0) * rhs_(0, j);
+    for (std::size_t k = 1; k < lhs_.col(); ++k) {
+      result += lhs_(i, k) * rhs_(k, j);
+    }
+    return result;
+  }
+
+  std::size_t rows() const { return lhs_.rows(); }
+  std::size_t cols() const { return rhs_.cols(); }
+
+private:
+  const Lhs &lhs_;
+  const Rhs &rhs_;
+};
 } // namespace lm
 
 #endif // __LAZYEXPR_H__
