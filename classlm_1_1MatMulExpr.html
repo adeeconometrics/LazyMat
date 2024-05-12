@@ -74,7 +74,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Template functor for matrix multiplication expressions. Contains an operator() for evaluating the expression lazily.  
+<p>Template functor for matrix multiplication expressions. Contains an operator() for evaluating the expression lazily. Works with <code>matmul(Expr, Expr)</code> types to represent MatMulExpr&lt;Ops,Ops&gt; computation *.  
  <a href="classlm_1_1MatMulExpr.html#details">More...</a></p>
 
 <p><code>#include &lt;LazyExpr.hpp&gt;</code></p>
@@ -98,7 +98,7 @@ std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>cols</b> () co
 <div class="textblock"><h3>template&lt;typename Lhs, typename Rhs&gt;<br />
 class lm::MatMulExpr&lt; Lhs, Rhs &gt;</h3>
 
-<p>Template functor for matrix multiplication expressions. Contains an operator() for evaluating the expression lazily. </p>
+<p>Template functor for matrix multiplication expressions. Contains an operator() for evaluating the expression lazily. Works with <code>matmul(Expr, Expr)</code> types to represent MatMulExpr&lt;Ops,Ops&gt; computation *. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Lhs</td><td>Left hand side of the expr. </td></tr>
