@@ -59,8 +59,8 @@ private:
 };
 /**
  * @brief Template functor for matrix multiplication expressions. Contains an
- * operator() for evaluating the expression lazily.
- *
+ * operator() for evaluating the expression lazily. Works with `matmul(Expr,
+ * Expr)` types to represent MatMulExpr<Ops,Ops> computation *
  * @tparam Lhs Left hand side of the expr.
  * @tparam Rhs Right hand side of the expr.
  */
@@ -75,21 +75,6 @@ public:
     }
     return result;
   }
-
-  // template <typename LhsExpr, typename RhsExpr>
-  // auto operator()(std::size_t i, std::size_t j) const {
-  //   return MatMulExpr<LhsExpr, RhsExpr>(LhsExpr(i, j), RhsExpr(i, j));
-  // }
-
-  // template <typename UnaryLhsExpr>
-  // auto operator()(std::size_t i, std::size_t j) const {
-  //   return MatMulExpr<UnaryLhsExpr, Rhs>(UnaryLhsExpr(i, j), m_rhs);
-  // }
-
-  // template <typename UnaryRhsExpr>
-  // auto operator()(std::size_t i, std::size_t j) const {
-  //   return MatMulExpr<Lhs, UnaryRhsExpr>(m_lhs, UnaryRhsExpr(i, j));
-  // }
 
   std::size_t rows() const { return m_lhs.rows(); }
   std::size_t cols() const { return m_rhs.cols(); }
