@@ -6,6 +6,7 @@
 #include <cmath>
 #include <functional>
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 // todo
@@ -49,30 +50,55 @@ public:
 
   auto operator()(std::size_t i, std::size_t j) const { return op(expr(i, j)); }
 
+  auto rows() const { return expr.rows(); }
+  auto cols() const { return expr.cols(); }
+
 private:
   Expr expr;
   Op op;
 };
-
+/**
+ * @brief Template functor for matrix multiplication expressions. Contains an
+ * operator() for evaluating the expression lazily.
+ *
+ * @tparam Lhs Left hand side of the expr.
+ * @tparam Rhs Right hand side of the expr.
+ */
 template <typename Lhs, typename Rhs> class MatMulExpr {
 public:
-  constexpr MatMulExpr(const Lhs &lhs, const Rhs &rhs) : lhs_(lhs), rhs_(rhs) {}
+  MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {}
 
   auto operator()(std::size_t i, std::size_t j) const {
-    auto result = lhs_(i, 0) * rhs_(0, j);
-    for (std::size_t k = 1; k < lhs_.col(); ++k) {
-      result += lhs_(i, k) * rhs_(k, j);
+    auto result = m_lhs(i, 0) * m_rhs(0, j);
+    for (std::size_t k = 1; k < m_lhs.cols(); ++k) {
+      result += m_lhs(i, k) * m_rhs(k, j);
     }
     return result;
   }
 
-  std::size_t rows() const { return lhs_.rows(); }
-  std::size_t cols() const { return rhs_.cols(); }
+  // template <typename LhsExpr, typename RhsExpr>
+  // auto operator()(std::size_t i, std::size_t j) const {
+  //   return MatMulExpr<LhsExpr, RhsExpr>(LhsExpr(i, j), RhsExpr(i, j));
+  // }
+
+  // template <typename UnaryLhsExpr>
+  // auto operator()(std::size_t i, std::size_t j) const {
+  //   return MatMulExpr<UnaryLhsExpr, Rhs>(UnaryLhsExpr(i, j), m_rhs);
+  // }
+
+  // template <typename UnaryRhsExpr>
+  // auto operator()(std::size_t i, std::size_t j) const {
+  //   return MatMulExpr<Lhs, UnaryRhsExpr>(m_lhs, UnaryRhsExpr(i, j));
+  // }
+
+  std::size_t rows() const { return m_lhs.rows(); }
+  std::size_t cols() const { return m_rhs.cols(); }
 
 private:
-  const Lhs &lhs_;
-  const Rhs &rhs_;
+  Lhs m_lhs;
+  Rhs m_rhs;
 };
+
 } // namespace lm
 
 #endif // __LAZYEXPR_H__

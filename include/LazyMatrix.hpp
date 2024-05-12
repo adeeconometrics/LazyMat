@@ -85,9 +85,9 @@ public:
     return std::make_pair(Row, Col);
   }
 
-  constexpr auto row() const noexcept -> std::size_t { return Row; }
+  constexpr auto rows() const noexcept -> std::size_t { return Row; }
 
-  constexpr auto col() const noexcept -> std::size_t { return Col; }
+  constexpr auto cols() const noexcept -> std::size_t { return Col; }
 
   auto begin() noexcept -> iterator { return m_data.begin(); }
 
@@ -172,9 +172,9 @@ public:
     return std::make_pair(Row, Col);
   }
 
-  constexpr auto row() const noexcept -> std::size_t { return Row; }
+  constexpr auto rows() const noexcept -> std::size_t { return Row; }
 
-  constexpr auto col() const noexcept -> std::size_t { return Col; }
+  constexpr auto cols() const noexcept -> std::size_t { return Col; }
 
   constexpr auto begin() noexcept -> iterator { return m_data[0].begin(); }
 

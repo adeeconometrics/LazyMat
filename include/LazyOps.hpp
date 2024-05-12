@@ -46,7 +46,8 @@ constexpr auto operator/(const Lhs &lhs, const Rhs &rhs)
     -> BinaryExpr<std::divides<>, Lhs, Rhs> {
   return BinaryExpr<std::divides<>, Lhs, Rhs>(lhs, rhs);
 }
-
+// matmul unary: matmul(Expr(A), B) | matmul(A, Expr(B))
+// matmul binary: matmul(Expr(A), Expr(B))
 template <typename Lhs, typename Rhs>
 constexpr auto matmul(const Lhs &lhs, const Rhs &rhs) -> MatMulExpr<Lhs, Rhs> {
   return MatMulExpr<Lhs, Rhs>(lhs, rhs);
