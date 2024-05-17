@@ -198,11 +198,18 @@ public:
 
   template <typename Expr>
   auto operator=(const Expr &expr) -> Matrix<T, Row, Col> & {
-#pragma omp parallel for
+    // Set the number of threads dynamically based on the problem size
+    const std::size_t max_threads =
+        static_cast<std::size_t>(omp_get_max_threads());
+    constexpr std::size_t bucket = Row * Col / 1024;
+    omp_set_num_threads(std::min(max_threads, bucket));
+
+#pragma omp parallel for schedule(dynamic) if (Row * Col > 1024)
     for (std::size_t i = 0; i < Col; ++i) {
       const size_t page_index = i / chunk_size;
       const size_t row_in_page = i % chunk_size;
       T *data_ptr = &m_data[page_index][row_in_page * Col];
+
 #pragma omp simd
       for (std::size_t j = 0; j < Row; ++j) {
         // Evaluate the expression and assign to the matrix
