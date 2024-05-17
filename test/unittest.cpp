@@ -184,3 +184,24 @@ TEST(TestMatMulExpr, MatMul) {
 
   EXPECT_EQ(Mul, EMul);
 }
+
+TEST(TestMatMulExpr, MatMulLarge) {
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  const Matrix<int, 256, 256> M0{make_vmatrix<int, 256, 256>(std::ref(rng_a))};
+  const Matrix<int, 256, 256> M1{make_vmatrix<int, 256, 256>(std::ref(rng_b))};
+
+  Matrix<int, 256, 256> Mul{};
+  Mul = matmul(M0, M1);
+
+  for (std::size_t i = 0; i < 256; i++) {
+    for (std::size_t j = 0; j < 256; j++) {
+      int sum = 0;
+      for (std::size_t k = 0; k < 256; k++) {
+        sum += M0(i, k) * M1(k, j);
+      }
+      EXPECT_EQ(Mul(i, j), sum);
+    }
+  }
+}
