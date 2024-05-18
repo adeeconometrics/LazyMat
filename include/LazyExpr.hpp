@@ -70,7 +70,9 @@ public:
 
   auto operator()(std::size_t i, std::size_t j) const {
     auto result = m_lhs(i, 0) * m_rhs(0, j);
+#ifdef __clang__
 #pragma clang loop vectorize(enable)
+#endif
     for (std::size_t k = 1; k < m_lhs.cols(); ++k) {
       result += m_lhs(i, k) * m_rhs(k, j);
     }

@@ -58,7 +58,9 @@ public:
     // #pragma omp parallel for
     for (std::size_t i = 0; i < Rows; i++) {
 // #pragma omp simd
+#ifdef __clang__
 #pragma clang loop vectorize(enable)
+#endif
       for (std::size_t j = 0; j < Cols; j++) {
         m_data[i * Cols + j] = expr(i, j);
       }
