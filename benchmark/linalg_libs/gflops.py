@@ -17,7 +17,7 @@ if __name__ == "__main__":
     table = []
     def equation(A, B): return A * B + B / A * B * B - A
     M, N, K = 2048, 2048, 2048
-    nsec = 40138042736*1e-9
+    nsec = 47302500 * 1e-9  # 49758236*1e-9  # 38_283_092_347
 
     floating_ops = 4*M*N*K + 5*M*N
     lm_gflops = get_gflops(floating_ops, nsec)
@@ -28,7 +28,7 @@ if __name__ == "__main__":
     np_sec = timeit(lambda: np_A@np_B + np_A * np_B *
                     np.sin(np_A)@(np.cos(np_A) + np_B), number=3)/3
     np_gflops = get_gflops(floating_ops, np_sec)
-    table.append(("numpy", get_gflops(floating_ops, np_gflops),
+    table.append(("numpy", np_gflops,
                  np_sec, f'{lm_gflops/np_gflops: .4f}x'))
 
     pt_A = pt.tensor(np_A)
