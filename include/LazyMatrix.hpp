@@ -1,13 +1,9 @@
 #ifndef __LAZYMATRIX_H__
 #define __LAZYMATRIX_H__
 
-#include <algorithm>
-#include <array>
 #include <cassert>
 #include <initializer_list>
 #include <stdexcept>
-#include <type_traits>
-#include <utility>
 #include <vector>
 
 // #include <omp.h>

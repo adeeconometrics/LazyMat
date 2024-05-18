@@ -1,7 +1,7 @@
 #include "../include/LazyMatrix.hpp"
 #include "../include/LazyOps.hpp"
 #include "../include/Utils.hpp"
-#include <iostream>
+
 #include <random>
 
 using namespace lm;
@@ -24,7 +24,7 @@ auto main() -> int {
     Timer t{iterations};
     t.start();
     for (std::size_t i = 0; i < iterations; i++) {
-      C = matmul(A, B) + A * B * matmul(sin(A), cos(A) + B);
+      C = matmul(A, B);
     }
   }
 

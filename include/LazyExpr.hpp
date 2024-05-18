@@ -2,16 +2,8 @@
 #define __LAZYEXPR_H__
 
 #include "../include/LazyMatrix.hpp"
-
-#include <cmath>
-#include <functional>
-#include <iostream>
-#include <numeric>
-#include <vector>
-
-// todo
-// add mat size checking -- runtime
-// specialized type impl
+#include "../include/LazyOps.hpp"
+#include "../include/Utils.hpp"
 
 namespace lm {
 /**

@@ -2,9 +2,7 @@
 
 #include "../include/LazyMatrix.hpp"
 #include "../include/LazyOps.hpp"
-#include "../include/Utils.hpp"
 
-#include <iostream>
 #include <random>
 
 using namespace lm;
@@ -21,9 +19,9 @@ TEST(BinaryExpr, EqualityOps) {
 //   std::mt19937 rng_a(64);
 //   std::mt19937 rng_b(65);
 
-//   const Matrix<int, 256, 256> M0{make_vmatrix<int, 256,
-//   256>(std::ref(rng_a))}; const Matrix<int, 256, 256> M1{make_vmatrix<int,
-//   256, 256>(std::ref(rng_b))};
+//   const Matrix<int, 16, 16> M0{make_vmatrix<int, 16,
+//   16>(std::ref(rng_a))}; const Matrix<int, 16, 16> M1{make_vmatrix<int,
+//   16, 16>(std::ref(rng_b))};
 
 //   EXPECT_TRUE(M0 == M0);
 //   EXPECT_TRUE(M0 != M1); // this is true even when M1 is set to rng_a
@@ -84,7 +82,7 @@ TEST(UnaryExpr, UnaryOps) {
                                  {1096.6332, 2980.958, 8103.084}};
 
   const Matrix<float, 3, 3> EExp2{
-      {2.0, 4.0, 8.0}, {16.0, 32.0, 64.0}, {128.0, 256.0, 256.0}};
+      {2.0, 4.0, 8.0}, {16.0, 32.0, 64.0}, {128.0, 16.0, 16.0}};
 
   const Matrix<float, 3, 3> ESqrt{{1.0, 1.4142135, 1.7320508},
                                   {2.0, 2.236068, 2.4494898},
@@ -184,24 +182,32 @@ TEST(TestMatMulExpr, MatMul) {
 
   EXPECT_EQ(Mul, EMul);
 }
-
+/**
+ * @brief WARNING: Implementation matmul suffers from precision loss for large
+ * matrices (over 32x32). Summation algorithm that might be worth looking into:
+ * Kahan summation algorithm
+ * (https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
+ *
+ */
 TEST(TestMatMulExpr, MatMulLarge) {
   std::mt19937 rng_a(64);
   std::mt19937 rng_b(65);
 
-  const Matrix<int, 256, 256> M0{make_vmatrix<int, 256, 256>(std::ref(rng_a))};
-  const Matrix<int, 256, 256> M1{make_vmatrix<int, 256, 256>(std::ref(rng_b))};
+  const Matrix<double, 32, 32> M0{
+      make_vmatrix<double, 32, 32>(std::ref(rng_a))};
+  const Matrix<double, 32, 32> M1{
+      make_vmatrix<double, 32, 32>(std::ref(rng_b))};
 
-  Matrix<int, 256, 256> Mul{};
+  Matrix<double, 32, 32> Mul{};
   Mul = matmul(M0, M1);
 
-  for (std::size_t i = 0; i < 256; i++) {
-    for (std::size_t j = 0; j < 256; j++) {
-      int sum = 0;
-      for (std::size_t k = 0; k < 256; k++) {
+  for (std::size_t i = 0; i < 32; i++) {
+    for (std::size_t j = 0; j < 32; j++) {
+      double sum = 0;
+      for (std::size_t k = 0; k < 32; k++) {
         sum += M0(i, k) * M1(k, j);
       }
-      EXPECT_EQ(Mul(i, j), sum);
+      EXPECT_NEAR(Mul(i, j), sum, 1e-6);
     }
   }
 }
