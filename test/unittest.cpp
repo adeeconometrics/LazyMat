@@ -2,6 +2,7 @@
 
 #include "../include/LazyMatrix.hpp"
 #include "../include/LazyOps.hpp"
+#include "../include/Utils.hpp"
 
 #include <random>
 

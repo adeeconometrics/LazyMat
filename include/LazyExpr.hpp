@@ -1,10 +1,6 @@
 #ifndef __LAZYEXPR_H__
 #define __LAZYEXPR_H__
 
-#include "../include/LazyMatrix.hpp"
-#include "../include/LazyOps.hpp"
-#include "../include/Utils.hpp"
-
 namespace lm {
 /**
  * @brief Template functor for binary expressions. Contains an abstract
