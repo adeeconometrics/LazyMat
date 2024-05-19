@@ -23,10 +23,20 @@ public:
     }
   }
   Matrix(std::initializer_list<std::initializer_list<T>> t_list) {
-    for (const auto &row : t_list) {
-      for (const auto &col : row) {
-        m_data.push_back(col);
+    if (t_list.size() != Rows) {
+      throw std::invalid_argument("Invalid number of rows in initializer list");
+    }
+
+    m_data.resize(Rows * Cols); // Resizing the vector to the appropriate size
+
+    auto data_iter = m_data.begin();
+    for (const auto &row_list : t_list) {
+      if (row_list.size() != Cols) {
+        throw std::invalid_argument("Invalid row size in initializer list");
       }
+
+      std::copy(row_list.begin(), row_list.end(), data_iter);
+      data_iter += Cols;
     }
   }
 
