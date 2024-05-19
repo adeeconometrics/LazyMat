@@ -12,6 +12,10 @@ namespace lm {
 
 template <typename T, std::size_t Rows, std::size_t Cols> class Matrix {
 public:
+  using iterator = typename std::vector<T>::iterator;
+  using const_iterator = typename std::vector<T>::const_iterator;
+
+public:
   Matrix() { m_data.reserve(Rows * Cols); };
   Matrix(const std::vector<T> &data) : m_data(data) {
     if (data.size() != Rows * Cols) {
@@ -37,18 +41,10 @@ public:
   constexpr auto rows() const -> std::size_t { return Rows; }
   constexpr auto cols() const -> std::size_t { return Cols; }
 
-  constexpr auto cbegin() const -> typename std::vector<T>::const_iterator {
-    return m_data.cbegin();
-  }
-  constexpr auto cend() const -> typename std::vector<T>::const_iterator {
-    return m_data.cend();
-  }
-  constexpr auto begin() -> typename std::vector<T>::iterator {
-    return m_data.begin();
-  }
-  constexpr auto end() -> typename std::vector<T>::iterator {
-    return m_data.end();
-  }
+  constexpr auto begin() -> iterator { return m_data.begin(); }
+  constexpr auto end() -> iterator { return m_data.end(); }
+  constexpr auto cbegin() const -> const_iterator { return m_data.cbegin(); }
+  constexpr auto cend() const -> const_iterator { return m_data.cend(); }
 
   template <typename Expr> auto operator=(const Expr &expr) -> Matrix & {
     // #pragma omp parallel for
