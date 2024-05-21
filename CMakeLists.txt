@@ -24,7 +24,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 else()
     # Set compiler flags for other systems
     set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra -pedantic -fopenmp -pthread")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -fopenmp -pthread")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -fopenmp -pthread -march=native")
 endif()
 
 # Add source and include directories

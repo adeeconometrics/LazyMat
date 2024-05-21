@@ -6,7 +6,9 @@
 #include <stdexcept>
 #include <vector>
 
-// #include <omp.h>
+#ifdef __OPENMP
+#include <omp.h>
+#endif
 
 namespace lm {
 
@@ -57,9 +59,7 @@ public:
   constexpr auto cend() const -> const_iterator { return m_data.cend(); }
 
   template <typename Expr> auto operator=(const Expr &expr) -> Matrix & {
-    // #pragma omp parallel for
     for (std::size_t i = 0; i < Rows; i++) {
-// #pragma omp simd
 #ifdef __clang__
 #pragma clang loop vectorize(enable)
 #endif
