@@ -28,23 +28,26 @@ TEST(BinaryExpr, EqualityOps) {
 //   EXPECT_TRUE(M0 != M1); // this is true even when M1 is set to rng_a
 // }
 
-// TEST(BinaryExpr, BinaryOps) {
-//   const auto M0 = Matrix<float, 3, 3>{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-//   const auto M1 = Matrix<float, 3, 3>{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+TEST(BinaryExpr, BinaryOps) {
+  const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  const Matrix<int, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
 
-//   const auto N1 = Matrix<int, 3, 3>{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
-//   const auto N2 = Matrix<int, 3, 3>{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  const auto EAdd = M0 + M1;
+  const auto ESub = M0 - M1;
+  const auto EMul = M0 * M1;
+  const auto EDiv = M0 / M1;
+  const auto EMod = M0 % M1;
 
-//   for (std::size_t i = 0; i < 3; i++) {
-//     for (std::size_t j = 0; j < 3; j++) {
-//       EXPECT_DOUBLE_EQ(M0(i, j) + M1(i, j), 10);
-//       EXPECT_DOUBLE_EQ(M0(i, j) - M1(i, j), -8);
-//       EXPECT_DOUBLE_EQ(M0(i, j) * M1(i, j), 10);
-//       EXPECT_DOUBLE_EQ(M0(i, j) / M1(i, j), 1.0 / 9);
-//       EXPECT_EQ(N1(i, j) % N2(i, j), 1);
-//     }
-//   }
-// }
+  for (std::size_t i = 0; i < 3; i++) {
+    for (std::size_t j = 0; j < 3; j++) {
+      EXPECT_EQ(EAdd(i, j), M0(i, j) + M1(i, j));
+      EXPECT_EQ(ESub(i, j), M0(i, j) - M1(i, j));
+      EXPECT_EQ(EMul(i, j), M0(i, j) * M1(i, j));
+      EXPECT_EQ(EDiv(i, j), M0(i, j) / M1(i, j));
+      EXPECT_EQ(EMod(i, j), M0(i, j) % M1(i, j));
+    }
+  }
+}
 
 TEST(UnaryExpr, UnaryOps) {
   const Matrix<float, 3, 3> M0{{.1, .2, .3}, {.4, .5, .6}, {.7, .8, .9}};
