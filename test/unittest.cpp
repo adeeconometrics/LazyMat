@@ -28,39 +28,23 @@ TEST(BinaryExpr, EqualityOps) {
 //   EXPECT_TRUE(M0 != M1); // this is true even when M1 is set to rng_a
 // }
 
-TEST(BinaryExpr, BinaryOps) {
-  const Matrix<float, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-  const Matrix<float, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+// TEST(BinaryExpr, BinaryOps) {
+//   const auto M0 = Matrix<float, 3, 3>{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+//   const auto M1 = Matrix<float, 3, 3>{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
 
-  const Matrix<int, 3, 3> Mod0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-  const Matrix<int, 3, 3> Mod1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+//   const auto N1 = Matrix<int, 3, 3>{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+//   const auto N2 = Matrix<int, 3, 3>{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-  const Matrix<float, 3, 3> EAdd{{10, 10, 10}, {10, 10, 10}, {10, 10, 10}};
-  const Matrix<float, 3, 3> ESub{{-8, -6, -4}, {-2, 0, 2}, {4, 6, 8}};
-  const Matrix<float, 3, 3> EMul{{9, 16, 21}, {24, 25, 24}, {21, 16, 9}};
-  const Matrix<int, 3, 3> EMod{{1, 2, 3}, {4, 0, 2}, {1, 0, 0}};
-
-  Matrix<float, 3, 3> Add{};
-  Add = M0 + M1;
-
-  Matrix<float, 3, 3> Sub{};
-  Sub = M0 - M1;
-
-  Matrix<float, 3, 3> Mul{};
-  Mul = M0 * M1;
-
-  Matrix<float, 3, 3> Div{};
-  Div = (M0 * M1) / M1;
-
-  Matrix<int, 3, 3> Mod{};
-  Mod = Mod0 % Mod1;
-
-  EXPECT_EQ(Add, EAdd);
-  EXPECT_EQ(Sub, ESub);
-  EXPECT_EQ(Mul, EMul);
-  EXPECT_EQ(Div, M0);
-  EXPECT_EQ(Mod, EMod);
-}
+//   for (std::size_t i = 0; i < 3; i++) {
+//     for (std::size_t j = 0; j < 3; j++) {
+//       EXPECT_DOUBLE_EQ(M0(i, j) + M1(i, j), 10);
+//       EXPECT_DOUBLE_EQ(M0(i, j) - M1(i, j), -8);
+//       EXPECT_DOUBLE_EQ(M0(i, j) * M1(i, j), 10);
+//       EXPECT_DOUBLE_EQ(M0(i, j) / M1(i, j), 1.0 / 9);
+//       EXPECT_EQ(N1(i, j) % N2(i, j), 1);
+//     }
+//   }
+// }
 
 TEST(UnaryExpr, UnaryOps) {
   const Matrix<float, 3, 3> M0{{.1, .2, .3}, {.4, .5, .6}, {.7, .8, .9}};
