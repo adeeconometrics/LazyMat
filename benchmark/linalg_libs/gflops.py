@@ -17,32 +17,29 @@ if __name__ == "__main__":
     table = []
     def equation(A, B): return A * B + B / A * B * B - A
     M, N, K = 2048, 2048, 2048
-    nsec = 47302500 * 1e-9  # 49758236*1e-9  # 38_283_092_347
+    nsec = 46509847 * 1e-9  # 49758236*1e-9  # 38_283_092_347
 
-    floating_ops = 4*M*N*K + 5*M*N
+    floating_ops = 2 * M*N*K  # 4*M*N*K + 5*M*N
     lm_gflops = get_gflops(floating_ops, nsec)
     table.append(("lazy_mat", lm_gflops, nsec, '---'))
 
     np_A = np.random.rand(M, N)
     np_B = np.random.rand(M, K)
-    np_sec = timeit(lambda: np_A@np_B + np_A * np_B *
-                    np.sin(np_A)@(np.cos(np_A) + np_B), number=3)/3
+    np_sec = timeit(lambda: np_A@np_B, number=3)/3
     np_gflops = get_gflops(floating_ops, np_sec)
     table.append(("numpy", np_gflops,
                  np_sec, f'{lm_gflops/np_gflops: .4f}x'))
 
     pt_A = pt.tensor(np_A)
     pt_B = pt.tensor(np_B)
-    pt_sec = timeit(lambda: pt.matmul(pt_A, pt_B) + pt_A *
-                    pt_B * pt.matmul(pt.sin(pt_A), pt.cos(pt_A)+pt_B), number=3)/3
+    pt_sec = timeit(lambda: pt.matmul(pt_A, pt_B), number=3)/3
     pt_gflops = get_gflops(floating_ops, pt_sec)
     table.append(("pytorch", pt_gflops, pt_sec,
                  f'{lm_gflops/pt_gflops: .4f}x'))
 
     tf_A = tf.convert_to_tensor(np_A)
     tf_B = tf.convert_to_tensor(np_B)
-    tf_sec = timeit(lambda: tf.matmul(tf_A, tf_B) + tf_A *
-                    tf_B * tf.matmul(tf.sin(tf_A), tf.cos(tf_A)+tf_B), number=3)/3
+    tf_sec = timeit(lambda: tf.matmul(tf_A, tf_B), number=3)/3
     tf_gflops = get_gflops(floating_ops, tf_sec)
     table.append(("tensorflow", tf_gflops, tf_sec,
                  f'{lm_gflops/tf_gflops: .4f}x'))

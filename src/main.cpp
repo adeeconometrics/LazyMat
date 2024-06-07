@@ -24,7 +24,7 @@ auto main() -> int {
     Timer t{iterations};
     t.start();
     for (std::size_t i = 0; i < iterations; i++) {
-      C = matmul(A, B);
+      C = matmul(A, B) + A * B * matmul(sin(A), cos(A) + B);
     }
   }
 

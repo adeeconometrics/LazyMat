@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['cbrtop_39',['CbrtOp',['../structlm_1_1CbrtOp.html',1,'lm']]],
-  ['ceilop_40',['CeilOp',['../structlm_1_1CeilOp.html',1,'lm']]],
-  ['coshop_41',['CoshOp',['../structlm_1_1CoshOp.html',1,'lm']]],
-  ['cosop_42',['CosOp',['../structlm_1_1CosOp.html',1,'lm']]]
+  ['cbrtop_0',['CbrtOp',['../structlm_1_1_cbrt_op.html',1,'lm']]],
+  ['ceilop_1',['CeilOp',['../structlm_1_1_ceil_op.html',1,'lm']]],
+  ['coshop_2',['CoshOp',['../structlm_1_1_cosh_op.html',1,'lm']]],
+  ['cosop_3',['CosOp',['../structlm_1_1_cos_op.html',1,'lm']]]
 ];

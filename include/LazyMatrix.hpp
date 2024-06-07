@@ -29,14 +29,14 @@ public:
 
     m_data.resize(Rows * Cols); // Resizing the vector to the appropriate size
 
-    auto data_iter = m_data.begin();
-    for (const auto &row_list : t_list) {
-      if (row_list.size() != Cols) {
-        throw std::invalid_argument("Invalid row size in initializer list");
+    for (const auto &row : t_list) {
+      if (row.size() != Cols) {
+        throw std::invalid_argument(
+            "Invalid number of columns in initializer list");
       }
-
-      std::copy(row_list.begin(), row_list.end(), data_iter);
-      data_iter += Cols;
+      for (const auto &elem : row) {
+        m_data.emplace_back(elem);
+      }
     }
   }
 

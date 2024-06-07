@@ -14,17 +14,19 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Find OpenMP
-find_package(OpenMP REQUIRED)
-
-# Set compiler flags for debug and release versions. NOTE DEBUG SHOULD BE -O0
+# find_package(OpenMP REQUIRED)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    # Set the target architecture to arm64
+    set(CMAKE_OSX_ARCHITECTURES "arm64")
+    message("macOS detected " ${CMAKE_OSX_ARCHITECTURES})
+
     # Set compiler flags for macOS
-    set(CMAKE_CXX_FLAGS_DEBUG "-g -O3 -Wall -Wextra -pedantic -Xclang -fopenmp -pthread")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -Xclang -fopenmp -pthread")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra -pedantic -Xclang -pthread")
+    set(CMAKE_CXX_FLAGS_RELEASE " -O3 -Wall -Wextra -pedantic -Xclang -pthread")
 else()
     # Set compiler flags for other systems
-    set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra -pedantic -fopenmp -pthread")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -fopenmp -pthread")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra -pedantic -pthread")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -pthread -ffast-math -march=native -ftree-vectorize")
 endif()
 
 # Add source and include directories
@@ -36,10 +38,9 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/in
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 # Link OpenMP
-if(OpenMP_CXX_FOUND)
-    target_link_libraries(${PROJECT_NAME} PUBLIC OpenMP::OpenMP_CXX)
-endif()
-
+# if(OpenMP_CXX_FOUND)
+# target_link_libraries(${PROJECT_NAME} PUBLIC OpenMP::OpenMP_CXX)
+# endif()
 foreach(file ${INC_FILES})
     list(APPEND SOURCE_FILES
         ${PROJECT_INCLUDE_DIR}/${file}

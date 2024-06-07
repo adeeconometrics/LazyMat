@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
   <compounddef id="dir_d44c64559bbebec7f509842c48db8b23" kind="dir">
-    <compoundname>/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include</compoundname>
-    <innerfile refid="LazyExpr_8hpp">LazyExpr.hpp</innerfile>
-    <innerfile refid="LazyMatrix_8hpp">LazyMatrix.hpp</innerfile>
-    <innerfile refid="LazyOps_8hpp">LazyOps.hpp</innerfile>
-    <innerfile refid="Utils_8hpp">Utils.hpp</innerfile>
+    <compoundname>/Users/ddamiana/Documents/CodeProjects/LazyMat/include</compoundname>
+    <innerfile refid="_lazy_expr_8hpp">LazyExpr.hpp</innerfile>
+    <innerfile refid="_lazy_matrix_8hpp">LazyMatrix.hpp</innerfile>
+    <innerfile refid="_lazy_ops_8hpp">LazyOps.hpp</innerfile>
+    <innerfile refid="_utils_8hpp">Utils.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/mnt/c/Users/ddamiana/Documents/CodeProjects/personal/LazyMat/include/"/>
+    <location file="/Users/ddamiana/Documents/CodeProjects/LazyMat/include/"/>
   </compounddef>
 </doxygen>
