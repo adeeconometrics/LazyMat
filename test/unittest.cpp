@@ -16,17 +16,28 @@ TEST(BinaryExpr, EqualityOps) {
   EXPECT_TRUE(M1 != M0);
 }
 
-// TEST(BinaryExprLargeMat, EqualityOps) {
-//   std::mt19937 rng_a(64);
-//   std::mt19937 rng_b(65);
+TEST(BinaryExprLargeMat, EqualityOps) {
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
 
-//   const Matrix<int, 16, 16> M0{make_vmatrix<int, 16,
-//   16>(std::ref(rng_a))}; const Matrix<int, 16, 16> M1{make_vmatrix<int,
-//   16, 16>(std::ref(rng_b))};
+  const std::size_t M = 3;
+  const std::size_t N = 3;
 
-//   EXPECT_TRUE(M0 == M0);
-//   EXPECT_TRUE(M0 != M1); // this is true even when M1 is set to rng_a
-// }
+  const Matrix<int, M, N> M0{make_vmatrix<int, M, N>(std::ref(rng_a))};
+  const Matrix<int, M, N> M1{make_vmatrix<int, M, N>(std::ref(rng_b))};
+
+  std::mt19937 rng_a2(64);
+  std::mt19937 rng_b2(65);
+
+  const auto N0 = Matrix<int, M, N>{make_vmatrix<int, M, N>(std::ref(rng_a2))};
+  const auto N1 = Matrix<int, M, N>{make_vmatrix<int, M, N>(std::ref(rng_b2))};
+
+  EXPECT_TRUE(M0 == N0);
+  EXPECT_TRUE(M0 != N1); // this is true even when M1 is set to rng_a
+
+  EXPECT_FALSE(M0 == M1);
+  EXPECT_FALSE(M0 != M0);
+}
 
 TEST(BinaryExpr, BinaryOps) {
   const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
@@ -146,12 +157,13 @@ TEST(TestMatMulExpr, MatMulLarge) {
   std::mt19937 rng_a(64);
   std::mt19937 rng_b(65);
 
-  const Matrix<double, 32, 32> M0{
-      make_vmatrix<double, 32, 32>(std::ref(rng_a))};
-  const Matrix<double, 32, 32> M1{
-      make_vmatrix<double, 32, 32>(std::ref(rng_b))};
+  const std::size_t M = 32;
+  const std::size_t N = 32;
 
-  Matrix<double, 32, 32> Mul{};
+  const Matrix<double, M, N> M0{make_vmatrix<double, M, N>(std::ref(rng_a))};
+  const Matrix<double, M, N> M1{make_vmatrix<double, M, N>(std::ref(rng_b))};
+
+  Matrix<double, M, N> Mul{};
   Mul = matmul(M0, M1);
 
   for (std::size_t i = 0; i < 32; i++) {
@@ -160,7 +172,7 @@ TEST(TestMatMulExpr, MatMulLarge) {
       for (std::size_t k = 0; k < 32; k++) {
         sum += M0(i, k) * M1(k, j);
       }
-      EXPECT_NEAR(Mul(i, j), sum, 1e-6);
+      EXPECT_DOUBLE_EQ(Mul(i, j), sum);
     }
   }
 }
