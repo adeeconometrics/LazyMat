@@ -195,6 +195,18 @@ auto asin(const Expr &expr) -> UnaryExpr<ASinOp, Expr> {
   return UnaryExpr<ASinOp, Expr>(expr);
 }
 
+struct ACosOp {
+  template <typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+  auto operator()(T t) const {
+    return std::acos(t);
+  }
+};
+
+template <typename Expr>
+auto acos(const Expr &expr) -> UnaryExpr<ACosOp, Expr> {
+  return UnaryExpr<ACosOp, Expr>(expr);
+}
+
 struct ATanOp {
   template <typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
   auto operator()(T t) const {
