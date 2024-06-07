@@ -64,17 +64,21 @@ TEST(BinaryExpr, BinaryOps) {
 TEST(BinaryExpr, BinaryOpsScalar) {
   const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-  const Scalar<int> scalar = 2;
+  const int scalar = 2;
 
   const auto EAdd = M0 + scalar;
-  // const auto ESub = M0 - scalar;
-  // const auto EMul = M0 * scalar;
-  // const auto EDiv = M0 / scalar;
-  // const auto EMod = M0 % scalar;
+  const auto ESub = M0 - scalar;
+  const auto EMul = M0 * scalar;
+  const auto EDiv = M0 / scalar;
+  const auto EMod = M0 % scalar;
 
   for (std::size_t i = 0; i < 3; i++) {
     for (std::size_t j = 0; j < 3; j++) {
       EXPECT_EQ(EAdd(i, j), M0(i, j) + scalar);
+      EXPECT_EQ(ESub(i, j), M0(i, j) - scalar);
+      EXPECT_EQ(EMul(i, j), M0(i, j) * scalar);
+      EXPECT_EQ(EDiv(i, j), M0(i, j) / scalar);
+      EXPECT_EQ(EMod(i, j), M0(i, j) % scalar);
     }
   }
 }

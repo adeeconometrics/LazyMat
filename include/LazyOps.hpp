@@ -23,11 +23,8 @@ constexpr auto operator!=(const Matrix<T, Row, Col> &lhs,
 }
 
 template <typename Lhs, typename Rhs>
-constexpr auto operator+(const Lhs &lhs, const Rhs &rhs) {
-  if constexpr (std::is_arithmetic_v<Rhs>)
-    return BinaryExpr<std::plus<>, Lhs, Scalar<Rhs>>(lhs, Scalar<Rhs>(rhs));
-  if constexpr (std::is_arithmetic_v<Lhs>)
-    return BinaryExpr<std::plus<>, Scalar<Lhs>, Rhs>(Scalar<Lhs>(lhs), rhs);
+constexpr auto operator+(const Lhs &lhs,
+                         const Rhs &rhs) -> BinaryExpr<std::plus<>, Lhs, Rhs> {
   return BinaryExpr<std::plus<>, Lhs, Rhs>(lhs, rhs);
 }
 
