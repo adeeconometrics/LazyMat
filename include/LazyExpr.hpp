@@ -27,30 +27,9 @@ template <typename Op, typename Lhs, typename Rhs> class BinaryExpr {
 public:
   BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
 
-  // template <typename T = Lhs, typename U = Rhs,
-  //           typename = typename std::enable_if_t<!std::disjunction_v<
-  //               std::is_arithmetic<T>, std::is_arithmetic<U>>>>
   auto operator()(std::size_t i, std::size_t j) const noexcept {
-    if constexpr (std::is_arithmetic_v<Rhs>) {
-      return op(lhs(i, j), rhs);
-    }
-
-    if constexpr (std::is_arithmetic_v<Lhs>) {
-      return op(lhs, rhs(i, j));
-    }
-
     return op(lhs(i, j), rhs(i, j));
   }
-
-  // template <typename T = Rhs, std::enable_if_t<std::is_arithmetic_v<T>>>
-  // auto operator()(std::size_t i, std::size_t j) const noexcept {
-  //   return op(lhs(i, j), rhs);
-  // }
-
-  // // template <typename T = Lhs, std::enable_if_t<std::is_arithmetic_v<T>>>
-  // // auto operator()(std::size_t i, std::size_t j) const noexcept {
-  // //   return op(lhs, rhs(i, j));
-  // // }
 
 private:
   Lhs lhs;
@@ -79,17 +58,6 @@ private:
   Op op;
 };
 
-// template <typename Op, typename Lhs, typename Rhs>
-// auto make_expr(const Lhs &lhs, const Rhs &rhs) {
-//   if constexpr (std::is_arithmetic_v<Rhs>) {
-//     return BinaryExpr<Op, Lhs, Scalar<Rhs>>(lhs, Scalar<Rhs>(rhs));
-//   }
-//   if constexpr (std::is_arithmetic_v<Lhs>) {
-//     return BinaryExpr<Op, Scalar<Lhs>, Rhs>(Scalar<Lhs>(lhs), rhs);
-//   }
-
-//   return BinaryExpr<Op, Lhs, Rhs>(lhs, rhs);
-// }
 /**
  * @brief Template functor for matrix multiplication expressions. Contains an
  * operator() for evaluating the expression lazily. Works with `matmul(Expr,
