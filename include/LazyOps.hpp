@@ -3,6 +3,7 @@
 
 #include "../include/LazyExpr.hpp"
 #include "../include/LazyMatrix.hpp"
+#include "../include/LazyParser.hpp"
 
 #include <cmath>
 #include <functional>
@@ -56,7 +57,11 @@ struct Mod {
   template <typename Lhs, typename Rhs> auto operator()(Lhs l, Rhs r) const {
     return l % r;
   }
+
+  const static std::string symbol;
 };
+
+const std::string Mod::symbol = "%";
 
 template <typename Lhs, typename Rhs>
 constexpr auto operator%(const Lhs &lhs,

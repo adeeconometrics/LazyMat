@@ -67,18 +67,32 @@ TEST(BinaryExpr, BinaryOpsScalar) {
   const int scalar = 2;
 
   const auto EAdd = M0 + scalar;
+  const auto EAddRhs = scalar + M0;
   const auto ESub = M0 - scalar;
+  const auto ESubRhs = scalar - M0;
   const auto EMul = M0 * scalar;
+  const auto EMulRhs = scalar * M0;
   const auto EDiv = M0 / scalar;
+  const auto EDivRhs = scalar / M0;
   const auto EMod = M0 % scalar;
+  const auto EModRhs = scalar % M0;
 
   for (std::size_t i = 0; i < 3; i++) {
     for (std::size_t j = 0; j < 3; j++) {
       EXPECT_EQ(EAdd(i, j), M0(i, j) + scalar);
+      EXPECT_EQ(EAddRhs(i, j), scalar + M0(i, j));
+
       EXPECT_EQ(ESub(i, j), M0(i, j) - scalar);
+      EXPECT_EQ(ESubRhs(i, j), scalar - M0(i, j));
+
       EXPECT_EQ(EMul(i, j), M0(i, j) * scalar);
+      EXPECT_EQ(EMulRhs(i, j), scalar * M0(i, j));
+
       EXPECT_EQ(EDiv(i, j), M0(i, j) / scalar);
+      EXPECT_EQ(EDivRhs(i, j), scalar / M0(i, j));
+
       EXPECT_EQ(EMod(i, j), M0(i, j) % scalar);
+      EXPECT_EQ(EModRhs(i, j), scalar % M0(i, j));
     }
   }
 }
