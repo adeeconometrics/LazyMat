@@ -2,7 +2,6 @@
 
 #include "../include/LazyMatrix.hpp"
 #include "../include/LazyOps.hpp"
-#include "../include/Utils.hpp"
 
 #include <iostream>
 #include <random>
@@ -213,3 +212,5 @@ TEST(TestMatMulExpr, MatMulLarge) {
     }
   }
 }
+
+TEST(Parser, UnaryParser) {}
