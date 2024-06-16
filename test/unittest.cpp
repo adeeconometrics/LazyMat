@@ -42,22 +42,22 @@ TEST(BinaryExprLargeMat, EqualityOps) {
 }
 
 TEST(BinaryExpr, BinaryOps) {
-  const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-  const Matrix<int, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+  const Matrix<double, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  const Matrix<double, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
 
   const auto EAdd = M0 + M1;
   const auto ESub = M0 - M1;
   const auto EMul = M0 * M1;
-  // const auto EDiv = M0 / M1;
-  const auto EMod = M0 % M1;
+  const auto EDiv = M0 / M1;
+  // const auto EMod = M0 % M1;
 
   for (std::size_t i = 0; i < 3; i++) {
     for (std::size_t j = 0; j < 3; j++) {
-      EXPECT_EQ(EAdd(i, j), M0(i, j) + M1(i, j));
-      EXPECT_EQ(ESub(i, j), M0(i, j) - M1(i, j));
-      EXPECT_EQ(EMul(i, j), M0(i, j) * M1(i, j));
-      // EXPECT_EQ(EDiv(i, j), M0(i, j) / M1(i, j));
-      EXPECT_EQ(EMod(i, j), M0(i, j) % M1(i, j));
+      EXPECT_DOUBLE_EQ(EAdd(i, j), M0(i, j) + M1(i, j));
+      EXPECT_DOUBLE_EQ(ESub(i, j), M0(i, j) - M1(i, j));
+      EXPECT_DOUBLE_EQ(EMul(i, j), M0(i, j) * M1(i, j));
+      EXPECT_DOUBLE_EQ(EDiv(i, j), M0(i, j) / M1(i, j));
+      // EXPECT_DOUBLE_EQ(EMod(i, j), M0(i, j) % M1(i, j));
     }
   }
 }
