@@ -3,7 +3,6 @@
 
 #include "../include/LazyExpr.hpp"
 #include "../include/LazyMatrix.hpp"
-#include "../include/LazyParser.hpp"
 
 #include <cmath>
 #include <functional>
