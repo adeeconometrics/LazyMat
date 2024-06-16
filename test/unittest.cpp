@@ -2,6 +2,8 @@
 
 #include "../include/LazyMatrix.hpp"
 #include "../include/LazyOps.hpp"
+#include "../include/LazyParser.hpp"
+#include "../include/Utils.hpp"
 
 #include <iostream>
 #include <random>
@@ -213,4 +215,43 @@ TEST(TestMatMulExpr, MatMulLarge) {
   }
 }
 
-TEST(Parser, UnaryParser) {}
+TEST(TestMatMulExpr, MatMulSmallRectangular) {
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  const std::size_t M = 3;
+  const std::size_t N = 4;
+  const std::size_t K = 5;
+
+  const Matrix<double, M, N> M0{make_vmatrix<double, M, N>(std::ref(rng_a))};
+  const Matrix<double, N, K> M1{make_vmatrix<double, N, K>(std::ref(rng_b))};
+
+  Matrix<double, M, K> Mul{};
+  Mul = matmul(M0, M1);
+
+  for (std::size_t i = 0; i < M; i++) {
+    for (std::size_t j = 0; j < K; j++) {
+      double sum = 0;
+      for (std::size_t k = 0; k < N; k++) {
+        sum += M0(i, k) * M1(k, j);
+      }
+      EXPECT_DOUBLE_EQ(Mul(i, j), sum);
+    }
+  }
+}
+
+// TEST(Parser, UnaryParser) {}
+
+// TEST(Parser, BinaryParser) {
+//   Sym s0 = Sym{"a"};
+//   Sym s1 = Sym{"b"};
+
+//   const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+//   const Matrix<int, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+
+//   using ModExpr = M0 % M1;
+
+//   ModExpr modexpr{s0, s1};
+
+//   std::cout << Parser<ModExpr>::parse(modexpr) << std::endl;
+// }

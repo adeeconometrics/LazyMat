@@ -1,7 +1,9 @@
 #ifndef __LAZYEXPR_H__
 #define __LAZYEXPR_H__
 
+#include <cassert>
 #include <type_traits>
+
 namespace lm {
 
 /**
@@ -90,7 +92,9 @@ private:
  */
 template <typename Lhs, typename Rhs> class MatMulExpr {
 public:
-  MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {}
+  MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {
+    // assert(m_lhs.cols() == m_rhs.rows()); // dimensions mismatch
+  }
 
   auto operator()(std::size_t i, std::size_t j) const {
     auto result = m_lhs(i, 0) * m_rhs(0, j);
