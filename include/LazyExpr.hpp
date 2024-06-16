@@ -7,6 +7,17 @@
 
 namespace lm {
 
+constexpr auto operator==(const std::pair<std::size_t, std::size_t> &lhs,
+                          std::size_t rhs) -> bool {
+  return lhs.first == rhs && lhs.second == rhs;
+}
+
+constexpr auto
+operator==(std::size_t lhs,
+           const std::pair<std::size_t, std::size_t> &rhs) -> bool {
+  return rhs.first == lhs && rhs.second == lhs;
+}
+
 /**
  * @brief Template functor for binary expressions. Contains an abstract
  * representation of binary ops and an API for recursively calling eval via
