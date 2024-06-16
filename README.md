@@ -23,30 +23,30 @@ This is not recommended to be used in a production environment.
 
 ### Performance
 
-Benchmark on Apple M2 8C MacOS 14.5 Release mode -- compiled on `arm64` build.
+Benchmark on Apple M2 8C MacOS 14.5 Release mode -- compiled on `arm64` build for Matmul.
 
 ```console
 (venv) ➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py
+lib           gflop/s         secs  relative throughput    Size
+----------  ---------  -----------  ---------------------  --------------
+lazy_mat    2356.53    0.000911291  ---                    1024x1024x1024
+numpy         67.4947  0.0318171    34.9143x               1024x1024x1024
+pytorch       86.5684  0.0248068    27.2216x               1024x1024x1024
+tensorflow    94.7282  0.02267      24.8767x               1024x1024x1024
+(venv) ➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py
+lib           gflop/s       secs  relative throughput    Size
+----------  ---------  ---------  ---------------------  --------------
+lazy_mat    7470.82    0.0022996  ---                    2048x2048x2048
+numpy         96.7968  0.177484   77.1804x               2048x2048x2048
+pytorch      172.91    0.0993571  43.2063x               2048x2048x2048
+tensorflow   156.748   0.109602   47.6613x               2048x2048x2048
+(venv) ➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py
 lib           gflop/s      secs  relative throughput    Size
 ----------  ---------  --------  ---------------------  --------------
-lazy_mat      299.266  0.459254  ---                    4096x4096x4096
-numpy         169.974  0.808587  1.7607x                4096x4096x4096
-pytorch       286.947  0.47897   1.0429x                4096x4096x4096
-tensorflow    179.51   0.765636  1.6671x                4096x4096x4096
-(venv) ➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py
-lib           gflop/s       secs  relative throughput    Size
-----------  ---------  ---------  ---------------------  --------------
-lazy_mat      386.895  0.0444045  ---                    2048x2048x2048
-numpy         110.947  0.154847   3.4872x                2048x2048x2048
-pytorch       172.165  0.0997873  2.2472x                2048x2048x2048
-tensorflow    144.056  0.119259   2.6857x                2048x2048x2048
-(venv) ➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py
-lib           gflop/s       secs  relative throughput    Size
-----------  ---------  ---------  ---------------------  --------------
-lazy_mat      141.186  0.0152103  ---                    1024x1024x1024
-numpy         106.926  0.0200839  1.3204x                1024x1024x1024
-pytorch       121.461  0.0176804  1.1624x                1024x1024x1024
-tensorflow     65.359  0.0328568  2.1602x                1024x1024x1024
+lazy_mat     6614.64   0.020778  ---                    4096x4096x4096
+numpy         146.621  0.937376  45.1139x               4096x4096x4096
+pytorch       277.298  0.495636  23.8539x               4096x4096x4096
+tensorflow    158.817  0.865391  41.6494x               4096x4096x4096
 ```
 
 ---

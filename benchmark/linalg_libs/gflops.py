@@ -6,18 +6,21 @@ import tensorflow as tf
 
 
 def get_gflops(ops: float, seconds: float) -> float:
+    """Return the GigaFLOPS of a given operation and time in seconds.
+    """
     return (ops/seconds)/1e9
 
 
 def make_table(t_values: dict) -> None:
+    """Print a table with the given values."""
     print(tabulate(t_values, headers=("lib", "gflop/s",
           "secs", "relative throughput", "Size")))
 
 
 if __name__ == "__main__":
     table = []
-    M, N, K = 1024, 1024, 1024
-    nsec: int = 15210291 * 1e-9  # 49758236*1e-9  # 38_283_092_347
+    M, N, K = 8192, 8192, 8192
+    nsec: int = 102409764 * 1e-9  # 49758236*1e-9  # 38_283_092_347
 
     floating_ops: int = 2 * M*N*K  # 4*M*N*K + 5*M*N
     lm_gflops: int = get_gflops(floating_ops, nsec)
