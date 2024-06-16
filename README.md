@@ -25,7 +25,7 @@ This is not recommended to be used in a production environment.
 
 Benchmark on Apple M2 8C MacOS 14.5 Release mode -- compiled on `arm64` build.
 
-```
+```console
 (venv) ➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py
 lib           gflop/s      secs  relative throughput    Size
 ----------  ---------  --------  ---------------------  --------------
@@ -51,14 +51,26 @@ tensorflow     65.359  0.0328568  2.1602x                1024x1024x1024
 
 ---
 
-Compilation:
+Build for Debug:
 
 ```bash
-$ mkdir build && cd build && cmake ../ && make
+$ mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ../ && make
 ```
 
-Executing:
+Build for Release:
 
 ```bash
-$ ../bin/LazyMat.o
+$ mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ../ && make
+```
+
+Running tests
+
+```bash
+$ ./bin/unittest
+```
+
+Running executable
+
+```bash
+$ ./bin/LazyMat
 ```
