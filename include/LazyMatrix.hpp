@@ -4,7 +4,6 @@
 #include <cassert>
 #include <initializer_list>
 #include <stdexcept>
-#include <string>
 #include <vector>
 
 #ifdef __OPENMP
@@ -20,12 +19,6 @@ public:
 
 public:
   Matrix() { m_data.reserve(Rows * Cols); };
-
-  Matrix(const std::string &name, const std::vector<T> &data) : m_data(data) {
-    if (data.size() != Rows * Cols) {
-      throw std::runtime_error("Invalid matrix size");
-    }
-  }
 
   Matrix(const std::vector<T> &data) : m_data(data) {
     if (data.size() != Rows * Cols) {
@@ -80,10 +73,6 @@ public:
   }
 
 public:
-  static std::string parse(const Matrix &matrix) {
-    return matrix.symbol.get_name();
-  }
-
 private:
   std::vector<T> m_data;
 };

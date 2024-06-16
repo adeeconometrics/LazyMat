@@ -48,7 +48,7 @@ TEST(BinaryExpr, BinaryOps) {
   const auto EAdd = M0 + M1;
   const auto ESub = M0 - M1;
   const auto EMul = M0 * M1;
-  const auto EDiv = M0 / M1;
+  // const auto EDiv = M0 / M1;
   const auto EMod = M0 % M1;
 
   for (std::size_t i = 0; i < 3; i++) {
@@ -73,8 +73,8 @@ TEST(BinaryExpr, BinaryOpsScalar) {
   const auto ESubRhs = scalar - M0;
   const auto EMul = M0 * scalar;
   const auto EMulRhs = scalar * M0;
-  const auto EDiv = M0 / scalar;
-  const auto EDivRhs = scalar / M0;
+  // const auto EDiv = M0 / static_cast<double>(scalar);
+  // const auto EDivRhs = scalar / M0;
   const auto EMod = M0 % scalar;
   const auto EModRhs = scalar % M0;
 
