@@ -23,6 +23,8 @@ This is not recommended to be used in a production environment.
 
 ### Performance
 
+Benchmark on Apple M2 8C MacOS 14.5 Release mode -- compiled on `arm64` build.
+
 ```
 (venv) ➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py
 lib           gflop/s      secs  relative throughput    Size
