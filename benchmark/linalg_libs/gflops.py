@@ -16,8 +16,8 @@ def make_table(t_values: dict) -> None:
 
 if __name__ == "__main__":
     table = []
-    M, N, K = 4096, 4096, 4096
-    nsec: int = 89832875 * 1e-9  # 49758236*1e-9  # 38_283_092_347
+    M, N, K = 1024, 1024, 1024
+    nsec: int = 15210291 * 1e-9  # 49758236*1e-9  # 38_283_092_347
 
     floating_ops: int = 2 * M*N*K  # 4*M*N*K + 5*M*N
     lm_gflops: int = get_gflops(floating_ops, nsec)

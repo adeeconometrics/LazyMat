@@ -11,9 +11,9 @@ auto main() -> int {
   std::mt19937 rng_a(67);
   std::mt19937 rng_b(65);
 
-  constexpr int M = 2096;
-  constexpr int N = 2096;
-  constexpr int K = 2096;
+  constexpr int M = 1024;
+  constexpr int N = 1024;
+  constexpr int K = 1024;
 
   Matrix<float, M, N> A{make_vmatrix<float, M, N>(std::ref(rng_a))};
   Matrix<float, M, K> B{make_vmatrix<float, M, K>(std::ref(rng_b))};
