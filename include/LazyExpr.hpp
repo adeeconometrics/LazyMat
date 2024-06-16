@@ -3,6 +3,7 @@
 
 #include <cassert>
 #include <type_traits>
+#include <utility>
 
 namespace lm {
 
@@ -17,11 +18,20 @@ namespace lm {
  */
 template <typename Op, typename Lhs, typename Rhs, typename = void>
 class BinaryExpr {
+
 public:
   BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
 
   auto operator()(std::size_t i, std::size_t j) const noexcept {
     return op(lhs(i, j), rhs(i, j));
+  }
+
+  auto rows() const -> std::pair<std::size_t, std::size_t> {
+    return {lhs.rows(), rhs.rows()};
+  }
+
+  auto cols() const -> std::pair<std::size_t, std::size_t> {
+    return {rhs.cols(), lhs.cols()};
   }
 
 private:
@@ -40,6 +50,14 @@ public:
     return op(lhs(i, j), rhs);
   }
 
+  auto rows() const -> std::pair<std::size_t, std::size_t> {
+    return {lhs.rows(), 1};
+  }
+
+  auto cols() const -> std::pair<std::size_t, std::size_t> {
+    return {lhs.cols(), 1};
+  }
+
 private:
   Lhs lhs;
   Rhs rhs;
@@ -54,6 +72,14 @@ public:
 
   auto operator()(std::size_t i, std::size_t j) const noexcept {
     return op(lhs, rhs(i, j));
+  }
+
+  auto rows() const -> std::pair<std::size_t, std::size_t> {
+    return {1, rhs.rows()};
+  }
+
+  auto cols() const -> std::pair<std::size_t, std::size_t> {
+    return {1, rhs.cols()};
   }
 
 private:
@@ -93,7 +119,7 @@ private:
 template <typename Lhs, typename Rhs> class MatMulExpr {
 public:
   MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {
-    // assert(m_lhs.cols() == m_rhs.rows()); // dimensions mismatch
+    assert(m_lhs.cols() == m_rhs.rows()); // dimensions mismatch
   }
 
   auto operator()(std::size_t i, std::size_t j) const {

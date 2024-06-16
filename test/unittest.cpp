@@ -216,26 +216,51 @@ TEST(TestMatMulExpr, MatMulLarge) {
 }
 
 TEST(TestMatMulExpr, MatMulSmallRectangular) {
-  std::mt19937 rng_a(64);
-  std::mt19937 rng_b(65);
 
   const std::size_t M = 3;
   const std::size_t N = 4;
   const std::size_t K = 5;
 
-  const Matrix<double, M, N> M0{make_vmatrix<double, M, N>(std::ref(rng_a))};
-  const Matrix<double, N, K> M1{make_vmatrix<double, N, K>(std::ref(rng_b))};
+  const Matrix<int, M, N> M0{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+  const Matrix<int, N, K> M1{{1, 2, 3, 4, 5},
+                             {6, 7, 8, 9, 10},
+                             {11, 12, 13, 14, 15},
+                             {16, 17, 18, 19, 20}};
 
-  Matrix<double, M, K> Mul{};
-  Mul = matmul(M0, M1);
+  const Matrix<int, M, K> Mul{{110, 120, 130, 140, 150},
+                              {246, 272, 298, 324, 350},
+                              {382, 424, 466, 508, 550}};
+
+  const auto LazyMul = matmul(M0, M1);
 
   for (std::size_t i = 0; i < M; i++) {
     for (std::size_t j = 0; j < K; j++) {
-      double sum = 0;
+      EXPECT_EQ(LazyMul(i, j), Mul(i, j));
+    }
+  }
+}
+
+TEST(TestMatMulExpr, MatMulLargeRectangular) {
+
+  const std::size_t M = 32;
+  const std::size_t N = 28;
+  const std::size_t K = 32;
+
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  const Matrix<int, M, N> M0{make_vmatrix<int, M, N>(std::ref(rng_a))};
+  const Matrix<int, N, K> M1{make_vmatrix<int, N, K>(std::ref(rng_b))};
+
+  const auto Mul = matmul(M0, M1);
+
+  for (std::size_t i = 0; i < M; i++) {
+    for (std::size_t j = 0; j < K; j++) {
+      int sum = 0;
       for (std::size_t k = 0; k < N; k++) {
         sum += M0(i, k) * M1(k, j);
       }
-      EXPECT_DOUBLE_EQ(Mul(i, j), sum);
+      EXPECT_EQ(Mul(i, j), sum);
     }
   }
 }
