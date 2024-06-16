@@ -57,10 +57,7 @@ struct ModOp {
   template <typename Lhs, typename Rhs> auto operator()(Lhs l, Rhs r) const {
     return l % r;
   }
-  static const Sym symbol;
 };
-
-const Sym ModOp::symbol = Sym{"%"};
 
 template <typename Lhs, typename Rhs>
 constexpr auto operator%(const Lhs &lhs,
