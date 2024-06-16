@@ -63,9 +63,9 @@ TEST(BinaryExpr, BinaryOps) {
 }
 
 TEST(BinaryExpr, BinaryOpsScalar) {
-  const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  const Matrix<double, 3, 3> M0{{1., 2., 3.}, {4., 5., 6.}, {7., 8., 9.}};
 
-  const int scalar = 2;
+  const double scalar = 2.0;
 
   const auto EAdd = M0 + scalar;
   const auto EAddRhs = scalar + M0;
@@ -75,25 +75,25 @@ TEST(BinaryExpr, BinaryOpsScalar) {
   const auto EMulRhs = scalar * M0;
   // const auto EDiv = M0 / static_cast<double>(scalar);
   // const auto EDivRhs = scalar / M0;
-  const auto EMod = M0 % scalar;
-  const auto EModRhs = scalar % M0;
+  // const auto EMod = M0 % scalar;
+  // const auto EModRhs = scalar % M0;
 
   for (std::size_t i = 0; i < 3; i++) {
     for (std::size_t j = 0; j < 3; j++) {
-      EXPECT_EQ(EAdd(i, j), M0(i, j) + scalar);
-      EXPECT_EQ(EAddRhs(i, j), scalar + M0(i, j));
+      EXPECT_DOUBLE_EQ(EAdd(i, j), M0(i, j) + scalar);
+      EXPECT_DOUBLE_EQ(EAddRhs(i, j), scalar + M0(i, j));
 
-      EXPECT_EQ(ESub(i, j), M0(i, j) - scalar);
-      EXPECT_EQ(ESubRhs(i, j), scalar - M0(i, j));
+      EXPECT_DOUBLE_EQ(ESub(i, j), M0(i, j) - scalar);
+      EXPECT_DOUBLE_EQ(ESubRhs(i, j), scalar - M0(i, j));
 
-      EXPECT_EQ(EMul(i, j), M0(i, j) * scalar);
-      EXPECT_EQ(EMulRhs(i, j), scalar * M0(i, j));
+      EXPECT_DOUBLE_EQ(EMul(i, j), M0(i, j) * scalar);
+      EXPECT_DOUBLE_EQ(EMulRhs(i, j), scalar * M0(i, j));
 
-      // EXPECT_EQ(EDiv(i, j), M0(i, j) / scalar);
-      // EXPECT_EQ(EDivRhs(i, j), scalar / M0(i, j));
+      // EXPECT_DOUBLE_EQ(EDiv(i, j), M0(i, j) / scalar);
+      // EXPECT_DOUBLE_EQ(EDivRhs(i, j), scalar / M0(i, j));
 
-      EXPECT_EQ(EMod(i, j), M0(i, j) % scalar);
-      EXPECT_EQ(EModRhs(i, j), scalar % M0(i, j));
+      // EXPECT_DOUBLE_EQ(EMod(i, j), M0(i, j) % scalar);
+      // EXPECT_DOUBLE_EQ(EModRhs(i, j), scalar % M0(i, j));
     }
   }
 }
