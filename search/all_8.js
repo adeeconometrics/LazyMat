@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['tanhop_27',['TanhOp',['../structlm_1_1TanhOp.html',1,'lm']]],
-  ['tanop_28',['TanOp',['../structlm_1_1TanOp.html',1,'lm']]],
-  ['tgammaop_29',['TGammaOp',['../structlm_1_1TGammaOp.html',1,'lm']]],
-  ['timer_30',['Timer',['../classlm_1_1Timer.html',1,'lm::Timer'],['../classlm_1_1Timer.html#a8d18caef7df2aa11de126f9e60da6f53',1,'lm::Timer::Timer()'],['../classlm_1_1Timer.html#a7a08ecd16c1839954fc408227e0ad257',1,'lm::Timer::Timer(std::size_t t_iterations)']]],
-  ['todeg_31',['ToDeg',['../structlm_1_1ToDeg.html',1,'lm']]],
-  ['torad_32',['ToRad',['../structlm_1_1ToRad.html',1,'lm']]]
+  ['sinhop_30',['SinhOp',['../structlm_1_1SinhOp.html',1,'lm']]],
+  ['sinop_31',['SinOp',['../structlm_1_1SinOp.html',1,'lm']]],
+  ['sqrtop_32',['SqrtOp',['../structlm_1_1SqrtOp.html',1,'lm']]],
+  ['start_33',['start',['../classlm_1_1Timer.html#ab91388a619d6dd08c14835bfc60256d6',1,'lm::Timer']]],
+  ['sym_34',['Sym',['../structSym.html',1,'']]]
 ];
