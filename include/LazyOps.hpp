@@ -52,7 +52,7 @@ constexpr auto matmul(const Lhs &lhs, const Rhs &rhs) -> MatMulExpr<Lhs, Rhs> {
   return MatMulExpr<Lhs, Rhs>(lhs, rhs);
 }
 
-struct Mod {
+struct ModOp {
   template <typename Lhs, typename Rhs> auto operator()(Lhs l, Rhs r) const {
     return l % r;
   }
@@ -60,8 +60,8 @@ struct Mod {
 
 template <typename Lhs, typename Rhs>
 constexpr auto operator%(const Lhs &lhs,
-                         const Rhs &rhs) -> BinaryExpr<Mod, Lhs, Rhs> {
-  return BinaryExpr<Mod, Lhs, Rhs>(lhs, rhs);
+                         const Rhs &rhs) -> BinaryExpr<ModOp, Lhs, Rhs> {
+  return BinaryExpr<ModOp, Lhs, Rhs>(lhs, rhs);
 }
 
 template <typename Expr>

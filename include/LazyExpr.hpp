@@ -1,8 +1,37 @@
 #ifndef __LAZYEXPR_H__
 #define __LAZYEXPR_H__
 
+#include <cassert>
 #include <type_traits>
+#include <utility>
+
+#ifdef DEBUG
+#include <stdexcept>
+#endif
+
 namespace lm {
+
+constexpr auto operator==(const std::pair<std::size_t, std::size_t> &lhs,
+                          std::size_t rhs) -> bool {
+  return lhs.first == rhs && lhs.second == rhs;
+}
+
+constexpr auto operator!=(const std::pair<std::size_t, std::size_t> &lhs,
+                          std::size_t rhs) -> bool {
+  return !(lhs == rhs);
+}
+
+constexpr auto
+operator==(std::size_t lhs,
+           const std::pair<std::size_t, std::size_t> &rhs) -> bool {
+  return rhs.first == lhs && rhs.second == lhs;
+}
+
+constexpr auto
+operator!=(std::size_t lhs,
+           const std::pair<std::size_t, std::size_t> &rhs) -> bool {
+  return !(lhs == rhs);
+}
 
 /**
  * @brief Template functor for binary expressions. Contains an abstract
@@ -15,11 +44,20 @@ namespace lm {
  */
 template <typename Op, typename Lhs, typename Rhs, typename = void>
 class BinaryExpr {
+
 public:
   BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
 
   auto operator()(std::size_t i, std::size_t j) const noexcept {
     return op(lhs(i, j), rhs(i, j));
+  }
+
+  auto rows() const -> std::pair<std::size_t, std::size_t> {
+    return {lhs.rows(), rhs.rows()};
+  }
+
+  auto cols() const -> std::pair<std::size_t, std::size_t> {
+    return {rhs.cols(), lhs.cols()};
   }
 
 private:
@@ -38,6 +76,14 @@ public:
     return op(lhs(i, j), rhs);
   }
 
+  auto rows() const -> std::pair<std::size_t, std::size_t> {
+    return {lhs.rows(), 1};
+  }
+
+  auto cols() const -> std::pair<std::size_t, std::size_t> {
+    return {lhs.cols(), 1};
+  }
+
 private:
   Lhs lhs;
   Rhs rhs;
@@ -52,6 +98,14 @@ public:
 
   auto operator()(std::size_t i, std::size_t j) const noexcept {
     return op(lhs, rhs(i, j));
+  }
+
+  auto rows() const -> std::pair<std::size_t, std::size_t> {
+    return {1, rhs.rows()};
+  }
+
+  auto cols() const -> std::pair<std::size_t, std::size_t> {
+    return {1, rhs.cols()};
   }
 
 private:
@@ -90,7 +144,15 @@ private:
  */
 template <typename Lhs, typename Rhs> class MatMulExpr {
 public:
-  MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {}
+  MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {
+#ifdef DEBUG
+    if (m_lhs.cols() != m_rhs.rows()) {
+      throw std::runtime_error("Dimensions mismatch");
+    }
+#else
+    assert(m_lhs.cols() == m_rhs.rows()); // dimensions mismatch
+#endif
+  }
 
   auto operator()(std::size_t i, std::size_t j) const {
     auto result = m_lhs(i, 0) * m_rhs(0, j);

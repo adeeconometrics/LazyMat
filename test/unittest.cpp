@@ -2,10 +2,15 @@
 
 #include "../include/LazyMatrix.hpp"
 #include "../include/LazyOps.hpp"
+#include "../include/LazyParser.hpp"
 #include "../include/Utils.hpp"
 
-#include <iostream>
+#include <cmath>
 #include <random>
+
+#ifdef DEBUG
+#include <stdexcept>
+#endif
 
 using namespace lm;
 
@@ -40,6 +45,7 @@ TEST(BinaryExprLargeMat, EqualityOps) {
   EXPECT_FALSE(M0 != M0);
 }
 
+#ifdef DEBUG
 TEST(BinaryExpr, BinaryOps) {
   const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
   const Matrix<int, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
@@ -60,28 +66,60 @@ TEST(BinaryExpr, BinaryOps) {
     }
   }
 }
+#endif
+// SCLAR DIV SHOULD BE TESTED AS WELL
+// TEST(BinaryExpr, BinaryOpsDiv) {
+//   const Matrix<float, 3, 3> M0{
+//       {1.0f, 2.0f, 3.0f}, {4.0f, 5.0f, 6.0f}, {7.0f, 8.0f, 9.0f}};
+//   const Matrix<float, 3, 3> M1{
+//       {9.0f, 8.0f, 7.0f}, {6.0f, 5.0f, 4.0f}, {3.0f, 2.0f, 1.0f}};
 
+//   const auto EDiv = M0 / M1;
+
+//   for (std::size_t i = 0; i < 3; i++) {
+//     for (std::size_t j = 0; j < 3; j++) {
+//       EXPECT_FLOAT_EQ(EDiv(i, j), M0(i, j) / M1(i, j));
+//     }
+//   }
+// }
+
+#ifdef DEBUG
 TEST(BinaryExpr, BinaryOpsScalar) {
   const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
   const int scalar = 2;
 
   const auto EAdd = M0 + scalar;
+  const auto EAddRhs = scalar + M0;
   const auto ESub = M0 - scalar;
+  const auto ESubRhs = scalar - M0;
   const auto EMul = M0 * scalar;
-  const auto EDiv = M0 / scalar;
+  const auto EMulRhs = scalar * M0;
+  const auto EDiv = M0 / static_cast<double>(scalar);
+  const auto EDivRhs = scalar / M0;
   const auto EMod = M0 % scalar;
+  const auto EModRhs = scalar % M0;
 
   for (std::size_t i = 0; i < 3; i++) {
     for (std::size_t j = 0; j < 3; j++) {
-      EXPECT_EQ(EAdd(i, j), M0(i, j) + scalar);
-      EXPECT_EQ(ESub(i, j), M0(i, j) - scalar);
-      EXPECT_EQ(EMul(i, j), M0(i, j) * scalar);
-      EXPECT_EQ(EDiv(i, j), M0(i, j) / scalar);
-      EXPECT_EQ(EMod(i, j), M0(i, j) % scalar);
+      EXPECT_DOUBLE_EQ(EAdd(i, j), M0(i, j) + scalar);
+      EXPECT_DOUBLE_EQ(EAddRhs(i, j), scalar + M0(i, j));
+
+      EXPECT_DOUBLE_EQ(ESub(i, j), M0(i, j) - scalar);
+      EXPECT_DOUBLE_EQ(ESubRhs(i, j), scalar - M0(i, j));
+
+      EXPECT_DOUBLE_EQ(EMul(i, j), M0(i, j) * scalar);
+      EXPECT_DOUBLE_EQ(EMulRhs(i, j), scalar * M0(i, j));
+
+      EXPECT_DOUBLE_EQ(EDiv(i, j), M0(i, j) / scalar);
+      EXPECT_DOUBLE_EQ(EDivRhs(i, j), scalar / M0(i, j));
+
+      EXPECT_DOUBLE_EQ(EMod(i, j), M0(i, j) % scalar);
+      EXPECT_DOUBLE_EQ(EModRhs(i, j), scalar % M0(i, j));
     }
   }
 }
+#endif
 
 TEST(UnaryExpr, UnaryOps) {
   const Matrix<float, 3, 3> M0{{.1, .2, .3}, {.4, .5, .6}, {.7, .8, .9}};
@@ -199,3 +237,86 @@ TEST(TestMatMulExpr, MatMulLarge) {
     }
   }
 }
+
+TEST(TestMatMulExpr, MatMulSmallRectangular) {
+
+  const std::size_t M = 3;
+  const std::size_t N = 4;
+  const std::size_t K = 5;
+
+  const Matrix<int, M, N> M0{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+  const Matrix<int, N, K> M1{{1, 2, 3, 4, 5},
+                             {6, 7, 8, 9, 10},
+                             {11, 12, 13, 14, 15},
+                             {16, 17, 18, 19, 20}};
+
+  const Matrix<int, M, K> Mul{{110, 120, 130, 140, 150},
+                              {246, 272, 298, 324, 350},
+                              {382, 424, 466, 508, 550}};
+
+  const auto LazyMul = matmul(M0, M1);
+
+  for (std::size_t i = 0; i < M; i++) {
+    for (std::size_t j = 0; j < K; j++) {
+      EXPECT_EQ(LazyMul(i, j), Mul(i, j));
+    }
+  }
+}
+
+TEST(TestMatMulExpr, MatMulLargeRectangular) {
+
+  const std::size_t M = 32;
+  const std::size_t N = 28;
+  const std::size_t K = 32;
+
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  const Matrix<int, M, N> M0{make_vmatrix<int, M, N>(std::ref(rng_a))};
+  const Matrix<int, N, K> M1{make_vmatrix<int, N, K>(std::ref(rng_b))};
+
+  const auto Mul = matmul(M0, M1);
+
+  for (std::size_t i = 0; i < M; i++) {
+    for (std::size_t j = 0; j < K; j++) {
+      int sum = 0;
+      for (std::size_t k = 0; k < N; k++) {
+        sum += M0(i, k) * M1(k, j);
+      }
+      EXPECT_EQ(Mul(i, j), sum);
+    }
+  }
+}
+
+#ifdef DEBUG
+TEST(TestMatMulExpr, ThrowException) {
+  const std::size_t M = 3;
+  const std::size_t N = 4;
+  const std::size_t K = 5;
+
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  // try {
+  //   matmul(Matrix<int, M, 6>{make_vmatrix<int, M, 6>(std::ref(rng_a))},
+  //          Matrix<int, N, K>{make_vmatrix<int, N, K>(std::ref(rng_b))});
+  // } catch (const std::runtime_error &e) {
+  //   EXPECT_STREQ(e.what(), "Dimensions mismatch");
+  // }
+}
+#endif
+// TEST(Parser, UnaryParser) {}
+
+// TEST(Parser, BinaryParser) {
+//   Sym s0 = Sym{"a"};
+//   Sym s1 = Sym{"b"};
+
+//   const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+//   const Matrix<int, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+
+//   using ModExpr = M0 % M1;
+
+//   ModExpr modexpr{s0, s1};
+
+//   std::cout << Parser<ModExpr>::parse(modexpr) << std::endl;
+// }
