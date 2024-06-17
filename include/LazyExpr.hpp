@@ -5,6 +5,10 @@
 #include <type_traits>
 #include <utility>
 
+#ifdef DEBUG
+#include <stdexcept>
+#endif
+
 namespace lm {
 
 constexpr auto operator==(const std::pair<std::size_t, std::size_t> &lhs,
@@ -12,10 +16,21 @@ constexpr auto operator==(const std::pair<std::size_t, std::size_t> &lhs,
   return lhs.first == rhs && lhs.second == rhs;
 }
 
+constexpr auto operator!=(const std::pair<std::size_t, std::size_t> &lhs,
+                          std::size_t rhs) -> bool {
+  return !(lhs == rhs);
+}
+
 constexpr auto
 operator==(std::size_t lhs,
            const std::pair<std::size_t, std::size_t> &rhs) -> bool {
   return rhs.first == lhs && rhs.second == lhs;
+}
+
+constexpr auto
+operator!=(std::size_t lhs,
+           const std::pair<std::size_t, std::size_t> &rhs) -> bool {
+  return !(lhs == rhs);
 }
 
 /**
@@ -120,6 +135,10 @@ private:
   Op op;
 };
 
+#ifdef DEBUG
+void dumbfunc() { throw std::runtime_error("Dimensions mismatch"); }
+#endif
+
 /**
  * @brief Template functor for matrix multiplication expressions. Contains an
  * operator() for evaluating the expression lazily. Works with `matmul(Expr,
@@ -130,7 +149,13 @@ private:
 template <typename Lhs, typename Rhs> class MatMulExpr {
 public:
   MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {
+#ifdef DEBUG
+    if (m_lhs.cols() != m_rhs.rows()) {
+      throw std::runtime_error("Dimensions mismatch");
+    }
+#else
     assert(m_lhs.cols() == m_rhs.rows()); // dimensions mismatch
+#endif
   }
 
   auto operator()(std::size_t i, std::size_t j) const {

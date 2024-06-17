@@ -8,6 +8,10 @@
 #include <cmath>
 #include <random>
 
+#ifdef DEBUG
+#include <stdexcept>
+#endif
+
 using namespace lm;
 
 TEST(BinaryExpr, EqualityOps) {
@@ -41,6 +45,7 @@ TEST(BinaryExprLargeMat, EqualityOps) {
   EXPECT_FALSE(M0 != M0);
 }
 
+#ifdef DEBUG
 TEST(BinaryExpr, BinaryOps) {
   const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
   const Matrix<int, 3, 3> M1{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
@@ -61,7 +66,7 @@ TEST(BinaryExpr, BinaryOps) {
     }
   }
 }
-
+#endif
 // SCLAR DIV SHOULD BE TESTED AS WELL
 // TEST(BinaryExpr, BinaryOpsDiv) {
 //   const Matrix<float, 3, 3> M0{
@@ -78,6 +83,7 @@ TEST(BinaryExpr, BinaryOps) {
 //   }
 // }
 
+#ifdef DEBUG
 TEST(BinaryExpr, BinaryOpsScalar) {
   const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
@@ -89,8 +95,8 @@ TEST(BinaryExpr, BinaryOpsScalar) {
   const auto ESubRhs = scalar - M0;
   const auto EMul = M0 * scalar;
   const auto EMulRhs = scalar * M0;
-  // const auto EDiv = M0 / static_cast<double>(scalar);
-  // const auto EDivRhs = scalar / M0;
+  const auto EDiv = M0 / static_cast<double>(scalar);
+  const auto EDivRhs = scalar / M0;
   const auto EMod = M0 % scalar;
   const auto EModRhs = scalar % M0;
 
@@ -105,14 +111,15 @@ TEST(BinaryExpr, BinaryOpsScalar) {
       EXPECT_DOUBLE_EQ(EMul(i, j), M0(i, j) * scalar);
       EXPECT_DOUBLE_EQ(EMulRhs(i, j), scalar * M0(i, j));
 
-      // EXPECT_DOUBLE_EQ(EDiv(i, j), M0(i, j) / scalar);
-      // EXPECT_DOUBLE_EQ(EDivRhs(i, j), scalar / M0(i, j));
+      EXPECT_DOUBLE_EQ(EDiv(i, j), M0(i, j) / scalar);
+      EXPECT_DOUBLE_EQ(EDivRhs(i, j), scalar / M0(i, j));
 
       EXPECT_DOUBLE_EQ(EMod(i, j), M0(i, j) % scalar);
       EXPECT_DOUBLE_EQ(EModRhs(i, j), scalar % M0(i, j));
     }
   }
 }
+#endif
 
 TEST(UnaryExpr, UnaryOps) {
   const Matrix<float, 3, 3> M0{{.1, .2, .3}, {.4, .5, .6}, {.7, .8, .9}};
@@ -281,6 +288,25 @@ TEST(TestMatMulExpr, MatMulLargeRectangular) {
   }
 }
 
+#ifdef DEBUG
+TEST(TestMatMulExpr, ThrowException) {
+  const std::size_t M = 3;
+  const std::size_t N = 4;
+  const std::size_t K = 5;
+
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  EXPECT_THROW(
+      {
+        const Matrix<int, M, N> M0{make_vmatrix<int, M, N>(std::ref(rng_a))};
+        const Matrix<int, N, K> M1{make_vmatrix<int, N, K>(std::ref(rng_b))};
+
+        const auto LazyMul = matmul(M0, M1);
+      },
+      std::runtime_error);
+}
+#endif
 // TEST(Parser, UnaryParser) {}
 
 // TEST(Parser, BinaryParser) {
