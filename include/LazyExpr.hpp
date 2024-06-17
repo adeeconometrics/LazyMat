@@ -135,10 +135,6 @@ private:
   Op op;
 };
 
-#ifdef DEBUG
-void dumbfunc() { throw std::runtime_error("Dimensions mismatch"); }
-#endif
-
 /**
  * @brief Template functor for matrix multiplication expressions. Contains an
  * operator() for evaluating the expression lazily. Works with `matmul(Expr,
