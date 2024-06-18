@@ -318,6 +318,21 @@ TEST(TestElementWiseOps, DeathAssertion) {
   EXPECT_DEATH({ M0 % M1; }, "Dimensions mismatch");
 }
 #endif
+
+TEST(MatExpr, Integration) {
+  const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  const Matrix<int, 3, 4> M1{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+
+  const Matrix<int, 3, 4> M3{
+      {1, 4, 9, 16}, {25, 36, 49, 64}, {81, 100, 121, 144}};
+
+  const Matrix<int, 3, 4> MatmulM0M1{
+      {38, 44, 50, 56}, {83, 98, 113, 128}, {128, 152, 176, 200}};
+
+  // const auto result = 1 + matmul(M0, M1) * M3 + 3;
+  const auto dumb = matmul(M0, M1);
+  // EXPECT_EQ(dumb, MatmulM0M1);
+}
 // TEST(Parser, UnaryParser) {}
 
 // TEST(Parser, BinaryParser) {
