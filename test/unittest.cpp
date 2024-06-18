@@ -320,18 +320,33 @@ TEST(TestElementWiseOps, DeathAssertion) {
 #endif
 
 TEST(MatExpr, Integration) {
-  const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-  const Matrix<int, 3, 4> M1{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+  const std::size_t M = 3;
+  const std::size_t N = 3;
+  const std::size_t K = 3;
 
-  const Matrix<int, 3, 4> M3{
-      {1, 4, 9, 16}, {25, 36, 49, 64}, {81, 100, 121, 144}};
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
 
-  const Matrix<int, 3, 4> MatmulM0M1{
-      {38, 44, 50, 56}, {83, 98, 113, 128}, {128, 152, 176, 200}};
+  const Matrix<double, M, N> M0{make_vmatrix<double, M, N>(std::ref(rng_a))};
+  const Matrix<double, N, K> M1{make_vmatrix<double, N, K>(std::ref(rng_b))};
 
-  // const auto result = 1 + matmul(M0, M1) * M3 + 3;
-  const auto dumb = matmul(M0, M1);
-  // EXPECT_EQ(dumb, MatmulM0M1);
+  const Matrix<double, M, K> M3{make_vmatrix<double, M, K>(std::ref(rng_a))};
+  const Matrix<double, M, K> M4{make_vmatrix<double, M, K>(std::ref(rng_b))};
+
+  const auto Result =
+      1 + matmul(M0, sin(M1)) + matmul(cos(M0), sin(M1)) + M3 * M4 + 4.;
+
+  for (std::size_t i = 0; i < M; i++) {
+    for (std::size_t j = 0; j < K; j++) {
+      double sum1 = 0;
+      double sum2 = 0;
+      for (std::size_t k = 0; k < N; k++) {
+        sum1 += M0(i, k) * std::sin(M1(k, j));
+        sum2 += std::cos(M0(i, k)) * std::sin(M1(k, j));
+      }
+      EXPECT_DOUBLE_EQ(Result(i, j), 1 + sum1 + sum2 + M3(i, j) * M4(i, j) + 4);
+    }
+  }
 }
 // TEST(Parser, UnaryParser) {}
 
