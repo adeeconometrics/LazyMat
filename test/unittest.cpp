@@ -8,10 +8,6 @@
 #include <cmath>
 #include <random>
 
-#ifdef DEBUG
-#include <stdexcept>
-#endif
-
 using namespace lm;
 
 TEST(BinaryExpr, EqualityOps) {
@@ -297,12 +293,29 @@ TEST(TestMatMulExpr, ThrowException) {
   std::mt19937 rng_a(64);
   std::mt19937 rng_b(65);
 
-  // try {
-  //   matmul(Matrix<int, M, 6>{make_vmatrix<int, M, 6>(std::ref(rng_a))},
-  //          Matrix<int, N, K>{make_vmatrix<int, N, K>(std::ref(rng_b))});
-  // } catch (const std::runtime_error &e) {
-  //   EXPECT_STREQ(e.what(), "Dimensions mismatch");
-  // }
+  EXPECT_DEATH(
+      {
+        matmul(Matrix<int, M, 6>{make_vmatrix<int, M, 6>(std::ref(rng_a))},
+               Matrix<int, N, K>{make_vmatrix<int, N, K>(std::ref(rng_b))});
+      },
+      "Dimensions mismatch");
+}
+
+TEST(TestElementWiseOps, DeathAssertion) {
+  const std::size_t M = 3;
+  const std::size_t N = 4;
+
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  const Matrix<int, M, N> M0{make_vmatrix<int, M, N>(std::ref(rng_a))};
+  const Matrix<int, N, N> M1{make_vmatrix<int, N, N>(std::ref(rng_b))};
+
+  EXPECT_DEATH({ M0 + M1; }, "Dimensions mismatch");
+  EXPECT_DEATH({ M0 - M1; }, "Dimensions mismatch");
+  EXPECT_DEATH({ M0 *M1; }, "Dimensions mismatch");
+  EXPECT_DEATH({ M0 / M1; }, "Dimensions mismatch");
+  EXPECT_DEATH({ M0 % M1; }, "Dimensions mismatch");
 }
 #endif
 // TEST(Parser, UnaryParser) {}
