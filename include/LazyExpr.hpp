@@ -64,14 +64,15 @@ private:
   Op op;
 };
 
-template <typename Op, typename T, std::size_t Rows, std::size_t Cols>
-class BinaryExpr<Op, Matrix<T, Rows, Cols>, Matrix<T, Rows, Cols>> {
+template <typename Op, typename T, std::size_t Rows1, std::size_t Cols1,
+          std::size_t Rows2, std::size_t Cols2>
+class BinaryExpr<Op, Matrix<T, Rows1, Cols1>, Matrix<T, Rows2, Cols2>> {
 
 public:
-  BinaryExpr(const Matrix<T, Rows, Cols> &lhs, const Matrix<T, Rows, Cols> &rhs)
+  BinaryExpr(const Matrix<T, Rows1, Cols1> &lhs,
+             const Matrix<T, Rows2, Cols2> &rhs)
       : lhs(lhs), rhs(rhs) {
-    assert(lhs.rows() == rhs.rows() && lhs.cols() == rhs.cols() &&
-           "Dimensions mismatch");
+    assert(Rows1 == Rows2 && Cols1 == Cols2 && "Dimensions mismatch");
   }
 
   auto operator()(std::size_t i, std::size_t j) const noexcept {
@@ -83,8 +84,8 @@ public:
   }
 
 private:
-  const Matrix<T, Rows, Cols> &lhs;
-  const Matrix<T, Rows, Cols> &rhs;
+  const Matrix<T, Rows1, Cols1> &lhs;
+  const Matrix<T, Rows2, Cols2> &rhs;
   Op op;
 };
 template <typename Op, typename Lhs, typename Rhs>
@@ -186,33 +187,6 @@ public:
 private:
   Lhs m_lhs;
   Rhs m_rhs;
-};
-
-template <typename T, std::size_t Rows, std::size_t Cols>
-class MatMulExpr<Matrix<T, Rows, Cols>, Matrix<T, Rows, Cols>> {
-public:
-  MatMulExpr(const Matrix<T, Rows, Cols> &lhs, const Matrix<T, Rows, Cols> &rhs)
-      : m_lhs(lhs), m_rhs(rhs) {
-    assert(lhs.cols() == rhs.rows() && "Dimensions mismatch");
-  }
-
-  auto operator()(std::size_t i, std::size_t j) const {
-    auto result = m_lhs(i, 0) * m_rhs(0, j);
-#ifdef __clang__
-#pragma clang loop vectorize(enable)
-#endif
-    for (std::size_t k = 1; k < m_lhs.cols(); ++k) {
-      result += m_lhs(i, k) * m_rhs(k, j);
-    }
-    return result;
-  }
-
-  auto rows() const -> std::size_t { return m_lhs.rows(); }
-  auto cols() const -> std::size_t { return m_rhs.cols(); }
-
-private:
-  Matrix<T, Rows, Cols> m_lhs;
-  Matrix<T, Rows, Cols> m_rhs;
 };
 
 template <typename T, std::size_t Rows1, std::size_t Cols1, std::size_t Rows2,
