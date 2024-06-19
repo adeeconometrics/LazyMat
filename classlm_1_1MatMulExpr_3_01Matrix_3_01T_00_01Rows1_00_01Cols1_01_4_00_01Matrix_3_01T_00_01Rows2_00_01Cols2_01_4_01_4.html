@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LazyMat: lm::MatMulExpr&lt; Lhs, Rhs &gt; Class Template Reference</title>
+<title>LazyMat: lm::MatMulExpr&lt; Matrix&lt; T, Rows1, Cols1 &gt;, Matrix&lt; T, Rows2, Cols2 &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,51 +61,34 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>lm</b></li><li class="navelem"><a class="el" href="classlm_1_1MatMulExpr.html">MatMulExpr</a></li>  </ul>
+<li class="navelem"><b>lm</b></li><li class="navelem"><a class="el" href="classlm_1_1MatMulExpr_3_01Matrix_3_01T_00_01Rows1_00_01Cols1_01_4_00_01Matrix_3_01T_00_01Rows2_00_01Cols2_01_4_01_4.html">MatMulExpr&lt; Matrix&lt; T, Rows1, Cols1 &gt;, Matrix&lt; T, Rows2, Cols2 &gt; &gt;</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classlm_1_1MatMulExpr-members.html">List of all members</a>  </div>
+<a href="classlm_1_1MatMulExpr_3_01Matrix_3_01T_00_01Rows1_00_01Cols1_01_4_00_01Matrix_3_01T_00_01Rows2_00_01Cols2_01_4_01_4-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">lm::MatMulExpr&lt; Lhs, Rhs &gt; Class Template Reference</div>  </div>
+<div class="title">lm::MatMulExpr&lt; Matrix&lt; T, Rows1, Cols1 &gt;, Matrix&lt; T, Rows2, Cols2 &gt; &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Template functor for matrix multiplication expressions. Contains an operator() for evaluating the expression lazily. Works with <code>matmul(Expr, Expr)</code> types to represent MatMulExpr&lt;Ops,Ops&gt; computation *.  
- <a href="classlm_1_1MatMulExpr.html#details">More...</a></p>
-
-<p><code>#include &lt;LazyExpr.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa7c55c2867db9d13024e055bbb6845b1"><td class="memItemLeft" align="right" valign="top"><a id="aa7c55c2867db9d13024e055bbb6845b1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MatMulExpr</b> (const Lhs &amp;lhs, const Rhs &amp;rhs)</td></tr>
-<tr class="separator:aa7c55c2867db9d13024e055bbb6845b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a489aba05b69fcf21e317e42231dc9f79"><td class="memItemLeft" align="right" valign="top"><a id="a489aba05b69fcf21e317e42231dc9f79"></a>
+<tr class="memitem:a2a6e15268a16da7ae1bb572ccbb59de6"><td class="memItemLeft" align="right" valign="top"><a id="a2a6e15268a16da7ae1bb572ccbb59de6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MatMulExpr</b> (const <a class="el" href="classlm_1_1Matrix.html">Matrix</a>&lt; T, Rows1, Cols1 &gt; &amp;lhs, const <a class="el" href="classlm_1_1Matrix.html">Matrix</a>&lt; T, Rows2, Cols2 &gt; &amp;rhs)</td></tr>
+<tr class="separator:a2a6e15268a16da7ae1bb572ccbb59de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19dfbe1bc653286a55a3e27ff18b65db"><td class="memItemLeft" align="right" valign="top"><a id="a19dfbe1bc653286a55a3e27ff18b65db"></a>
 auto&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (std::size_t i, std::size_t j) const</td></tr>
-<tr class="separator:a489aba05b69fcf21e317e42231dc9f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6491f9ffd284bd4f5da8dc4edb555b81"><td class="memItemLeft" align="right" valign="top"><a id="a6491f9ffd284bd4f5da8dc4edb555b81"></a>
+<tr class="separator:a19dfbe1bc653286a55a3e27ff18b65db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22936ec652b1a0c1701d87e189705bc4"><td class="memItemLeft" align="right" valign="top"><a id="a22936ec652b1a0c1701d87e189705bc4"></a>
 auto&#160;</td><td class="memItemRight" valign="bottom"><b>rows</b> () const -&gt; std::size_t</td></tr>
-<tr class="separator:a6491f9ffd284bd4f5da8dc4edb555b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a090c3645dff57a6b194a2bc1e8038ae1"><td class="memItemLeft" align="right" valign="top"><a id="a090c3645dff57a6b194a2bc1e8038ae1"></a>
+<tr class="separator:a22936ec652b1a0c1701d87e189705bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57edebbad0f972a3ec540bc531cd3e8c"><td class="memItemLeft" align="right" valign="top"><a id="a57edebbad0f972a3ec540bc531cd3e8c"></a>
 auto&#160;</td><td class="memItemRight" valign="bottom"><b>cols</b> () const -&gt; std::size_t</td></tr>
-<tr class="separator:a090c3645dff57a6b194a2bc1e8038ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a57edebbad0f972a3ec540bc531cd3e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename Lhs, typename Rhs&gt;<br />
-class lm::MatMulExpr&lt; Lhs, Rhs &gt;</h3>
-
-<p>Template functor for matrix multiplication expressions. Contains an operator() for evaluating the expression lazily. Works with <code>matmul(Expr, Expr)</code> types to represent MatMulExpr&lt;Ops,Ops&gt; computation *. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Lhs</td><td>Left hand side of the expr. </td></tr>
-    <tr><td class="paramname">Rhs</td><td>Right hand side of the expr. </td></tr>
-  </table>
-  </dd>
-</dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/runner/work/LazyMat/LazyMat/include/LazyExpr.hpp</li>
 </ul>
 </div><!-- contents -->
