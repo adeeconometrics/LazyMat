@@ -9,16 +9,6 @@
 
 namespace lm {
 
-constexpr auto operator==(const std::pair<std::size_t, std::size_t> &lhs,
-                          std::size_t rhs) -> bool {
-  return lhs.first == rhs && lhs.second == rhs;
-}
-
-constexpr auto operator!=(const std::pair<std::size_t, std::size_t> &lhs,
-                          std::size_t rhs) -> bool {
-  return !(lhs == rhs);
-}
-
 constexpr auto
 operator==(std::size_t lhs,
            const std::pair<std::size_t, std::size_t> &rhs) -> bool {
@@ -72,7 +62,11 @@ public:
   BinaryExpr(const Matrix<T, Rows1, Cols1> &lhs,
              const Matrix<T, Rows2, Cols2> &rhs)
       : lhs(lhs), rhs(rhs) {
+#ifdef DEBUG
     assert(Rows1 == Rows2 && Cols1 == Cols2 && "Dimensions mismatch");
+#else
+    static_assert(Rows1 == Rows2 && Cols1 == Cols2, "Dimensions mismatch");
+#endif
   }
 
   auto operator()(std::size_t i, std::size_t j) const noexcept {
@@ -166,9 +160,7 @@ private:
  */
 template <typename Lhs, typename Rhs> class MatMulExpr {
 public:
-  MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {
-    // assert(lhs.cols() == rhs.rows() && "Dimensions mismatch");
-  }
+  MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {}
 
   auto operator()(std::size_t i, std::size_t j) const {
     auto result = m_lhs(i, 0) * m_rhs(0, j);
@@ -193,13 +185,14 @@ template <typename T, std::size_t Rows1, std::size_t Cols1, std::size_t Rows2,
           std::size_t Cols2>
 class MatMulExpr<Matrix<T, Rows1, Cols1>, Matrix<T, Rows2, Cols2>> {
 public:
-  // static_assert(Cols1 == Rows2, "Inner dimensions must match for matrix
-  // multiplication");
-
   MatMulExpr(const Matrix<T, Rows1, Cols1> &lhs,
              const Matrix<T, Rows2, Cols2> &rhs)
       : m_lhs(lhs), m_rhs(rhs) {
+#ifdef DEBUG
     assert(Cols1 == Rows2 && "Dimensions mismatch");
+#else
+    static_assert(Cols1 == Rows2, "Dimensions mismatch");
+#endif
   }
 
   auto operator()(std::size_t i, std::size_t j) const {
@@ -207,14 +200,14 @@ public:
 #ifdef __clang__
 #pragma clang loop vectorize(enable)
 #endif
-    for (std::size_t k = 1; k < m_lhs.cols(); ++k) {
+    for (std::size_t k = 1; k < Cols1; ++k) {
       result += m_lhs(i, k) * m_rhs(k, j);
     }
     return result;
   }
 
-  auto rows() const -> std::size_t { return m_lhs.rows(); }
-  auto cols() const -> std::size_t { return m_rhs.cols(); }
+  auto rows() const -> std::size_t { return Rows1; }
+  auto cols() const -> std::size_t { return Cols2; }
 
 private:
   const Matrix<T, Rows1, Cols1> &m_lhs;

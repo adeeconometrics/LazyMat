@@ -6,14 +6,16 @@
 
 using namespace lm;
 
-auto main() -> int {
+auto main(int argc, char **argv) -> int {
 
   std::mt19937 rng_a(67);
   std::mt19937 rng_b(65);
 
-  constexpr int M = 10;
-  constexpr int N = 10;
-  constexpr int K = 10;
+  // get the matrix dimensions from command line
+
+  constexpr int M = 4096 * 2;
+  constexpr int N = 4096 * 2;
+  constexpr int K = 4096 * 2;
 
   Matrix<float, M, N> A{make_vmatrix<float, M, N>(std::ref(rng_a))};
   Matrix<float, N, K> B{make_vmatrix<float, N, K>(std::ref(rng_b))};
