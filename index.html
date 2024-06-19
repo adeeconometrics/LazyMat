@@ -268,12 +268,63 @@ document.write(`
 <h1>Welcome to LazyMat’s documentation!<a class="headerlink" href="#welcome-to-lazymat-s-documentation" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<img alt="_images/LazyMatLogo.png" class="align-center" src="_images/LazyMatLogo.png" />
+<section id="motivation-goals-and-disclaimers">
+<h2>Motivation, Goals, and Disclaimers<a class="headerlink" href="#motivation-goals-and-disclaimers" title="Link to this heading">#</a></h2>
+<p>This is a personal project that aims to explore ideas of deferred execution and ought to
+investigate how it can improve performance for vectorized expressions. I wrote this
+project to educate myself on the subtle techniques of expression templates, and locality of reference.</p>
+<p>The project aims to support vector and matrix operations. There is no long-term initiative
+to maintain and continuously develop this code. You are welcome to submit an issue or suggest improvements.
+The robustness of this codebase is only limited to its test coverage.
+This is not recommended to be used in a production environment.</p>
+</section>
+<section id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h2>
+<p>Benchmark on Apple M2 8C MacOS 14.5 Release mode – compiled on <cite>arm64</cite> build for Matmul.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv)</span> <span class="go">➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py</span>
+<span class="go">lib           gflop/s         secs  relative throughput    Size</span>
+<span class="go">----------  ---------  -----------  ---------------------  --------------</span>
+<span class="go">lazy_mat    2356.53    0.000911291  ---                    1024x1024x1024</span>
+<span class="go">numpy         67.4947  0.0318171    34.9143x               1024x1024x1024</span>
+<span class="go">pytorch       86.5684  0.0248068    27.2216x               1024x1024x1024</span>
+<span class="go">tensorflow    94.7282  0.02267      24.8767x               1024x1024x1024</span>
+
+<span class="gp gp-VirtualEnv">(venv)</span> <span class="go">➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py</span>
+<span class="go">lib           gflop/s       secs  relative throughput    Size</span>
+<span class="go">----------  ---------  ---------  ---------------------  --------------</span>
+<span class="go">lazy_mat    7470.82    0.0022996  ---                    2048x2048x2048</span>
+<span class="go">numpy         96.7968  0.177484   77.1804x               2048x2048x2048</span>
+<span class="go">pytorch      172.91    0.0993571  43.2063x               2048x2048x2048</span>
+<span class="go">tensorflow   156.748   0.109602   47.6613x               2048x2048x2048</span>
+
+<span class="gp gp-VirtualEnv">(venv)</span> <span class="go">➜  benchmark git:(dev-etparser) ✗ python linalg_libs/gflops.py</span>
+<span class="go">lib           gflop/s      secs  relative throughput    Size</span>
+<span class="go">----------  ---------  --------  ---------------------  --------------</span>
+<span class="go">lazy_mat     6614.64   0.020778  ---                    4096x4096x4096</span>
+<span class="go">numpy         146.621  0.937376  45.1139x               4096x4096x4096</span>
+<span class="go">pytorch       277.298  0.495636  23.8539x               4096x4096x4096</span>
+<span class="go">tensorflow    158.817  0.865391  41.6494x               4096x4096x4096</span>
+</pre></div>
+</div>
+<p><strong>Build for Debug</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>../<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make
+</pre></div>
+</div>
+<p><strong>Build for Release</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>../<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make
+</pre></div>
+</div>
+<p><strong>Running tests</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./bin/unittest
+</pre></div>
+</div>
+</section>
 </section>
 <section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
 </section>
@@ -306,7 +357,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to LazyMat’s documentation!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to LazyMat’s documentation!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-goals-and-disclaimers">Motivation, Goals, and Disclaimers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
