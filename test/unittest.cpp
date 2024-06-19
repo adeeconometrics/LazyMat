@@ -8,10 +8,6 @@
 #include <cmath>
 #include <random>
 
-#ifdef DEBUG
-#include <stdexcept>
-#endif
-
 using namespace lm;
 
 TEST(BinaryExpr, EqualityOps) {
@@ -297,14 +293,61 @@ TEST(TestMatMulExpr, ThrowException) {
   std::mt19937 rng_a(64);
   std::mt19937 rng_b(65);
 
-  // try {
-  //   matmul(Matrix<int, M, 6>{make_vmatrix<int, M, 6>(std::ref(rng_a))},
-  //          Matrix<int, N, K>{make_vmatrix<int, N, K>(std::ref(rng_b))});
-  // } catch (const std::runtime_error &e) {
-  //   EXPECT_STREQ(e.what(), "Dimensions mismatch");
-  // }
+  EXPECT_DEATH(
+      {
+        matmul(Matrix<int, M, 6>{make_vmatrix<int, M, 6>(std::ref(rng_a))},
+               Matrix<int, N, K>{make_vmatrix<int, N, K>(std::ref(rng_b))});
+      },
+      "Dimensions mismatch");
+}
+
+TEST(TestElementWiseOps, DeathAssertion) {
+  const std::size_t M = 3;
+  const std::size_t N = 4;
+
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  const Matrix<int, M, N> M0{make_vmatrix<int, M, N>(std::ref(rng_a))};
+  const Matrix<int, N, N> M1{make_vmatrix<int, N, N>(std::ref(rng_b))};
+
+  EXPECT_DEATH({ M0 + M1; }, "Dimensions mismatch");
+  EXPECT_DEATH({ M0 - M1; }, "Dimensions mismatch");
+  EXPECT_DEATH({ M0 *M1; }, "Dimensions mismatch");
+  EXPECT_DEATH({ M0 / M1; }, "Dimensions mismatch");
+  EXPECT_DEATH({ M0 % M1; }, "Dimensions mismatch");
 }
 #endif
+
+TEST(MatExpr, Integration) {
+  const std::size_t M = 3;
+  const std::size_t N = 3;
+  const std::size_t K = 3;
+
+  std::mt19937 rng_a(64);
+  std::mt19937 rng_b(65);
+
+  const Matrix<double, M, N> M0{make_vmatrix<double, M, N>(std::ref(rng_a))};
+  const Matrix<double, N, K> M1{make_vmatrix<double, N, K>(std::ref(rng_b))};
+
+  const Matrix<double, M, K> M3{make_vmatrix<double, M, K>(std::ref(rng_a))};
+  const Matrix<double, M, K> M4{make_vmatrix<double, M, K>(std::ref(rng_b))};
+
+  const auto Result =
+      1 + matmul(M0, sin(M1)) + matmul(cos(M0), sin(M1)) + M3 * M4 + 4.;
+
+  for (std::size_t i = 0; i < M; i++) {
+    for (std::size_t j = 0; j < K; j++) {
+      double sum1 = 0;
+      double sum2 = 0;
+      for (std::size_t k = 0; k < N; k++) {
+        sum1 += M0(i, k) * std::sin(M1(k, j));
+        sum2 += std::cos(M0(i, k)) * std::sin(M1(k, j));
+      }
+      EXPECT_DOUBLE_EQ(Result(i, j), 1 + sum1 + sum2 + M3(i, j) * M4(i, j) + 4);
+    }
+  }
+}
 // TEST(Parser, UnaryParser) {}
 
 // TEST(Parser, BinaryParser) {

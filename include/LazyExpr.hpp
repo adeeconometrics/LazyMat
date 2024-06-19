@@ -1,25 +1,13 @@
 #ifndef __LAZYEXPR_H__
 #define __LAZYEXPR_H__
 
+#include "../include/LazyMatrix.hpp"
+
 #include <cassert>
 #include <type_traits>
 #include <utility>
 
-#ifdef DEBUG
-#include <stdexcept>
-#endif
-
 namespace lm {
-
-constexpr auto operator==(const std::pair<std::size_t, std::size_t> &lhs,
-                          std::size_t rhs) -> bool {
-  return lhs.first == rhs && lhs.second == rhs;
-}
-
-constexpr auto operator!=(const std::pair<std::size_t, std::size_t> &lhs,
-                          std::size_t rhs) -> bool {
-  return !(lhs == rhs);
-}
 
 constexpr auto
 operator==(std::size_t lhs,
@@ -66,6 +54,34 @@ private:
   Op op;
 };
 
+template <typename Op, typename T, std::size_t Rows1, std::size_t Cols1,
+          std::size_t Rows2, std::size_t Cols2>
+class BinaryExpr<Op, Matrix<T, Rows1, Cols1>, Matrix<T, Rows2, Cols2>> {
+
+public:
+  BinaryExpr(const Matrix<T, Rows1, Cols1> &lhs,
+             const Matrix<T, Rows2, Cols2> &rhs)
+      : lhs(lhs), rhs(rhs) {
+#ifdef DEBUG
+    assert(Rows1 == Rows2 && Cols1 == Cols2 && "Dimensions mismatch");
+#else
+    static_assert(Rows1 == Rows2 && Cols1 == Cols2, "Dimensions mismatch");
+#endif
+  }
+
+  auto operator()(std::size_t i, std::size_t j) const noexcept {
+    return op(lhs(i, j), rhs(i, j));
+  }
+
+  auto rows() const -> std::pair<std::size_t, std::size_t> {
+    return {lhs.rows(), rhs.rows()};
+  }
+
+private:
+  const Matrix<T, Rows1, Cols1> &lhs;
+  const Matrix<T, Rows2, Cols2> &rhs;
+  Op op;
+};
 template <typename Op, typename Lhs, typename Rhs>
 class BinaryExpr<Op, Lhs, Rhs,
                  std::enable_if_t<std::is_arithmetic<Rhs>::value>> {
@@ -144,15 +160,7 @@ private:
  */
 template <typename Lhs, typename Rhs> class MatMulExpr {
 public:
-  MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {
-#ifdef DEBUG
-    if (m_lhs.cols() != m_rhs.rows()) {
-      throw std::runtime_error("Dimensions mismatch");
-    }
-#else
-    assert(m_lhs.cols() == m_rhs.rows()); // dimensions mismatch
-#endif
-  }
+  MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {}
 
   auto operator()(std::size_t i, std::size_t j) const {
     auto result = m_lhs(i, 0) * m_rhs(0, j);
@@ -165,12 +173,45 @@ public:
     return result;
   }
 
-  std::size_t rows() const { return m_lhs.rows(); }
-  std::size_t cols() const { return m_rhs.cols(); }
+  auto rows() const -> std::size_t { return m_lhs.rows(); }
+  auto cols() const -> std::size_t { return m_rhs.cols(); }
 
 private:
   Lhs m_lhs;
   Rhs m_rhs;
+};
+
+template <typename T, std::size_t Rows1, std::size_t Cols1, std::size_t Rows2,
+          std::size_t Cols2>
+class MatMulExpr<Matrix<T, Rows1, Cols1>, Matrix<T, Rows2, Cols2>> {
+public:
+  MatMulExpr(const Matrix<T, Rows1, Cols1> &lhs,
+             const Matrix<T, Rows2, Cols2> &rhs)
+      : m_lhs(lhs), m_rhs(rhs) {
+#ifdef DEBUG
+    assert(Cols1 == Rows2 && "Dimensions mismatch");
+#else
+    static_assert(Cols1 == Rows2, "Dimensions mismatch");
+#endif
+  }
+
+  auto operator()(std::size_t i, std::size_t j) const {
+    auto result = m_lhs(i, 0) * m_rhs(0, j);
+#ifdef __clang__
+#pragma clang loop vectorize(enable)
+#endif
+    for (std::size_t k = 1; k < Cols1; ++k) {
+      result += m_lhs(i, k) * m_rhs(k, j);
+    }
+    return result;
+  }
+
+  auto rows() const -> std::size_t { return Rows1; }
+  auto cols() const -> std::size_t { return Cols2; }
+
+private:
+  const Matrix<T, Rows1, Cols1> &m_lhs;
+  const Matrix<T, Rows2, Cols2> &m_rhs;
 };
 
 } // namespace lm
