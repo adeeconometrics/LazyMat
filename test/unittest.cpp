@@ -62,6 +62,22 @@ TEST(BinaryExpr, BinaryOps) {
     }
   }
 }
+
+TEST(BinaryExpr, PowOp) {
+  const Matrix<int, 3, 3> M0{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+
+  const auto EPowInt = pow(M0, 2);
+  const auto EPowFloat = pow(M0, 2.6f);
+  const auto EPowDouble = pow(M0, 2.5L);
+
+  for (std::size_t i = 0; i < 3; i++) {
+    for (std::size_t j = 0; j < 3; j++) {
+      EXPECT_EQ(EPowInt(i, j), std::pow(M0(i, j), 2));
+      EXPECT_FLOAT_EQ(EPowFloat(i, j), std::pow(M0(i, j), 2.6f));
+      EXPECT_DOUBLE_EQ(EPowDouble(i, j), std::pow(M0(i, j), 2.5L));
+    }
+  }
+}
 #endif
 // SCLAR DIV SHOULD BE TESTED AS WELL
 // TEST(BinaryExpr, BinaryOpsDiv) {
