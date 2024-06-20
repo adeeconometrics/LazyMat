@@ -9,18 +9,6 @@
 
 namespace lm {
 
-constexpr auto
-operator==(std::size_t lhs,
-           const std::pair<std::size_t, std::size_t> &rhs) -> bool {
-  return rhs.first == lhs && rhs.second == lhs;
-}
-
-constexpr auto
-operator!=(std::size_t lhs,
-           const std::pair<std::size_t, std::size_t> &rhs) -> bool {
-  return !(lhs == rhs);
-}
-
 /**
  * @brief Template functor for binary expressions. Contains an abstract
  * representation of binary ops and an API for recursively calling eval via

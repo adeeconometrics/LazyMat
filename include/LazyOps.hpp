@@ -64,6 +64,19 @@ constexpr auto operator%(const Lhs &lhs,
   return BinaryExpr<ModOp, Lhs, Rhs>(lhs, rhs);
 }
 
+struct PowOp {
+  template <typename Lhs, typename Rhs> auto operator()(Lhs l, Rhs r) const {
+    return std::pow(l, r);
+  }
+};
+
+template <typename Lhs, typename Rhs,
+          typename = typename std::enable_if_t<std::is_arithmetic_v<Rhs>>>
+constexpr auto pow(const Lhs &lhs,
+                   const Rhs &rhs) -> BinaryExpr<PowOp, Lhs, Rhs> {
+  return BinaryExpr<PowOp, Lhs, Rhs>(lhs, rhs);
+}
+
 template <typename Expr>
 constexpr auto operator-(const Expr &expr) -> UnaryExpr<std::negate<>, Expr> {
   return UnaryExpr<std::negate<>, Expr>(expr);
