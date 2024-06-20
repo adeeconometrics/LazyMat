@@ -9,6 +9,25 @@
 
 namespace lm {
 
+template <typename Derived> class MatExpr {
+public:
+  auto operator()(std::size_t i, std::size_t j) const -> decltype(auto) {
+    return static_cast<const Derived &>(*this)(i, j);
+  }
+
+  auto rows() const -> std::pair<std::size_t, std::size_t> {
+    return static_cast<const Derived &>(*this).rows();
+  }
+
+  auto cols() const -> std::pair<std::size_t, std::size_t> {
+    return static_cast<const Derived &>(*this).cols();
+  }
+
+  auto operator()(std::size_t i) const -> decltype(auto) {
+    return static_cast<const Derived &>(*this)(i);
+  }
+};
+
 /**
  * @brief Template functor for binary expressions. Contains an abstract
  * representation of binary ops and an API for recursively calling eval via
@@ -19,7 +38,7 @@ namespace lm {
  * @tparam Rhs Righ hand side of the expr.
  */
 template <typename Op, typename Lhs, typename Rhs, typename = void>
-class BinaryExpr {
+class BinaryExpr : public MatExpr<BinaryExpr<Op, Lhs, Rhs>> {
 
 public:
   BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
@@ -44,7 +63,9 @@ private:
 
 template <typename Op, typename T, std::size_t Rows1, std::size_t Cols1,
           std::size_t Rows2, std::size_t Cols2>
-class BinaryExpr<Op, Matrix<T, Rows1, Cols1>, Matrix<T, Rows2, Cols2>> {
+class BinaryExpr<Op, Matrix<T, Rows1, Cols1>, Matrix<T, Rows2, Cols2>>
+    : public MatExpr<
+          BinaryExpr<Op, Matrix<T, Rows1, Cols1>, Matrix<T, Rows2, Cols2>>> {
 
 public:
   BinaryExpr(const Matrix<T, Rows1, Cols1> &lhs,
@@ -71,8 +92,8 @@ private:
   Op op;
 };
 template <typename Op, typename Lhs, typename Rhs>
-class BinaryExpr<Op, Lhs, Rhs,
-                 std::enable_if_t<std::is_arithmetic<Rhs>::value>> {
+class BinaryExpr<Op, Lhs, Rhs, std::enable_if_t<std::is_arithmetic<Rhs>::value>>
+    : public MatExpr<BinaryExpr<Op, Lhs, Rhs>> {
 public:
   BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
 
@@ -95,8 +116,8 @@ private:
 };
 
 template <typename Op, typename Lhs, typename Rhs>
-class BinaryExpr<Op, Lhs, Rhs,
-                 std::enable_if_t<std::is_arithmetic<Lhs>::value>> {
+class BinaryExpr<Op, Lhs, Rhs, std::enable_if_t<std::is_arithmetic<Lhs>::value>>
+    : public MatExpr<BinaryExpr<Op, Lhs, Rhs>> {
 public:
   BinaryExpr(const Lhs &lhs, const Rhs &rhs) : lhs(lhs), rhs(rhs) {}
 
@@ -125,7 +146,8 @@ private:
  * @tparam Op Operator type specified in `LazyOps.hpp`
  * @tparam Expr Unary expression
  */
-template <typename Op, typename Expr> class UnaryExpr {
+template <typename Op, typename Expr>
+class UnaryExpr : public MatExpr<UnaryExpr<Op, Expr>> {
 public:
   UnaryExpr(const Expr &expr) : expr(expr) {}
 
@@ -146,7 +168,8 @@ private:
  * @tparam Lhs Left hand side of the expr.
  * @tparam Rhs Right hand side of the expr.
  */
-template <typename Lhs, typename Rhs> class MatMulExpr {
+template <typename Lhs, typename Rhs>
+class MatMulExpr : public MatExpr<MatMulExpr<Lhs, Rhs>> {
 public:
   MatMulExpr(const Lhs &lhs, const Rhs &rhs) : m_lhs(lhs), m_rhs(rhs) {}
 

@@ -23,33 +23,34 @@ constexpr auto operator!=(const Matrix<T, Row, Col> &lhs,
 }
 
 template <typename Lhs, typename Rhs>
-constexpr auto operator+(const Lhs &lhs,
-                         const Rhs &rhs) -> BinaryExpr<std::plus<>, Lhs, Rhs> {
-  return BinaryExpr<std::plus<>, Lhs, Rhs>(lhs, rhs);
+constexpr auto operator+(const Lhs &lhs, const Rhs &rhs)
+    -> MatExpr<BinaryExpr<std::plus<>, Lhs, Rhs>> {
+  return MatExpr<BinaryExpr<std::plus<>, Lhs, Rhs>>(lhs, rhs);
 }
 
 template <typename Lhs, typename Rhs>
-constexpr auto operator-(const Lhs &lhs,
-                         const Rhs &rhs) -> BinaryExpr<std::minus<>, Lhs, Rhs> {
-  return BinaryExpr<std::minus<>, Lhs, Rhs>(lhs, rhs);
+constexpr auto operator-(const Lhs &lhs, const Rhs &rhs)
+    -> MatExpr<BinaryExpr<std::minus<>, Lhs, Rhs>> {
+  return MatExpr<BinaryExpr<std::minus<>, Lhs, Rhs>>(lhs, rhs);
 }
 
 template <typename Lhs, typename Rhs>
 constexpr auto operator*(const Lhs &lhs, const Rhs &rhs)
-    -> BinaryExpr<std::multiplies<>, Lhs, Rhs> {
-  return BinaryExpr<std::multiplies<>, Lhs, Rhs>(lhs, rhs);
+    -> MatExpr<BinaryExpr<std::multiplies<>, Lhs, Rhs>> {
+  return MatExpr<BinaryExpr<std::multiplies<>, Lhs, Rhs>>(lhs, rhs);
 }
 
 template <typename Lhs, typename Rhs>
 constexpr auto operator/(const Lhs &lhs, const Rhs &rhs)
-    -> BinaryExpr<std::divides<>, Lhs, Rhs> {
-  return BinaryExpr<std::divides<>, Lhs, Rhs>(lhs, rhs);
+    -> MatExpr<BinaryExpr<std::divides<>, Lhs, Rhs>> {
+  return MatExpr<BinaryExpr<std::divides<>, Lhs, Rhs>>(lhs, rhs);
 }
 // matmul unary: matmul(Expr(A), B) | matmul(A, Expr(B))
 // matmul binary: matmul(Expr(A), Expr(B))
 template <typename Lhs, typename Rhs>
-constexpr auto matmul(const Lhs &lhs, const Rhs &rhs) -> MatMulExpr<Lhs, Rhs> {
-  return MatMulExpr<Lhs, Rhs>(lhs, rhs);
+constexpr auto matmul(const Lhs &lhs,
+                      const Rhs &rhs) -> MatExpr<MatMulExpr<Lhs, Rhs>> {
+  return MatExpr<MatMulExpr<Lhs, Rhs>>(lhs, rhs);
 }
 
 struct ModOp {
@@ -59,9 +60,9 @@ struct ModOp {
 };
 
 template <typename Lhs, typename Rhs>
-constexpr auto operator%(const Lhs &lhs,
-                         const Rhs &rhs) -> BinaryExpr<ModOp, Lhs, Rhs> {
-  return BinaryExpr<ModOp, Lhs, Rhs>(lhs, rhs);
+constexpr auto operator%(const Lhs &lhs, const Rhs &rhs)
+    -> MatExpr<BinaryExpr<ModOp, Lhs, Rhs>> {
+  return MatExpr<BinaryExpr<ModOp, Lhs, Rhs>>(lhs, rhs);
 }
 
 struct PowOp {
@@ -73,13 +74,14 @@ struct PowOp {
 template <typename Lhs, typename Rhs,
           typename = typename std::enable_if_t<std::is_arithmetic_v<Rhs>>>
 constexpr auto pow(const Lhs &lhs,
-                   const Rhs &rhs) -> BinaryExpr<PowOp, Lhs, Rhs> {
-  return BinaryExpr<PowOp, Lhs, Rhs>(lhs, rhs);
+                   const Rhs &rhs) -> MatExpr<BinaryExpr<PowOp, Lhs, Rhs>> {
+  return MatExpr<BinaryExpr<PowOp, Lhs, Rhs>>(lhs, rhs);
 }
 
 template <typename Expr>
-constexpr auto operator-(const Expr &expr) -> UnaryExpr<std::negate<>, Expr> {
-  return UnaryExpr<std::negate<>, Expr>(expr);
+constexpr auto
+operator-(const Expr &expr) -> MatExpr<UnaryExpr<std::negate<>, Expr>> {
+  return MatExpr<UnaryExpr<std::negate<>, Expr>>(expr);
 }
 
 struct LogOp {
@@ -89,8 +91,9 @@ struct LogOp {
   }
 };
 
-template <typename Expr> auto log(const Expr &expr) -> UnaryExpr<LogOp, Expr> {
-  return UnaryExpr<LogOp, Expr>(expr);
+template <typename Expr>
+auto log(const Expr &expr) -> MatExpr<UnaryExpr<LogOp, Expr>> {
+  return MatExpr<UnaryExpr<LogOp, Expr>>(expr);
 }
 
 struct Log10Op {
@@ -101,8 +104,8 @@ struct Log10Op {
 };
 
 template <typename Expr>
-auto log10(const Expr &expr) -> UnaryExpr<Log10Op, Expr> {
-  return UnaryExpr<Log10Op, Expr>(expr);
+auto log10(const Expr &expr) -> MatExpr<UnaryExpr<Log10Op, Expr>> {
+  return MatExpr<UnaryExpr<Log10Op, Expr>>(expr);
 }
 
 struct Log2Op {
@@ -113,8 +116,8 @@ struct Log2Op {
 };
 
 template <typename Expr>
-auto log2(const Expr &expr) -> UnaryExpr<Log2Op, Expr> {
-  return UnaryExpr<Log2Op, Expr>(expr);
+auto log2(const Expr &expr) -> MatExpr<UnaryExpr<Log2Op, Expr>> {
+  return MatExpr<UnaryExpr<Log2Op, Expr>>(expr);
 }
 
 struct ExpOp {
@@ -124,8 +127,9 @@ struct ExpOp {
   }
 };
 
-template <typename Expr> auto exp(const Expr &expr) -> UnaryExpr<ExpOp, Expr> {
-  return UnaryExpr<ExpOp, Expr>(expr);
+template <typename Expr>
+auto exp(const Expr &expr) -> MatExpr<UnaryExpr<ExpOp, Expr>> {
+  return MatExpr<UnaryExpr<ExpOp, Expr>>(expr);
 }
 
 struct Exp2Op {
@@ -136,8 +140,8 @@ struct Exp2Op {
 };
 
 template <typename Expr>
-auto exp2(const Expr &expr) -> UnaryExpr<Exp2Op, Expr> {
-  return UnaryExpr<Exp2Op, Expr>(expr);
+auto exp2(const Expr &expr) -> MatExpr<UnaryExpr<Exp2Op, Expr>> {
+  return MatExpr<UnaryExpr<Exp2Op, Expr>>(expr);
 }
 
 struct SqrtOp {
@@ -148,8 +152,8 @@ struct SqrtOp {
 };
 
 template <typename Expr>
-auto sqrt(const Expr &expr) -> UnaryExpr<SqrtOp, Expr> {
-  return UnaryExpr<SqrtOp, Expr>(expr);
+auto sqrt(const Expr &expr) -> MatExpr<UnaryExpr<SqrtOp, Expr>> {
+  return MatExpr<UnaryExpr<SqrtOp, Expr>>(expr);
 }
 
 struct CbrtOp {
@@ -160,8 +164,8 @@ struct CbrtOp {
 };
 
 template <typename Expr>
-auto cbrt(const Expr &expr) -> UnaryExpr<CbrtOp, Expr> {
-  return UnaryExpr<CbrtOp, Expr>(expr);
+auto cbrt(const Expr &expr) -> MatExpr<UnaryExpr<CbrtOp, Expr>> {
+  return MatExpr<UnaryExpr<CbrtOp, Expr>>(expr);
 }
 
 struct SinOp {
@@ -171,8 +175,9 @@ struct SinOp {
   }
 };
 
-template <typename Expr> auto sin(const Expr &expr) -> UnaryExpr<SinOp, Expr> {
-  return UnaryExpr<SinOp, Expr>(expr);
+template <typename Expr>
+auto sin(const Expr &expr) -> MatExpr<UnaryExpr<SinOp, Expr>> {
+  return MatExpr<UnaryExpr<SinOp, Expr>>(expr);
 }
 
 struct CosOp {
@@ -193,8 +198,9 @@ struct TanOp {
   }
 };
 
-template <typename Expr> auto tan(const Expr &expr) -> UnaryExpr<TanOp, Expr> {
-  return UnaryExpr<TanOp, Expr>(expr);
+template <typename Expr>
+auto tan(const Expr &expr) -> MatExpr<UnaryExpr<TanOp, Expr>> {
+  return MatExpr<UnaryExpr<TanOp, Expr>>(expr);
 }
 
 struct ASinOp {
@@ -205,8 +211,8 @@ struct ASinOp {
 };
 
 template <typename Expr>
-auto asin(const Expr &expr) -> UnaryExpr<ASinOp, Expr> {
-  return UnaryExpr<ASinOp, Expr>(expr);
+auto asin(const Expr &expr) -> MatExpr<UnaryExpr<ASinOp, Expr>> {
+  return MatExpr<UnaryExpr<ASinOp, Expr>>(expr);
 }
 
 struct ACosOp {
@@ -217,8 +223,8 @@ struct ACosOp {
 };
 
 template <typename Expr>
-auto acos(const Expr &expr) -> UnaryExpr<ACosOp, Expr> {
-  return UnaryExpr<ACosOp, Expr>(expr);
+auto acos(const Expr &expr) -> MatExpr<UnaryExpr<ACosOp, Expr>> {
+  return MatExpr<UnaryExpr<ACosOp, Expr>>(expr);
 }
 
 struct ATanOp {
@@ -229,8 +235,8 @@ struct ATanOp {
 };
 
 template <typename Expr>
-auto atan(const Expr &expr) -> UnaryExpr<ATanOp, Expr> {
-  return UnaryExpr<ATanOp, Expr>(expr);
+auto atan(const Expr &expr) -> MatExpr<UnaryExpr<ATanOp, Expr>> {
+  return MatExpr<UnaryExpr<ATanOp, Expr>>(expr);
 }
 
 struct SinhOp {
@@ -241,8 +247,8 @@ struct SinhOp {
 };
 
 template <typename Expr>
-auto sinh(const Expr &expr) -> UnaryExpr<SinhOp, Expr> {
-  return UnaryExpr<SinhOp, Expr>(expr);
+auto sinh(const Expr &expr) -> MatExpr<UnaryExpr<SinhOp, Expr>> {
+  return MatExpr<UnaryExpr<SinhOp, Expr>>(expr);
 }
 
 struct CoshOp {
@@ -253,8 +259,8 @@ struct CoshOp {
 };
 
 template <typename Expr>
-auto cosh(const Expr &expr) -> UnaryExpr<CoshOp, Expr> {
-  return UnaryExpr<CoshOp, Expr>(expr);
+auto cosh(const Expr &expr) -> MatExpr<UnaryExpr<CoshOp, Expr>> {
+  return MatExpr<UnaryExpr<CoshOp, Expr>>(expr);
 }
 
 struct TanhOp {
@@ -265,8 +271,8 @@ struct TanhOp {
 };
 
 template <typename Expr>
-auto tanh(const Expr &expr) -> UnaryExpr<TanhOp, Expr> {
-  return UnaryExpr<TanhOp, Expr>(expr);
+auto tanh(const Expr &expr) -> MatExpr<UnaryExpr<TanhOp, Expr>> {
+  return MatExpr<UnaryExpr<TanhOp, Expr>>(expr);
 }
 
 struct ASinhOp {
@@ -277,8 +283,8 @@ struct ASinhOp {
 };
 
 template <typename Expr>
-auto asinh(const Expr &expr) -> UnaryExpr<ASinhOp, Expr> {
-  return UnaryExpr<ASinhOp, Expr>(expr);
+auto asinh(const Expr &expr) -> MatExpr<UnaryExpr<ASinhOp, Expr>> {
+  return MatExpr<UnaryExpr<ASinhOp, Expr>>(expr);
 }
 
 struct ACoshOp {
@@ -289,8 +295,8 @@ struct ACoshOp {
 };
 
 template <typename Expr>
-auto acosh(const Expr &expr) -> UnaryExpr<ACoshOp, Expr> {
-  return UnaryExpr<ACoshOp, Expr>(expr);
+auto acosh(const Expr &expr) -> MatExpr<UnaryExpr<ACoshOp, Expr>> {
+  return MatExpr<UnaryExpr<ACoshOp, Expr>>(expr);
 }
 
 struct ATanhOp {
@@ -301,8 +307,8 @@ struct ATanhOp {
 };
 
 template <typename Expr>
-auto atanh(const Expr &expr) -> UnaryExpr<ATanhOp, Expr> {
-  return UnaryExpr<ATanhOp, Expr>(expr);
+auto atanh(const Expr &expr) -> MatExpr<UnaryExpr<ATanhOp, Expr>> {
+  return MatExpr<UnaryExpr<ATanhOp, Expr>>(expr);
 }
 
 struct ToDeg {
@@ -313,8 +319,8 @@ struct ToDeg {
 };
 
 template <typename Expr>
-auto to_deg(const Expr &expr) -> UnaryExpr<ToDeg, Expr> {
-  return UnaryExpr<ToDeg, Expr>(expr);
+auto to_deg(const Expr &expr) -> MatExpr<UnaryExpr<ToDeg, Expr>> {
+  return MatExpr<UnaryExpr<ToDeg, Expr>>(expr);
 }
 
 struct ToRad {
@@ -325,8 +331,8 @@ struct ToRad {
 };
 
 template <typename Expr>
-auto to_rad(const Expr &expr) -> UnaryExpr<ToRad, Expr> {
-  return UnaryExpr<ToRad, Expr>(expr);
+auto to_rad(const Expr &expr) -> MatExpr<UnaryExpr<ToRad, Expr>> {
+  return MatExpr<UnaryExpr<ToRad, Expr>>(expr);
 }
 
 struct ErfOp {
@@ -336,8 +342,9 @@ struct ErfOp {
   }
 };
 
-template <typename Expr> auto erf(const Expr &expr) -> UnaryExpr<ErfOp, Expr> {
-  return UnaryExpr<ErfOp, Expr>(expr);
+template <typename Expr>
+auto erf(const Expr &expr) -> MatExpr<UnaryExpr<ErfOp, Expr>> {
+  return MatExpr<UnaryExpr<ErfOp, Expr>>(expr);
 }
 
 struct ErfcOp {
@@ -348,8 +355,8 @@ struct ErfcOp {
 };
 
 template <typename Expr>
-auto erfc(const Expr &expr) -> UnaryExpr<ErfcOp, Expr> {
-  return UnaryExpr<ErfcOp, Expr>(expr);
+auto erfc(const Expr &expr) -> MatExpr<UnaryExpr<ErfcOp, Expr>> {
+  return MatExpr<UnaryExpr<ErfcOp, Expr>>(expr);
 }
 
 struct TGammaOp {
@@ -360,8 +367,8 @@ struct TGammaOp {
 };
 
 template <typename Expr>
-auto tgamma(const Expr &expr) -> UnaryExpr<TGammaOp, Expr> {
-  return UnaryExpr<TGammaOp, Expr>(expr);
+auto tgamma(const Expr &expr) -> MatExpr<UnaryExpr<TGammaOp, Expr>> {
+  return MatExpr<UnaryExpr<TGammaOp, Expr>>(expr);
 }
 
 struct LGammaOp {
@@ -372,8 +379,8 @@ struct LGammaOp {
 };
 
 template <typename Expr>
-auto lgamma(const Expr &expr) -> UnaryExpr<LGammaOp, Expr> {
-  return UnaryExpr<LGammaOp, Expr>(expr);
+auto lgamma(const Expr &expr) -> MatExpr<UnaryExpr<LGammaOp, Expr>> {
+  return MatExpr<UnaryExpr<LGammaOp, Expr>>(expr);
 }
 
 struct CeilOp {
@@ -384,8 +391,8 @@ struct CeilOp {
 };
 
 template <typename Expr>
-auto ceil(const Expr &expr) -> UnaryExpr<CeilOp, Expr> {
-  return UnaryExpr<CeilOp, Expr>(expr);
+auto ceil(const Expr &expr) -> MatExpr<UnaryExpr<CeilOp, Expr>> {
+  return MatExpr<UnaryExpr<CeilOp, Expr>>(expr);
 }
 
 struct FloorOp {
@@ -396,8 +403,8 @@ struct FloorOp {
 };
 
 template <typename Expr>
-auto floor(const Expr &expr) -> UnaryExpr<FloorOp, Expr> {
-  return UnaryExpr<FloorOp, Expr>(expr);
+auto floor(const Expr &expr) -> MatExpr<UnaryExpr<FloorOp, Expr>> {
+  return MatExpr<UnaryExpr<FloorOp, Expr>>(expr);
 }
 }; // namespace lm
 
