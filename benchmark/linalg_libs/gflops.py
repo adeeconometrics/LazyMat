@@ -36,8 +36,8 @@ def measure_expr(A: Array,
 
 if __name__ == "__main__":
     table = []
-    M, N, K = 256, 256, 256
-    nsec: int = 813708 * 1e-9  # 49758236*1e-9  # 38_283_092_347
+    M, N, K = 4096, 4096, 4096
+    nsec: int = 158948375 * 1e-9  # 49758236*1e-9  # 38_283_092_347
 
     floating_ops: int = 4*M*N*K + 5*M*N  # 2 * M*N*K
     lm_gflops: int = get_gflops(floating_ops, nsec)

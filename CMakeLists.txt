@@ -84,6 +84,30 @@ set(CPACK_PACKAGE_VENDOR "LazyMat")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "LazyMat")
 
+# Add component-based installation
+set(CPACK_COMPONENTS_ALL libraries headers documentation)
+set(CPACK_COMPONENT_LIBRARIES_DISPLAY_NAME "LazyMat Libraries")
+set(CPACK_COMPONENT_HEADERS_DISPLAY_NAME "C++ Headers")
+set(CPACK_COMPONENT_DOCUMENTATION_DISPLAY_NAME "Documentation")
+
+# Installation configuration
+install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION bin COMPONENT libraries
+        LIBRARY DESTINATION lib COMPONENT libraries
+        ARCHIVE DESTINATION lib COMPONENT libraries)
+
+install(DIRECTORY include/
+        DESTINATION include/lazymat
+        COMPONENT headers
+        FILES_MATCHING PATTERN "*.hpp")
+
+# Install documentation if Doxygen is found
+if(DOXYGEN_FOUND)
+    install(DIRECTORY ${CMAKE_BINARY_DIR}/docs/
+            DESTINATION share/doc/lazymat
+            COMPONENT documentation)
+endif()
+
 # Generator specific configuration
 if(WIN32)
     set(CPACK_GENERATOR "NSIS;ZIP")
@@ -128,3 +152,26 @@ if(DOXYGEN_FOUND)
 else(DOXYGEN_FOUND)
     message("Doxygen need to be installed to generate the doxygen documentation")
 endif(DOXYGEN_FOUND)
+
+include(CMakePackageConfigHelpers)
+
+# Generate version file
+write_basic_package_version_file(
+    "${CMAKE_BINARY_DIR}/LazyMatConfigVersion.cmake"
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
+# Configure config file
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/LazyMatConfig.cmake.in"
+    "${CMAKE_BINARY_DIR}/LazyMatConfig.cmake"
+    INSTALL_DESTINATION lib/cmake/LazyMat
+)
+
+# Install config files
+install(FILES
+    "${CMAKE_BINARY_DIR}/LazyMatConfig.cmake"
+    "${CMAKE_BINARY_DIR}/LazyMatConfigVersion.cmake"
+    DESTINATION lib/cmake/LazyMat
+)
