@@ -10,4 +10,5 @@ docs_sphinx/_templates/
 venv/
 
 .github
+.cache/
 !.github/workflows
