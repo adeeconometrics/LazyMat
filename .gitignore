@@ -8,3 +8,6 @@ docs_sphinx/_build/*
 docs_sphinx/_static/
 docs_sphinx/_templates/
 venv/
+
+.github
+!.github/workflows
